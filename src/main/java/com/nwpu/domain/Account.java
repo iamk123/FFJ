@@ -31,4 +31,13 @@ public class Account implements Serializable {
     public void setMoney(Double money) {
         this.money = money;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", money=" + money +
+                '}';
+    }
 }
