@@ -1,6 +1,6 @@
 package com.nwpu.service.impl;
 
-import com.nwpu.dao.AccountDao;
+import com.nwpu.dao.IAccountDao;
 import com.nwpu.domain.Account;
 import com.nwpu.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
-    private AccountDao accountDao;
+    private IAccountDao accountDao;
 
     public List<Account> findAll() {
         System.out.println("业务层：查询所有账户...");

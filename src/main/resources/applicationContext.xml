@@ -19,17 +19,11 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
+
+
     <!--Spring整合MyBatis框架-->
     <!--加载配置文件-->
     <context:property-placeholder location="classpath:jdbcConfig.properties" />
-
-    <!-- 配置 MyBatis 的 Session 工厂 -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-    <!-- 数据库连接池 -->
-        <property name="dataSource" ref="dataSource" />
-    <!-- 加载 mybatis 的全局配置文件 -->
-        <property name="configLocation" value="classpath:SqlMapConfig.xml" />
-    </bean>
 
     <!-- 配置数据源 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -39,10 +33,30 @@
         <property name="password" value="${jdbc.password}"></property>
     </bean>
 
+    <!-- 配置 MyBatis 的 Session 工厂 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 数据库连接池 -->
+        <property name="dataSource" ref="dataSource" />
+        <!-- 加载 mybatis 的全局配置文件 -->
+        <property name="configLocation" value="classpath:SqlMapConfig.xml" />
+        <!--自动扫描mapping.xml文件-->
+        <property name="mapperLocations" value="classpath:com/nwpu/dao/*.xml"></property>
+    </bean>
+
     <!-- 配置 Mapper 扫描器 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.nwpu.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
+
+
+
+
+
+
+
+
+
 
     <!-- 配置事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

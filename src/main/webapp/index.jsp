@@ -16,6 +16,8 @@
 
 <h3>测试包</h3>
 
+<h3><a href="/login">登录</a></h3>
+
 <form action="account/save" method="post">
     姓名：<input type="text" name="name" /><br/>
     金额：<input type="text" name="money" /><br/>
