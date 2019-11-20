@@ -1,0 +1,39 @@
+/**
+ * 公共
+ */
+.border {
+	border:1px solid #f00;
+}
+
+
+
+/**
+ * 个人信息
+ */
+#personInfo-session{
+	background-color:#f6f6f8;
+}
+#personInfo-session .personInfo{
+	margin-bottom: 30px;
+
+}
+#personInfo-session .personInfo-form{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding: 30px;
+	background-color: #fff;
+}
+#personInfo-session .personInfo-form .personInfo-form-title{
+	font-size: 30px;
+	margin-bottom: 20px;
+}
+#personInfo-session .personInfo-form .personInfo-btn{
+	margin-top: 30px;
+	background-color:#00B38A;
+	color:#fff;
+	width: 100px;
+	height:40px;
+}
+#personInfo-session .personInfo-form .personInfo-btn-return{
+	margin-left: 20px;
+}

@@ -1,0 +1,118 @@
+a{
+	text-decoration: none;
+}
+li{
+	list-style:none;
+}
+/**
+ * header
+ */
+
+.section-main .position-head .position-content-r{
+	margin-top: 20px;
+	/*margin-right: 20px;*/
+	position: absolute;
+	right:20px;
+}
+.section-main .position-head .position-content-r .job-collection{
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	width:80px;
+	border: 1px solid #00b38a;
+	font-size:14px;
+	color: #00b38a;
+	border-radius: 5px;
+	margin-right: 10px;
+	cursor:pointer;
+}
+.section-main .position-head .position-content-r .resume-deliver{
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	width:100px;
+	background-color: #00b38a;
+	border-radius: 5px;
+	border:1px solid #00b38a;
+}
+.section-main .position-head .position-content-r .resume-deliver a{
+	color:#fff;
+	text-decoration: none;
+}
+
+.section-main .position-head .position-content-r .tool-icon{
+	text-align: right;
+	/*border:1px solid #ccc;*/
+	margin-top: 50px;
+	font-size: 17px;
+}
+.section-main .position-head .position-content-r .tool-icon a{
+	color:#b7b7b7;
+}
+
+/**
+ * 左边
+ */
+.section-main-color{
+	background-color: #fff;
+}
+.section-main .job-info .job-detail{
+	/*margin-top:0px;*/
+	margin-bottom: 20px;
+	padding-top: 10px;
+	background-color: #fff;
+	/*border:1px solid #8d92a1;*/
+	/*margin-top: 20px;*/
+}
+
+/**
+ * 右边
+ */
+.section-main .job-info .job-companyInfo{
+	margin-top: 20px;
+	margin-left:10px;
+	background-color: #fff;
+	border-left:5px solid #f6f6f8;
+}
+.section-main .job-info .job-companyInfo .job-company a{
+	color:#555;
+}
+.section-main .job-info .job-companyInfo .job-company .company-icon{
+	width: 100px;
+	height: 100px;
+	border:1px solid #c6ced0;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.section-main .job-info .job-companyInfo .job-company .company-icon img{
+	width: 100%;
+	height: 100%;
+}
+.section-main .job-info .job-companyInfo .job-company dd ul li{
+	color:#737373;
+	margin-top:10px;
+}
+/**
+ * 相似岗位
+ */
+.section-main .job-info .job-companyInfo .job-similar{
+	margin-top: 30px;
+	border-top:5px solid #f6f6f8;
+}
+.job-similar h5::after{
+	content: ' -----------------------------';
+	font-size: 1px;
+	color:#c6ced0;;
+}
+.section-main .job-info .job-companyInfo .job-similar .media-left-img{
+	width:50px;
+	height:50px;
+}
+.section-main .job-info .job-companyInfo .job-similar .media-left-img img{
+	width: 100%;
+	height: 100%;
+}
+.section-main .job-info .job-companyInfo .job-similar .media-body p{
+	height: 10px;
+	font-size: 12px;
+}

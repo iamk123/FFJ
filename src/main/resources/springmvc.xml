@@ -17,18 +17,29 @@
 
     <!--配置的视图解析器对象-->
     <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--前缀-->
         <property name="prefix" value="/WEB-INF/pages/"/>
+        <!--后缀-->
         <property name="suffix" value=".jsp"/>
     </bean>
 
     <!--过滤静态资源-->
-<!--    <mvc:resources location="/static/css/" mapping="/static/css/**" />-->
-<!--    <mvc:resources location="/static/img/" mapping="/static/img/**" />-->
-<!--    <mvc:resources location="/static/js/" mapping="/static/js/**" />-->
-<!--    <mvc:resources location="/static/font/" mapping="/static/font/**" />-->
-<!--    <mvc:resources location="/static/lib/" mapping="/static/lib/**" />-->
+    <mvc:resources location="/static/css/" mapping="/static/css/**" />
+    <mvc:resources location="/static/img/" mapping="/static/img/**" />
+    <mvc:resources location="/static/js/" mapping="/static/js/**" />
+    <mvc:resources location="/static/font/" mapping="/static/font/**" />
+    <mvc:resources location="/static/lib/" mapping="/static/lib/**" />
 
     <!--开启SpringMVC注解的支持-->
     <mvc:annotation-driven/>
+
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--配置拦截器作用的路径-->
+            <mvc:mapping path="/**"/>
+            <bean class="com.nwpu.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>

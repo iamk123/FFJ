@@ -1,0 +1,36 @@
+/**
+ * footer
+ */
+#footer{
+	background-color: #f6f6f8;
+}
+#footer .footer-item{
+	padding: 10px;
+}
+#footer .footer-item dd a{
+	display: block;
+	color:#8d92a1;
+	font-size:12px;
+	margin-bottom:5px;
+}
+#footer .footer-companyInfo{
+	text-align: right;
+}
+#footer .footer-companyInfo dd p{
+		color:#8d92a1;
+		font-size:12px;
+}
+/*coopyright*/
+.copyright{
+
+	color:#8d92a1;
+	font-size:12px;
+	margin-top:20px;
+}
+.copyright p span{
+	margin-right: 15px;
+}
+.copyright p span a{
+	color:#8d92a1;
+}
+

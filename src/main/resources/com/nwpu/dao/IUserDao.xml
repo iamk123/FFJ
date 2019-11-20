@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nwpu.dao.IUserDao">
+
+    <!--配置 查询结果的列明和实体类的属性名的对应关系-->
+    <resultMap id="userMap" type="user">
+        <!--主键-->
+        <id property="id" column="id"></id>
+        <!--非主键-->
+        <result property="userName" column="userName"></result>
+        <result property="password" column="password"></result>
+        <result property="email" column="email"></result>
+        <result property="phone" column="phone"></result>
+        <result property="userType" column="userType"></result>
+    </resultMap>
+
+    <!--查询所有-->
+    <select id="findAll" resultMap="userMap">
+        select * from user
+    </select>
+
+    <!--根据userName查询-->
+    <select id="findByUserName" resultMap="userMap" parameterType="String">
+        select * from user where userName = #{userName}
+    </select>
+
+    <!--根据账号、密码查询-->
+    <select id="findByUserNameAndPassword" resultMap="userMap">
+        select * from user
+        where userName = #{userName}
+        and password = #{password}
+    </select>
+</mapper>

@@ -1,0 +1,18 @@
+.section-main .section-body{
+	background-color: #fff;
+	padding: 30px;
+	margin-bottom: 30px;
+}
+.border-red{
+	border:1px solid #f00;
+}
+.border-green{
+	border:1px solid green;
+}
+.border-pink{
+	border:1px solid pink;
+}
+.section-main{
+	background-color:#f6f6f8;
+	margin-bottom: 30px;
+}

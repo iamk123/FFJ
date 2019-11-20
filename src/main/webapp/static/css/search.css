@@ -1,0 +1,62 @@
+/**
+ * 搜索栏
+ */
+.hearder-search {
+	background-color:#F2F5F4;
+	height:160px;
+}
+.hearder-search .hearder-search-area{
+	margin-top: 40px;
+}
+.hearder-search .hot-search {
+	height: 25px;
+
+}
+.hearder-search .hot-search ul{
+	margin-top:10px;
+	display:inline-block;
+	margin-left: -30px;
+}
+.hearder-search .hot-search ul li{
+	display:inline-block;
+	margin-right: 10px;
+	color:#00b38a;
+	font-size: 13px;
+}
+
+/**
+ * 搜索详情
+ */
+.section-main{
+	margin-top: 50px;
+	background-color: #fff;
+
+}
+.section-body{
+	/*border:1px solid #00f;*/
+	margin-top: 30px;
+	/*margin-bottom: 0;*/
+}
+.section-main .section-body .job-item{
+	border-bottom:1px solid #ccc;
+	height: 70px;
+	margin-bottom: 30px;
+}
+.section-main .section-body .job-item a{
+	text-decoration: none;
+}
+.section-main .job-item-banner{
+	/*height: 150px;*/
+
+	margin-left: 30px;
+	margin-top: 30px;
+}
+.section-main .job-item-banner .banner-item{
+	height: 150px;
+	width: 350px;
+	margin-bottom: 20px;
+}
+.section-main .job-item-banner .banner-item img{
+	width: 100%;
+	height: 100%;
+}

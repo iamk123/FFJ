@@ -1,0 +1,189 @@
+/**
+ * 公共样式
+ */
+/*a {
+	text-decoration: none;
+	color: #333;
+}*/
+li {
+	list-style: none;
+}
+.section-main .section-body{
+	background-color: #fff;
+	padding: 30px;
+	margin-bottom: 30px;
+}
+.border-red{
+	border:1px solid #f00;
+}
+.border-green{
+	border:1px solid green;
+}
+.border-pink{
+	border:1px solid pink;
+}
+.section-main{
+	background-color:#f6f6f8;
+	margin-bottom: 30px;
+}
+
+
+
+
+
+
+/**
+ * 搜索栏
+ */
+.hearder-search {
+	background-color:#F2F5F4;
+	height:150px;
+}
+.hearder-search .hearder-search-area{
+	margin-top: 40px;
+}
+.hearder-search .hot-search ul{
+	margin-top:10px;
+	display:inline-block;
+	margin-left: -30px;
+}
+.hearder-search .hot-search ul li{
+	display:inline-block;
+	margin-right: 10px;
+	color:#00b38a;
+	font-size: 13px;
+}
+
+
+
+/**
+ * 职业分类
+ */
+.job-classify{
+	margin-top:25px;
+	/*height: 325px;*/
+	/*border: 1px solid #f00;*/
+}
+
+/*分类*/
+#sidebar{
+}
+
+#sidebar{
+}
+
+#sidebar{
+	height:transparent;
+}
+
+.sidebar-item{
+	display: flex;
+	height: 40px;
+	line-height: 40px;
+	border-bottom:1px solid #ccc;
+}
+.sidebar-item-title{
+	width: 40px;
+	font-size: 18px;
+}
+.sidebar-item-list a{
+	display: inline-block;
+	margin-left: 15px;
+	font-size: 14px;
+	color:#555;
+}
+.sidebar-item-list li::hover{
+
+	color:#00b38a;
+}
+.sidebar-item::after{
+	content: '>';
+    position: absolute;
+    right:20px;
+    color:#ccc;
+
+}
+
+
+/*轮播图*/
+#home_banner{
+	/*height:transparent;*/
+	margin-top:10px;
+}
+
+
+/**
+ * 热门企业
+ */
+#hot-company {
+	margin-top:30px;
+}
+#hot-company .hot-company-item::hover{
+	box-shadow: 10px 10px 10px #ccc;
+	border: 1px solid #f00;
+}
+#hot-company .hot-company-item{
+	border:1px solid #ccc;
+	height: 140px;
+	border-radius: 10px;
+	margin-bottom: 20px;
+	box-shadow: 5px 5px 5px #ccc;
+}
+#hot-company .hot-company-item .company-icon{
+	width: 50px;
+	height: 50px;
+	margin-top:5px;
+	margin-left:5px;
+}
+#hot-company .hot-company-item .company-icon img {
+	width: 100%;
+	height: 100%;
+}
+#hot-company .hot-company-item .hot-company-title ul li{
+	text-align:center; 
+	color:#898e9d;
+	font-size: 12px;
+
+}
+#hot-company .hot-company-item .hot-company-title{
+	border-bottom:1px solid #ccc;
+	height: 90px;
+	margin-top:20px;
+}
+#hot-company .hot-company-item .hot-company-title span{
+	font-size: 16px;
+	color:#414a60;
+	margin-left: 70px;
+}
+#hot-company .hot-company-item .hot-company-title .company-icon{
+	margin-left:20px;
+}
+#hot-company .hot-company-item .hot-conpany-info{
+	color:#8d92a1;
+	/*border: 1px solid #f00;*/
+	padding-left:20px;
+	font-size: 12px;
+	padding-top:5px;
+
+}
+#hot-company .hot-company-item .hot-conpany-info p span{
+	color:#00d7c6;
+}
+
+
+/**
+ * 城市热招
+ */
+#hot-city .city-item {
+	padding:15px;
+}
+#hot-city .city-item img{
+	width: 100%;
+	height: 100%;
+}
+
+
+
+
+
+

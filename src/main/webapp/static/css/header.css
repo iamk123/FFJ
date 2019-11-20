@@ -1,0 +1,77 @@
+/**
+ * 导航条
+ */
+.navbar-nwpu {
+  background-color: #f8f8f8;
+  margin-bottom:0;
+  background-color:#32373e;
+  border-radius: 0;
+}
+.navbar-nwpu .navbar-brand {
+  color: #777;
+}
+.navbar-nwpu .navbar-brand:hover,
+.navbar-nwpu .navbar-brand:focus {
+  color: #5e5e5e;
+  background-color: transparent;
+}
+.navbar-nwpu .navbar-text {
+  color: #777;
+}
+.navbar-nwpu .navbar-nav > li > a {
+  color: #afb5c0;
+}
+.navbar-nwpu .navbar-nav > li > a:hover,
+.navbar-nwpu .navbar-nav > li > a:focus {
+  color: #fff;
+  background-color: transparent;
+}
+.navbar-nwpu .navbar-nav > .active > a,
+.navbar-nwpu .navbar-nav > .active > a:hover,
+.navbar-nwpu .navbar-nav > .active > a:focus {
+  color: #fff;
+  background-color: #24282C;
+}
+.navbar-nwpu .navbar-nav > .disabled > a,
+.navbar-nwpu .navbar-nav > .disabled > a:hover,
+.navbar-nwpu .navbar-nav > .disabled > a:focus {
+  color: #ccc;
+  background-color: transparent;
+}
+.navbar-nwpu .navbar-toggle {
+  border-color: #ddd;
+}
+.navbar-nwpu .navbar-toggle:hover,
+.navbar-nwpu .navbar-toggle:focus {
+  background-color: #ddd;
+}
+.navbar-nwpu .navbar-toggle .icon-bar {
+  background-color: #888;
+}
+.navbar-nwpu .navbar-collapse,
+.navbar-nwpu .navbar-form {
+  border-color: #e7e7e7;
+}
+.navbar-nwpu .navbar-nav > .open > a,
+.navbar-nwpu .navbar-nav > .open > a:hover,
+.navbar-nwpu .navbar-nav > .open > a:focus {
+  color: #555;
+  background-color: #e7e7e7;
+}
+/*.dropdown-mean-nwpu {
+	background-color: #333;
+
+}*/
+
+
+.bannerBackground {
+	height:120px;
+	background: #5dd5c8;
+	padding-top:0;
+}
+
+.container-fluid {
+	padding-right:0;
+	padding-left:0;
+	
+}

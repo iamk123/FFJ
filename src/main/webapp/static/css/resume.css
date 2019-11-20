@@ -1,0 +1,88 @@
+/**
+ * 公共
+ */ 
+/*  编辑  /  添加 */
+#edit-logo {
+	position: absolute;
+	right: 15px;
+	top:15px;
+	font-size: 12px;
+}
+#edit-logo i{
+	margin-right: 8px;
+	color:#00B38A;;
+}
+#edit-logo a{
+	color:#00B38A;
+}
+
+/**
+ * 个人简历
+ */
+#resume{
+	background-color: #f6f6f8;
+	margin-bottom: 30px;
+}
+#resume .userInfo-container{
+	margin-top:30px;
+}
+#resume .userInfo-container .userInfo-title{
+	background-color: #7aa8f3;
+	height: 30px;
+	line-height: 30px;
+	color: #fff;
+	font-size:12px;
+	padding-left: 50px;
+}
+#resume .userInfo-box{
+	background-color: #fff;
+	margin-bottom: 30px;
+	padding-top:10px;
+
+}
+#resume .userInfo-box .userInfo{
+	margin-top:30px;
+	margin-left: 30px;
+	margin-right:30px;
+}
+#resume .userInfo-box .userInfo .userInfo-labels{
+	margin-top: 30px;
+}
+#resume .userInfo-box .userInfo .userInfo-labels i {
+	color: #ccc;
+	margin-right: 15px;
+}
+#resume .userInfo-box .userInfo .user-icon{
+	height: 100px;
+	width: 100px;
+	border-radius:50px;
+}
+#resume .userInfo-box .userInfo .user-icon img{
+	width: 100%;
+	height: 100%;
+}
+
+
+/**具体简历部分*/
+/**公共部分**/
+#resume .user-resume{
+	background-color: #fff;
+	margin-bottom: 20px;
+	padding-top: 10px;
+}
+#resume .user-resume i{
+	color: #ccc;
+	margin-right: 15px;
+}
+
+#resume .user-resume .user-resume-item ul{
+	margin-top: 20px;
+	margin-left: 50px;
+	margin-bottom: 10px;
+}
+#resume .user-resume .user-resume-item i{
+	margin-right: 5px;
+}
+#resume .user-resume .user-resume-item ul li{
+	margin-right: 20px;
+}
