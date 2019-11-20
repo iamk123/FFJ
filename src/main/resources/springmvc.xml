@@ -24,11 +24,12 @@
     </bean>
 
     <!--过滤静态资源-->
-    <mvc:resources location="/static/css/" mapping="/static/css/**" />
-    <mvc:resources location="/static/img/" mapping="/static/img/**" />
-    <mvc:resources location="/static/js/" mapping="/static/js/**" />
-    <mvc:resources location="/static/font/" mapping="/static/font/**" />
-    <mvc:resources location="/static/lib/" mapping="/static/lib/**" />
+    <mvc:resources location="/static/" mapping="/static/**" />
+<!--    <mvc:resources location="/static/css/" mapping="/static/css/**" />-->
+<!--    <mvc:resources location="/static/img/" mapping="/static/img/**" />-->
+<!--    <mvc:resources location="/static/js/" mapping="/static/js/**" />-->
+<!--    <mvc:resources location="/static/font/" mapping="/static/font/**" />-->
+<!--    <mvc:resources location="/static/lib/" mapping="/static/lib/**" />-->
 
     <!--开启SpringMVC注解的支持-->
     <mvc:annotation-driven/>
