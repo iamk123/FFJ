@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nwpu.dao.ICompanyDao">
+
+    <!--配置 查询结果的列明和实体类的属性名的对应关系-->
+    <resultMap id="companyMap" type="company">
+        <!--主键-->
+        <id property="id" column="id"></id>
+        <!--非主键-->
+        <result property="name" column="name"></result>
+        <result property="userId" column="userId"></result>
+        <result property="location" column="loction"></result>
+        <result property="companyInfo" column="companyInfo"></result>
+    </resultMap>
+    <resultMap id="baseCompanyMap" type="baseCompany">
+        <id property="c_id" column="id"></id>
+        <result property="c_name" column="name"></result>
+<!--        <result property="" column="userId"></result>-->
+        <result property="job_num" column="jobNum"></result>
+
+        <!--一对多级联查询-->
+        <collection property="job" ofType="com.nwpu.domain.Job">
+            <id property="id" column="id"></id>
+            <result property="compangId" column="companyId"></result>
+        </collection>
+    </resultMap>
+
+    <!--查询所有-->
+    <select id="findAll" resultMap="companyMap">
+        select * from company
+    </select>
+
+    <!--查询指定条数-->
+    <select id="findSome" resultMap="companyMap">
+        select * from company limit 0, #{num}
+    </select>
+
+    <!--根据Name查询-->
+    <select id="findByName" resultMap="companyMap" parameterType="String">
+        select * from company where userName = #{name}
+    </select>
+
+    <!--查询热门企业信息-->
+<!--    <select id="findBaseInfo" resultMap="baseCompanyMap">-->
+<!--        select c.name, count(c.id)-->
+<!--        from company c, job j-->
+<!--        where c.id = j.companyId-->
+<!--    </select>-->
+
+</mapper>

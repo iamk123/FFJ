@@ -35,12 +35,19 @@
     <mvc:annotation-driven/>
 
     <!--配置拦截器-->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <!--配置拦截器作用的路径-->
-            <mvc:mapping path="/**"/>
-            <bean class="com.nwpu.interceptor.LoginInterceptor"></bean>
-        </mvc:interceptor>
-    </mvc:interceptors>
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;配置拦截器作用的路径&ndash;&gt;-->
+<!--            <mvc:mapping path="/**"/>-->
+<!--            <bean class="com.nwpu.interceptor.LoginInterceptor"></bean>-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            &lt;!&ndash;配置拦截器作用的路径&ndash;&gt;-->
+<!--            <mvc:mapping path="/**"/>-->
+<!--            <bean class="com.nwpu.interceptor.LoginInterceptor2"></bean>-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
 
 </beans>

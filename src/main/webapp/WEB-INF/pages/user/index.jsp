@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8"  language="java"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +38,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">消息</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户昵称 <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>${user.name}</strong> <span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-mean-nwpu">
                             <li><a href="#">个人中心</a></li>
                             <li><a href="#">账号设置</a></li>
@@ -56,10 +56,12 @@
     <section class="hearder-search container-fluid">
         <div class="hearder-search-area">
             <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn"><button class="btn btn-default" type="button">搜索</button></span>
-                </div>
+                <form action="/user/search" method="POST">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" placeholder="Search for..." name="search">
+                        <span class="input-group-btn"><button class="btn btn-default" type="submit">搜索</button></span>
+                    </div>
+                </form>
             </div>
             <div class="col-md-6 col-md-offset-2 col-sm-8 col-sm-offset-2 hot-search">
                 <span>热门搜索：</span>
@@ -196,25 +198,29 @@
         <div class="panel panel-default">
             <div class="panel-heading">热门企业</div>
             <div class="panel-body">
-                <div class="col-md-3 col-sm-6">
-                    <div class="hot-company-item">
-                        <div class="hot-company-title">
-                            <div class="company-icon pull-left">
-                                <img src="/static/img/nwpu.png" alt="">
+                <c:forEach var="company" items="${hotCompany}">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="hot-company-item">
+                            <div class="hot-company-title">
+                                <div class="company-icon pull-left">
+                                    <img src="/static/img/nwpu.png" alt="">
+                                </div>
+                                <div class="pull-right">
+                                    <span>${company.name}</span>
+                                    <ul class="list-inline">
+                                        <li>互联网</li>|
+                                        <li>计算机软件</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="pull-right">
-                                <span>华为</span>
-                                <ul class="list-inline">
-                                    <li>互联网</li>|
-                                    <li>计算机软件</li>
-                                </ul>
+                            <div class="hot-conpany-info">
+                                <p><span>18</span>个职位在招</p>
                             </div>
-                        </div>
-                        <div class="hot-conpany-info">
-                            <p><span>18</span>个职位在招</p>
                         </div>
                     </div>
-                </div>
+                </c:forEach>
+
+
                 <div class="col-md-3 col-sm-6">
                     <div class="hot-company-item">
                         <div class="hot-company-title">

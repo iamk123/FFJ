@@ -11,7 +11,7 @@ public class Job implements Serializable {
     private Integer id;
     private Integer companyId;  //对应公司
     private String jobName;     //工作名字
-    private String jobNum;      //需要人数
+    private String needNum;      //需要人数
     private String jobRequire;  //职业要求
     private String salary;      //薪水
     private String location;    //工作地点
@@ -44,11 +44,11 @@ public class Job implements Serializable {
     }
 
     public String getJobNum() {
-        return jobNum;
+        return needNum;
     }
 
     public void setJobNum(String jobNum) {
-        this.jobNum = jobNum;
+        this.needNum = jobNum;
     }
 
     public String getJobRequire() {
@@ -105,7 +105,7 @@ public class Job implements Serializable {
                 "id=" + id +
                 ", companyId=" + companyId +
                 ", jobName='" + jobName + '\'' +
-                ", jobNum='" + jobNum + '\'' +
+                ", jobNum='" + needNum + '\'' +
                 ", jobRequire='" + jobRequire + '\'' +
                 ", salary='" + salary + '\'' +
                 ", location='" + location + '\'' +

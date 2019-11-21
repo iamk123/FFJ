@@ -6,5 +6,7 @@
     <!--作用：type中不用写全限定类名，且大小写可以不一样-->
     <typeAliases>
         <package name="com.nwpu.domain"/>
+        <package name="com.nwpu.pojo"/>
     </typeAliases>
+
 </configuration>

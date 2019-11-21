@@ -29,7 +29,7 @@ public class HomeController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model){
-        return "index";
+        return "login";
     }
 
 
@@ -58,12 +58,12 @@ public class HomeController {
         User user = userService.findUserByUserNameAndPassword(userName, password);
         // User user = userService.findUserByUserName(userName);
         if(user != null){
-            System.out.println(user);
+            // System.out.println(user);
             session.setAttribute("user", user);
 
             //普通用户
             if(user.getUserType() == 0){
-                return "redirect:/";
+                return "redirect:/user";
             }
 
             //公司
@@ -89,8 +89,9 @@ public class HomeController {
      * @param session
      * @return
      */
+    @RequestMapping(value="/logout")
     public String logout(HttpSession session){
-        //清楚session
+        //清除session
         session.invalidate();
         return "redirect:/";
     }
