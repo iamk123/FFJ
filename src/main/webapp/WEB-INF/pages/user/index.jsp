@@ -56,7 +56,7 @@
     <section class="hearder-search container-fluid">
         <div class="hearder-search-area">
             <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                <form action="/user/search" method="POST">
+                <form action="/job/search" method="GET">
                     <div class="input-group input-group-lg">
                         <input type="text" class="form-control" placeholder="Search for..." name="search">
                         <span class="input-group-btn"><button class="btn btn-default" type="submit">搜索</button></span>

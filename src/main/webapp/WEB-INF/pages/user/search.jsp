@@ -58,28 +58,31 @@
         <div class="hearder-search-area">
             <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                 <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" placeholder="Search for...">
+                    <input type="text" class="form-control" placeholder="Search for..." value="<c:if test="${search != ''}">${search}</c:if>" name="search">
                     <span class="input-group-btn"><button class="btn btn-default" type="button">搜索</button></span>
                 </div>
             </div>
 
-            <div class="col-md-6 col-md-offset-2 col-sm-8 col-sm-offset-2 hot-search">
-                <span>地点：</span>
-                <ul>
-                    <a href=""><li>新校区</li></a>
-                    <a href=""><li>老校区</li></a>
-                    <a href=""><li>其他</li></a>
-                </ul>
-            </div>
-            <div class="col-md-6 col-md-offset-2 col-sm-8 col-sm-offset-2 hot-search">
-                <span>类别：</span>
-                <ul>
-                    <a href=""><li>编程</li></a>
-                    <a href=""><li>会绘画</li></a>
-                    <a href=""><li>建模</li></a>
-                    <a href=""><li>写作</li></a>
-                    <a href=""><li>语言</li></a>
-                </ul>
+            <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2" style="margin-top:20px;display: flex;align-items:center">
+                <div>地点：</div>
+                <div class="search-option">
+                    <select>
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="opel">Opel</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </div>
+
+                <div style="margin-left: 20px;">地点：</div>
+                <div class="search-option">
+                    <select>
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="opel">Opel</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </div>
             </div>
         </div>
     </section>
@@ -90,61 +93,65 @@
 <!-- 职位列表 -->
 <section class="section-main">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-2 col-sm-8 col-sm-offset-2 section-body">
-                <div class="job-item">
-                    <div>
-                        <a href="">
-                            <p><span style="color:#00c2b3;font-size: 16px;">Python开发</span>  <span style="color: #fc703e; font-size: 16px">10-15k</span></p>
-                            <p style="color:#9fa3b0; font-size: 12px;"><span>北京</span> | <span>新校区</span> | <span>大二</span></p>
-                        </a>
-                    </div>
+            <div class="row">
+                <!--left 工作列表-->
+                <div class="col-md-6 col-md-offset-2 col-sm-8 col-sm-offset-2 section-body">
+                    <c:forEach var="job" items="${job.list}">
+                        <div class="job-item">
+                            <div>
+                                <a href="">
+                                    <p><span style="color:#00c2b3;font-size: 16px;">${job.jobName}</span>  <span style="color: #fc703e; font-size: 16px">${job.salary}</span></p>
+                                    <p style="color:#9fa3b0; font-size: 12px;"><span>${job.location}</span> | <span>${job.needNum} 人</span> | <span>${job.jobRequire}</span></p>
+                                </a>
+                            </div>
+                        </div>
+                    </c:forEach>
+                    <!--分页-->
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <!--前一页禁用-->
+                            <c:if test="${job.currentPage == 1}">
+                                <li class="disabled">
+                            </c:if>
+                            <c:if test="${job.currentPage != 1}">
+                                <li>
+                            </c:if>
+                                <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <c:forEach begin="1" end="${job.totalPage}" var="i">
+                                <li><a href="">${i}</a></li>
+                            </c:forEach>
+                            <!--后一页禁用-->
+                            <c:if test="${job.currentPage == job.totalPage}">
+                                <li class="disabled">
+                            </c:if>
+                            <c:if test="${job.currentPage != job.totalPage}">
+                                <li>
+                            </c:if>
+                                <a href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-                <div class="job-item">
-                    <div>
-                        <a href="">
-                            <p><span style="color:#00c2b3;font-size: 16px;">Python开发</span>  <span style="color: #fc703e; font-size: 16px">10-15k</span></p>
-                            <p style="color:#9fa3b0; font-size: 12px;"><span>北京</span> | <span>新校区</span> | <span>大二</span></p>
-                        </a>
+                <!--right 广告图-->
+                <div class="col-md-3 hidden-sm hidden-xs job-item-banner">
+                    <div class="banner-item">
+                        <img src="/static/img/city_guangzhou.png" alt="">
                     </div>
-                </div>
-                <div class="job-item">
-                    <div>
-                        <a href="">
-                            <p><span style="color:#00c2b3;font-size: 16px;">Python开发</span>  <span style="color: #fc703e; font-size: 16px">10-15k</span></p>
-                            <p style="color:#9fa3b0; font-size: 12px;"><span>北京</span> | <span>新校区</span> | <span>大二</span></p>
-                        </a>
+                    <div class="banner-item">
+                        <img src="/static/img/city_chengdu.png" alt="">
                     </div>
-                </div>
-                <div class="job-item">
-                    <div>
-                        <a href="">
-                            <p><span style="color:#00c2b3;font-size: 16px;">Python开发</span>  <span style="color: #fc703e; font-size: 16px">10-15k</span></p>
-                            <p style="color:#9fa3b0; font-size: 12px;"><span>北京</span> | <span>新校区</span> | <span>大二</span></p>
-                        </a>
-                    </div>
-                </div>
-                <div class="job-item">
-                    <div>
-                        <a href="">
-                            <p><span style="color:#00c2b3;font-size: 16px;">Python开发</span>  <span style="color: #fc703e; font-size: 16px">10-15k</span></p>
-                            <p style="color:#9fa3b0; font-size: 12px;"><span>北京</span> | <span>新校区</span> | <span>大二</span></p>
-                        </a>
+                    <div class="banner-item">
+                        <img src="/static/img/city_xian.png" alt="">
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 hidden-sm hidden-xs job-item-banner">
-                <div class="banner-item">
-                    <img src="img/city_guangzhou.png" alt="">
-                </div>
-                <div class="banner-item">
-                    <img src="img/city_chengdu.png" alt="">
-                </div>
-                <div class="banner-item">
-                    <img src="img/city_xian.png" alt="">
-                </div>
-            </div>
-        </div>
+
+
     </div>
 </section>
 <!-- /职位列表 -->
@@ -216,7 +223,7 @@
 </div>
 <!-- /copyright -->
 
-<script type="text/javascript" src="lib/jquery/jquery.js"></script>
-<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>

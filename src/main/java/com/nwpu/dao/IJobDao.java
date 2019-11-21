@@ -1,5 +1,10 @@
 package com.nwpu.dao;
 
+import com.nwpu.domain.Job;
+
+import java.util.List;
+import java.util.Map;
+
 public interface IJobDao {
 
     /**
@@ -8,4 +13,8 @@ public interface IJobDao {
      * @return
      */
     public int findOneTotal(int id);
+
+    int findTotal();
+
+    List<Job> findByPage(Map<String, Object> map);
 }

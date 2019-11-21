@@ -43,11 +43,11 @@ public class Job implements Serializable {
         this.jobName = jobName;
     }
 
-    public String getJobNum() {
+    public String getNeedNum() {
         return needNum;
     }
 
-    public void setJobNum(String jobNum) {
+    public void setNeedNum(String jobNum) {
         this.needNum = jobNum;
     }
 

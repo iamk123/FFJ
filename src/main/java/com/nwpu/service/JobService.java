@@ -1,5 +1,8 @@
 package com.nwpu.service;
 
+import com.nwpu.domain.Job;
+import com.nwpu.domain.PageBean;
+
 public interface JobService {
 
     /**
@@ -7,4 +10,13 @@ public interface JobService {
      * @return
      */
     public int findOneTotal(int id);
+
+    /**
+     * 分页查找
+     * @param key
+     * @param currentPage
+     * @param rows
+     * @return
+     */
+    PageBean<Job> findByPage(String key, int currentPage, int rows);
 }

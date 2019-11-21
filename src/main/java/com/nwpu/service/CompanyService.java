@@ -1,6 +1,7 @@
 package com.nwpu.service;
 
 import com.nwpu.domain.Company;
+import com.nwpu.domain.PageBean;
 
 import java.util.List;
 
@@ -17,11 +18,22 @@ public interface CompanyService {
      * @param num
      * @return
      */
-    public List<Company> findSomeCompany(int num);
+    public List<Company> findHotCompany(int num);
 
     /**
      * 根据名称查询
      * @return
      */
     public Company findByName(String name);
+
+    // List<Company> search(String key, int i);
+
+    /**
+     * 分页查找
+     * @param key
+     * @param currentPage
+     * @param rows
+     * @return
+     */
+    PageBean<Company> findByPage(String key, int currentPage, int rows);
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nwpu.dao.IJobDao">
+
+    <!--配置 查询结果的列明和实体类的属性名的对应关系-->
+    <resultMap id="jobMap" type="job">
+        <!--主键-->
+        <id property="id" column="id"></id>
+        <!--非主键-->
+        <result property="companyId" column="companyId"></result>
+        <result property="jobName" column="jobName"></result>
+        <result property="needNum" column="needNum"></result>
+        <result property="jobRequire" column="jobRequire"></result>
+        <result property="salary" column="salary"></result>
+        <result property="location" column="location"></result>
+        <result property="jobInfo" column="jobInfo"></result>
+        <result property="createTime" column="createTime"></result>
+        <result property="contact" column="contact"></result>
+    </resultMap>
+
+
+
+
+    <!--查询所有-->
+    <select id="findAll" resultMap="jobMap">
+        select * from job
+    </select>
+
+    <!--根据Name查询-->
+    <select id="findByName" resultMap="jobMap" parameterType="String">
+        select * from job where jobName = #{name}
+    </select>
+
+    <!--查找部分-->
+    <select id="findSome" resultMap="jobMap">
+        select * from job limit 0,#{num}
+    </select>
+
+    <!--根据关键字模糊查询-->
+    <select id="findByKey" resultMap="jobMap">
+        select * from job where jobName like #{name} limit 0, #{i}
+    </select>
+
+    <!--分页查询-->
+    <select id="findByPage" parameterType="Map" resultMap="jobMap">
+        select * from job
+        <where>
+            <if test="key != null and key !=''">
+                jobName like #{key}
+            </if>
+        </where>
+        <if test="start != null and size != null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+    <!--查找总条数-->
+    <select id="findTotal" resultType="int">
+        select count(id) from job
+    </select>
+
+</mapper>

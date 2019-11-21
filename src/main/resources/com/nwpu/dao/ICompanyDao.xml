@@ -27,14 +27,11 @@
         </collection>
     </resultMap>
 
+
+
     <!--查询所有-->
     <select id="findAll" resultMap="companyMap">
         select * from company
-    </select>
-
-    <!--查询指定条数-->
-    <select id="findSome" resultMap="companyMap">
-        select * from company limit 0, #{num}
     </select>
 
     <!--根据Name查询-->
@@ -42,11 +39,25 @@
         select * from company where userName = #{name}
     </select>
 
-    <!--查询热门企业信息-->
-<!--    <select id="findBaseInfo" resultMap="baseCompanyMap">-->
-<!--        select c.name, count(c.id)-->
-<!--        from company c, job j-->
-<!--        where c.id = j.companyId-->
-<!--    </select>-->
+    <!--查找部分-->
+    <select id="findSome" resultMap="companyMap">
+        select * from company limit 0,#{num}
+    </select>
+
+    <!--根据关键字模糊查询-->
+    <select id="findByKey" resultMap="companyMap">
+        select * from company where name like #{name} limit 0, #{i}
+    </select>
+
+    <!--分页查询-->
+    <select id="findByPage" parameterType="Map" resultMap="companyMap">
+        select * from company
+
+    </select>
+
+    <!--查找总条数-->
+    <select id="findTotal" resultType="int">
+        select count(id) from company
+    </select>
 
 </mapper>
