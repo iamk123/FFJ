@@ -64,9 +64,9 @@
             </div>
 
             <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2" style="margin-top:20px;display: flex;align-items:center">
-                <div>地点：</div>
+                <div class="location">地点：</div>
                 <div class="search-option">
-                    <select>
+                    <select name="address">
                         <option value="volvo">Volvo</option>
                         <option value="saab">Saab</option>
                         <option value="opel">Opel</option>
@@ -74,13 +74,13 @@
                     </select>
                 </div>
 
-                <div style="margin-left: 20px;">地点：</div>
+                <div style="margin-left: 20px;">类别：</div>
                 <div class="search-option">
-                    <select>
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
+                    <select name="kind">
+                        <option value="volvo">Python</option>
+                        <option value="saab">Java</option>
+                        <option value="opel">C</option>
+                        <option value="audi">编程</option>
                     </select>
                 </div>
             </div>
