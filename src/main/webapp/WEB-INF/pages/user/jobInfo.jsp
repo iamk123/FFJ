@@ -42,9 +42,9 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户昵称 <span class="caret"></span></a>
 	          <ul class="dropdown-menu dropdown-mean-nwpu">
-	            <li><a href="#">个人中心</a></li>
+				  <li><a href="/user/personInfo">个人中心</a></li>
 	            <li><a href="#">账号设置</a></li>
-	            <li><a href="#">修改密码</a></li>
+				  <li><a href="/user/resume">个人简历</a></li>
 	            <li role="separator" class="divider"></li>
 	            <li><a href="#">退出登录</a></li>
 	          </ul>
@@ -66,14 +66,14 @@
 				<div class="position-content">
 					<div class="position-content-l pull-left">
 						<div class="job-name" title="java开发工程师">
-							<h2>java开发工程师</h2>
-							<h5 style="color:#555;">xxxx公司</h5>
+							<h2>${job.jobName}</h2>
+							<h5 style="color:#555;">${company.name} <span> / 联系： ${job.contact}</span></h5>
 						</div>
 						<dd>
 							<h5 style="color:#555;">
-								<span style="color:#fd5f39;">7k-12k </span>
+								<span style="color:#fd5f39;">${job.salary} </span>
 								<span> / 大三 /</span>
-								<span>老校区 /</span>
+								<span>${company.location} /</span>
 								<span>周末</span>
 							</h5>
 						</dd>
@@ -110,13 +110,13 @@
 					<h4><strong>职位描述</strong></h4>
 					<div>
 						<h5><strong>技能要求：</strong></h5>
-						<p>c++, Java, Python</p>
+						<p>${job.jobRequire}</p>
 						<h5><strong>工作描述：</strong></h5>
-						<p>在公司技术体系框架下，负责智能化、信息化业务系统设计、技术支持；负责解决方案的研发、测试、架构和售前技术工作；配合工程实施、项目执行。</p>
+						<p>${job.jobInfo}</p>
 						<h5><strong>工作地点：</strong></h5>
-						<p>新校区</p>
+						<p>${job.location}</p>
 						<h5><strong>其他：</strong></h5>
-						<p>无</p>
+						<p>需求量: ${job.needNum}</p>
 					</div>
 				</dd>
 			</div>

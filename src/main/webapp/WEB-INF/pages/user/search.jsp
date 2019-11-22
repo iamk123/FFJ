@@ -99,7 +99,7 @@
                     <c:forEach var="job" items="${job.list}">
                         <div class="job-item">
                             <div>
-                                <a href="">
+                                <a href="/job/jobInfo/${job.id}">
                                     <p><span style="color:#00c2b3;font-size: 16px;">${job.jobName}</span>  <span style="color: #fc703e; font-size: 16px">${job.salary}</span></p>
                                     <p style="color:#9fa3b0; font-size: 12px;"><span>${job.location}</span> | <span>${job.needNum} 人</span> | <span>${job.jobRequire}</span></p>
                                 </a>

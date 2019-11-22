@@ -19,4 +19,6 @@ public interface JobService {
      * @return
      */
     PageBean<Job> findByPage(String key, int currentPage, int rows);
+
+    Job findOne(Integer id);
 }

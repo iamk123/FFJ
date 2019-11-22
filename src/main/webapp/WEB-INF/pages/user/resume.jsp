@@ -66,11 +66,11 @@
 		<div class="col-md-8 col-md-offset-2 userInfo-box">
 			<div class="media userInfo">
 			  <div class="media-body">
-			    <h2 class="media-heading">小明</h2>
+			    <h2 class="media-heading">${sessionScope.user.name}</h2>
 				<div class="userInfo-labels">
-					<p><span><i class="glyphicon glyphicon-briefcase"></i>2017级</span></p>
-					<p><span><i class="glyphicon glyphicon-education"></i>软件学院</span></p>
-					<p><span><i class="glyphicon glyphicon-earphone"></i>14792076163</span></p>
+					<p><span><i class="glyphicon glyphicon-briefcase"></i>${resume.grade}</span></p>
+					<p><span><i class="glyphicon glyphicon-education"></i>${resume.location}</span></p>
+					<p><span><i class="glyphicon glyphicon-earphone"></i>${sessionScope.user.phone}</span></p>
 				</div>
 			  </div>
 			  <div class="media-right">
@@ -87,8 +87,9 @@
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 个人优势</h3>
 				<ul class="list-inline">
-					<li><i class="glyphicon glyphicon-heart-empty"></i> UI设计</li>
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 编程</li>
+					<c:forEach items="${advantages}" var="advantage">
+					<li><i class="glyphicon glyphicon-heart-empty"></i> ${advantage.name}</li>
+					</c:forEach>
 				</ul>
 			</div>
 			<div id="edit-logo">
@@ -99,9 +100,9 @@
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 期望职位</h3>
 				<ul class="list-inline">
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 建模</li>
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 编程</li>
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 写作</li>
+					<c:forEach items="${jobNames}" var="jobName">
+					<li><i class="glyphicon glyphicon-heart-empty"></i> ${jobName}</li>
+					</c:forEach>
 				</ul>
 			</div>
 			<div id="edit-logo">
@@ -112,8 +113,9 @@
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 项目经历</h3>
 				<ul class="list-inline">
-					<li><i class="glyphicon glyphicon-heart-empty"></i> IT图书管理系统</li>
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 班级管理系统</li>
+					<c:forEach items="${projects}" var="project">
+					<li><i class="glyphicon glyphicon-heart-empty"></i> ${project.name}</li>
+					</c:forEach>
 				</ul>
 			</div>
 			<div id="edit-logo">
@@ -124,8 +126,9 @@
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 资格证书</h3>
 				<ul class="list-inline">
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 四级证书</li>
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 六级证书</li>
+					<c:forEach items="${honors}" var="honor">
+					<li><i class="glyphicon glyphicon-heart-empty"></i> ${honor.name}</li>
+					</c:forEach>
 				</ul>
 			</div>
 			<div id="edit-logo">
@@ -135,19 +138,15 @@
 		<div class="col-md-8 col-md-offset-2 user-resume">
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 实习经历</h3>
-				<ul class="">
+				<ul class="social_work">
+					<c:forEach items="${socialWorks}" var="socialWork">
 					<li>
 						<div>
-							<p>名字</p>
-							<p>这是一次实习经历</p>
+							<p>${socialWork.name}</p>
+							<p>${socialWork.description}</p>
 						</div>
 					</li>
-					<li>
-						<div>
-							<p>名字</p>
-							<p>这是一次实习经历</p>
-						</div>
-					</li>
+					</c:forEach>
 				</ul>
 			</div>
 			<div id="edit-logo">

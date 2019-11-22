@@ -56,4 +56,8 @@ public class JobServiceImpl implements JobService {
         return pageBean;
 
     }
+
+    public Job findOne(Integer id){
+        return jobDao.findOne(id);
+    }
 }
