@@ -2,7 +2,7 @@ package com.nwpu.service.impl;
 
 import com.nwpu.dao.ICompanyDao;
 import com.nwpu.domain.Company;
-import com.nwpu.domain.PageBean;
+import com.nwpu.pojo.PageBean;
 import com.nwpu.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

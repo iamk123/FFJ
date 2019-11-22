@@ -1,7 +1,7 @@
 package com.nwpu.service;
 
 import com.nwpu.domain.Company;
-import com.nwpu.domain.PageBean;
+import com.nwpu.pojo.PageBean;
 
 import java.util.List;
 

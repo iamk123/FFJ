@@ -14,7 +14,24 @@ public interface IJobDao {
      */
     public int findOneTotal(int id);
 
+
+    /**
+     * 分页查找
+     * @param map
+     * @return
+     */
+    List<Job> findByPage(Map<String, Object> map);
+
+    /**
+     * 查找总条数
+     * @return
+     */
     int findTotal();
 
-    List<Job> findByPage(Map<String, Object> map);
+    /**
+     * 分页查找总条数
+     * @param map
+     * @return
+     */
+    int findByPageTotal(Map<String, Object> map);
 }

@@ -1,7 +1,9 @@
 package com.nwpu.service;
 
 import com.nwpu.domain.Job;
-import com.nwpu.domain.PageBean;
+import com.nwpu.pojo.PageBean;
+
+import java.util.Map;
 
 public interface JobService {
 
@@ -19,4 +21,13 @@ public interface JobService {
      * @return
      */
     PageBean<Job> findByPage(String key, int currentPage, int rows);
+
+    /**
+     * 条件 分页查找
+     * @param map
+     * @param currentPage
+     * @param rows
+     * @return
+     */
+    PageBean<Job> findByCondition(Map<String, Object> map, int currentPage, int rows);
 }

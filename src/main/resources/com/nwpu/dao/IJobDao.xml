@@ -18,6 +18,7 @@
         <result property="jobInfo" column="jobInfo"></result>
         <result property="createTime" column="createTime"></result>
         <result property="contact" column="contact"></result>
+        <result property="kind" column="kind"></result>
     </resultMap>
 
 
@@ -48,12 +49,42 @@
         select * from job
         <where>
             <if test="key != null and key !=''">
-                jobName like #{key}
+                <!--bind可以防止sql注入-->
+                <bind name="key_select" value="'%'+key+'%'"></bind>
+                and jobName like #{key_select}
+            </if>
+            <if test="address != null and address !=''">
+                <bind name="location_select" value="'%'+address+'%'"></bind>
+                and location like #{location_select}
+            </if>
+            <if test="kind != null and kind != ''">
+                <bind name="kind_select" value="'%'+kind+'%'"></bind>
+                and kind like #{kind_select}
             </if>
         </where>
         <if test="start != null and size != null">
             limit #{start},#{size}
         </if>
+    </select>
+
+    <!--分页查询总条数-->
+    <select id="findByPageTotal" parameterType="Map" resultType="int">
+        select count(id) as pageTotal from job
+        <where>
+            <if test="key != null and key !=''">
+                <!--bind可以防止sql注入-->
+                <bind name="key_select" value="'%'+key+'%'"></bind>
+                and jobName like #{key_select}
+            </if>
+            <if test="address != null and address !=''">
+                <bind name="location_select" value="'%'+address+'%'"></bind>
+                and location like #{location_select}
+            </if>
+            <if test="kind != null and kind != ''">
+                <bind name="kind_select" value="'%'+kind+'%'"></bind>
+                and kind like #{kind_select}
+            </if>
+        </where>
     </select>
 
     <!--查找总条数-->

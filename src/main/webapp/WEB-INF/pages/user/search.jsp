@@ -55,36 +55,38 @@
     <!-- /导航条 -->
     <!-- 搜索栏 -->
     <section class="hearder-search container-fluid">
-        <div class="hearder-search-area">
-            <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" placeholder="Search for..." value="<c:if test="${search != ''}">${search}</c:if>" name="search">
-                    <span class="input-group-btn"><button class="btn btn-default" type="button">搜索</button></span>
-                </div>
-            </div>
-
-            <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2" style="margin-top:20px;display: flex;align-items:center">
-                <div class="location">地点：</div>
-                <div class="search-option">
-                    <select name="address">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
-                    </select>
+        <form action="/job/search" method="GET">
+            <div class="hearder-search-area">
+                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" placeholder="Search for..." value="<c:if test="${conditionMap.get('key') != ''}">${conditionMap.get('key')}</c:if>" name="key">
+                        <span class="input-group-btn"><button class="btn btn-default" type="submit">搜索</button></span>
+                    </div>
                 </div>
 
-                <div style="margin-left: 20px;">类别：</div>
-                <div class="search-option">
-                    <select name="kind">
-                        <option value="volvo">Python</option>
-                        <option value="saab">Java</option>
-                        <option value="opel">C</option>
-                        <option value="audi">编程</option>
-                    </select>
+                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2" style="margin-top:20px;display: flex;align-items:center">
+                    <div>地点: </div>
+                    <div class="search-option">
+                        <select name="address">
+                            <option value="">不限</option>
+                            <option value="长安校区" <c:if test="${conditionMap.get('address').equals('长安校区')}">selected</c:if>>长安校区</option>
+                            <option value="友谊校区" <c:if test="${conditionMap.get('address').equals('友谊校区')}">selected</c:if>>友谊校区</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-left: 20px;">类别：</div>
+                    <div class="search-option">
+                        <select name="kind">
+                            <option value="">不限</option>
+                            <option value="语言" <c:if test="${conditionMap.get('kind').equals('语言')}">selected</c:if>>语言</option>
+                            <option value="文档" <c:if test="${conditionMap.get('kind').equals('文档')}">selected</c:if>>文档</option>
+                            <option value="设计" <c:if test="${conditionMap.get('kind').equals('设计')}">selected</c:if>>设计</option>
+                            <option value="编程" <c:if test="${conditionMap.get('kind').equals('编程')}">selected</c:if>>编程</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </section>
     <!-- /搜索栏 -->
 </header>
@@ -96,46 +98,54 @@
             <div class="row">
                 <!--left 工作列表-->
                 <div class="col-md-6 col-md-offset-2 col-sm-8 col-sm-offset-2 section-body">
-                    <c:forEach var="job" items="${job.list}">
+                    <c:forEach var="pb" items="${job.list}">
                         <div class="job-item">
                             <div>
                                 <a href="">
-                                    <p><span style="color:#00c2b3;font-size: 16px;">${job.jobName}</span>  <span style="color: #fc703e; font-size: 16px">${job.salary}</span></p>
-                                    <p style="color:#9fa3b0; font-size: 12px;"><span>${job.location}</span> | <span>${job.needNum} 人</span> | <span>${job.jobRequire}</span></p>
+                                    <p><span style="color:#00c2b3;font-size: 16px;">${pb.jobName}</span>  <span style="color: #fc703e; font-size: 16px">${pb.salary}</span></p>
+                                    <p style="color:#9fa3b0; font-size: 12px;"><span>${pb.location}</span> | <span>${pb.needNum} 人</span> | <span>${pb.jobRequire}</span> | <span>${pb.kind}</span> </p>
                                 </a>
                             </div>
                         </div>
                     </c:forEach>
                     <!--分页-->
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <!--前一页禁用-->
-                            <c:if test="${job.currentPage == 1}">
+                    <c:if test="${job.totalPage != 1}">
+
+                    </c:if>
+                    <c:if test="${job.totalPage > 1}">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <!--前一页禁用-->
+                                <c:if test="${job.currentPage == 1}">
+                                    <li class="disabled">
+                                </c:if>
+                                <c:if test="${job.currentPage != 1}">
+                                    <li>
+                                </c:if>
+                                    <a href="/job/search2?currentPage=${job.currentPage-1}&&key=${conditionMap.get('key')}&&address=${conditionMap.get('address')}&&kind=${conditionMap.get('kind')}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <c:forEach begin="1" end="${job.totalPage}" var="i">
+                                    <li><a href="/job/search2?currentPage=${job.currentPage=i}&&key=${conditionMap.get('key')}&&address=${conditionMap.get('address')}&&kind=${conditionMap.get('kind')}">${i}</a></li>
+                                </c:forEach>
+                                <!--后一页禁用-->
+                                <c:if test="${job.currentPage == job.totalPage}">
                                 <li class="disabled">
-                            </c:if>
-                            <c:if test="${job.currentPage != 1}">
+                                    </c:if>
+                                    <c:if test="${job.currentPage != job.totalPage}">
                                 <li>
-                            </c:if>
-                                <a href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <c:forEach begin="1" end="${job.totalPage}" var="i">
-                                <li><a href="">${i}</a></li>
-                            </c:forEach>
-                            <!--后一页禁用-->
-                            <c:if test="${job.currentPage == job.totalPage}">
-                                <li class="disabled">
-                            </c:if>
-                            <c:if test="${job.currentPage != job.totalPage}">
-                                <li>
-                            </c:if>
-                                <a href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                                    </c:if>
+                                    <a href="/job/search2?currentPage=${job.currentPage+1}&&key=${conditionMap.get('key')}&&address=${conditionMap.get('address')}&&kind=${conditionMap.get('kind')}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </nav>
+                        <h5>当前第${conditionMap.get("currentPage")}页，共${job.totalPage}页!</h5>
+                    </c:if>
+
                 </div>
                 <!--right 广告图-->
                 <div class="col-md-3 hidden-sm hidden-xs job-item-banner">

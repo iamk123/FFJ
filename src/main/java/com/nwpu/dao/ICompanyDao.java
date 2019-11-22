@@ -1,7 +1,6 @@
 package com.nwpu.dao;
 
 import com.nwpu.domain.Company;
-import com.nwpu.domain.PageBean;
 
 import java.util.List;
 import java.util.Map;

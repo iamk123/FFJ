@@ -1,4 +1,4 @@
-package com.nwpu.domain;
+package com.nwpu.pojo;
 
 import java.util.List;
 

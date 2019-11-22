@@ -18,6 +18,7 @@ public class Job implements Serializable {
     private String jobInfo;     //职位介绍
     private Date createTime;    //创建时间
     private String contact;     //联系方式
+    private String kind;        //类别
 
     public Integer getId() {
         return id;
@@ -99,19 +100,28 @@ public class Job implements Serializable {
         this.contact = contact;
     }
 
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
     @Override
     public String toString() {
         return "Job{" +
                 "id=" + id +
                 ", companyId=" + companyId +
                 ", jobName='" + jobName + '\'' +
-                ", jobNum='" + needNum + '\'' +
+                ", needNum='" + needNum + '\'' +
                 ", jobRequire='" + jobRequire + '\'' +
                 ", salary='" + salary + '\'' +
                 ", location='" + location + '\'' +
                 ", jobInfo='" + jobInfo + '\'' +
                 ", createTime=" + createTime +
                 ", contact='" + contact + '\'' +
+                ", kind='" + kind + '\'' +
                 '}';
     }
 }
