@@ -17,4 +17,6 @@ public interface IJobDao {
     int findTotal();
 
     List<Job> findByPage(Map<String, Object> map);
+
+    Job findOne(Integer id);
 }

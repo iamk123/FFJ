@@ -18,6 +18,7 @@ public class Job implements Serializable {
     private String jobInfo;     //职位介绍
     private Date createTime;    //创建时间
     private String contact;     //联系方式
+    private Integer resumeId;
 
     public Integer getId() {
         return id;

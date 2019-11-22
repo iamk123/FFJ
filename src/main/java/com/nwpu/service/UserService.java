@@ -1,6 +1,6 @@
 package com.nwpu.service;
 
-import com.nwpu.domain.User;
+import com.nwpu.domain.*;
 
 import java.util.List;
 
@@ -9,14 +9,14 @@ public interface UserService {
      * 查询所有user
      * @return
      */
-    public List<User> findAll();
+    List<User> findAll();
 
     /**
      * 查询用户
      * @param userName
      * @return
      */
-    public User findUserByUserName(String userName);
+    User findUserByUserName(String userName);
 
     /**
      * 查询用户
@@ -24,8 +24,18 @@ public interface UserService {
      * @param password
      * @return
      */
-    public User findUserByUserNameAndPassword(String userName, String password);
+    User findUserByUserNameAndPassword(String userName, String password);
 
+    List<Advantage> findAdvantageByResumeId(Integer id);
 
+    Resume findResumeById(Integer id);
+
+    List<String> findJobByResumeId(Integer id);
+
+    List<Project> findProjectByResumeId(Integer id);
+
+    List<Honor> findHonorByResumeId(Integer id);
+
+    List<SocialWork> findSocialWorkByResumeId(Integer id);
 
 }

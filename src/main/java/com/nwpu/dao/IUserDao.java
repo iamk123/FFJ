@@ -1,6 +1,6 @@
 package com.nwpu.dao;
 
-import com.nwpu.domain.User;
+import com.nwpu.domain.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -31,4 +31,21 @@ public interface IUserDao {
      * @return
      */
     User findByUserNameAndPassword(Map map);
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    List<Advantage> findAdvantageByResumeId(Integer id);
+
+    Resume findResumeById(Integer id);
+
+    List<String> findJobByResumeId(Integer id);
+
+    List<Project> findProjectByResumeId(Integer id);
+
+    List<Honor> findHonorByResumeId(Integer id);
+
+    List<SocialWork> findSocialWorkByResumeId(Integer id);
 }

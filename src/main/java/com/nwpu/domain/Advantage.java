@@ -6,6 +6,7 @@ public class Advantage implements Serializable {
 
     private Integer id;
     private String name;
+    private Integer resumeId;
 
     public Integer getId() {
         return id;

@@ -11,6 +11,7 @@ public class SocialWork implements Serializable {
     private String name;
     private String description;
     private String work;
+    private Integer resumeId;
 
     public Integer getId() {
         return id;

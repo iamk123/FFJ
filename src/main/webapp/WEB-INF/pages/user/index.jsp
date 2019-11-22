@@ -40,9 +40,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>${user.name}</strong> <span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-mean-nwpu">
-                            <li><a href="#">个人中心</a></li>
+                            <li><a href="/user/personInfo">个人中心</a></li>
                             <li><a href="#">账号设置</a></li>
-                            <li><a href="#">修改密码</a></li>
+                            <li><a href="/user/resume">个人简历</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">退出登录</a></li>
                         </ul>
@@ -191,14 +191,17 @@
     </div>
 </section>
 <!-- /职位分类 -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
 
 <!-- 热门企业 -->
 <section id="hot-company">
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">热门企业</div>
-            <div class="panel-body">
-                <c:forEach var="company" items="${hotCompany}">
+            <div class="panel-body" >
+
+                <c:forEach var="company" items="${companies}">
                     <div class="col-md-3 col-sm-6">
                         <div class="hot-company-item">
                             <div class="hot-company-title">
@@ -214,146 +217,12 @@
                                 </div>
                             </div>
                             <div class="hot-conpany-info">
-                                <p><span>18</span>个职位在招</p>
+                                <p><span>${company.number}</span>个职位在招</p>
                             </div>
                         </div>
                     </div>
                 </c:forEach>
 
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="hot-company-item">
-                        <div class="hot-company-title">
-                            <div class="company-icon pull-left">
-                                <img src="/static/img/nwpu.png" alt="">
-                            </div>
-                            <div class="pull-right">
-                                <span>华为</span>
-                                <ul class="list-inline">
-                                    <li>互联网</li>|
-                                    <li>计算机软件</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="hot-conpany-info">
-                            <p><span>18</span>个职位在招</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="hot-company-item">
-                        <div class="hot-company-title">
-                            <div class="company-icon pull-left">
-                                <img src="/static/img/nwpu.png" alt="">
-                            </div>
-                            <div class="pull-right">
-                                <span>华为</span>
-                                <ul class="list-inline">
-                                    <li>互联网</li>|
-                                    <li>计算机软件</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="hot-conpany-info">
-                            <p><span>18</span>个职位在招</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="hot-company-item">
-                        <div class="hot-company-title">
-                            <div class="company-icon pull-left">
-                                <img src="/static/img/nwpu.png" alt="">
-                            </div>
-                            <div class="pull-right">
-                                <span>华为</span>
-                                <ul class="list-inline">
-                                    <li>互联网</li>|
-                                    <li>计算机软件</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="hot-conpany-info">
-                            <p><span>18</span>个职位在招</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="hot-company-item">
-                        <div class="hot-company-title">
-                            <div class="company-icon pull-left">
-                                <img src="/static/img/nwpu.png" alt="">
-                            </div>
-                            <div class="pull-right">
-                                <span>华为</span>
-                                <ul class="list-inline">
-                                    <li>互联网</li>|
-                                    <li>计算机软件</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="hot-conpany-info">
-                            <p><span>18</span>个职位在招</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="hot-company-item">
-                        <div class="hot-company-title">
-                            <div class="company-icon pull-left">
-                                <img src="/static/img/nwpu.png" alt="">
-                            </div>
-                            <div class="pull-right">
-                                <span>华为</span>
-                                <ul class="list-inline">
-                                    <li>互联网</li>|
-                                    <li>计算机软件</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="hot-conpany-info">
-                            <p><span>18</span>个职位在招</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="hot-company-item">
-                        <div class="hot-company-title">
-                            <div class="company-icon pull-left">
-                                <img src="/static/img/nwpu.png" alt="">
-                            </div>
-                            <div class="pull-right">
-                                <span>华为</span>
-                                <ul class="list-inline">
-                                    <li>互联网</li>|
-                                    <li>计算机软件</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="hot-conpany-info">
-                            <p><span>18</span>个职位在招</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="hot-company-item">
-                        <div class="hot-company-title">
-                            <div class="company-icon pull-left">
-                                <img src="/static/img/nwpu.png" alt="">
-                            </div>
-                            <div class="pull-right">
-                                <span>华为</span>
-                                <ul class="list-inline">
-                                    <li>互联网</li>|
-                                    <li>计算机软件</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="hot-conpany-info">
-                            <p><span>18</span>个职位在招</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -368,7 +237,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">城市热招</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body1">
                 <div class="col-md-2 col-sm-4 col-xs-6 city-item">
                     <a href=""><img src="/static/img/city_beijing.png" alt=""></a>
                 </div>

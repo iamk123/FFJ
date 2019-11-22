@@ -40,4 +40,8 @@ public interface ICompanyDao {
      * @return
      */
     List<Company> findSome(int num);
+
+    Company findCompanyByJobId(Integer id);
+
+    List<Map<String, Integer>> findBaseInfo();
 }

@@ -1,7 +1,7 @@
 package com.nwpu.service.impl;
 
 import com.nwpu.dao.IUserDao;
-import com.nwpu.domain.User;
+import com.nwpu.domain.*;
 import com.nwpu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,4 +46,27 @@ public class UserServiceImpl implements UserService {
         return userDao.findByUserNameAndPassword(map);
     }
 
+    public List<Advantage> findAdvantageByResumeId(Integer id){
+        return userDao.findAdvantageByResumeId(id);
+    }
+
+    public Resume findResumeById(Integer id){
+        return userDao.findResumeById(id);
+    }
+
+    public List<String> findJobByResumeId(Integer id){
+        return userDao.findJobByResumeId(id);
+    }
+
+    public List<Project> findProjectByResumeId(Integer id){
+        return userDao.findProjectByResumeId(id);
+    }
+
+    public List<Honor> findHonorByResumeId(Integer id){
+        return userDao.findHonorByResumeId(id);
+    }
+
+    public List<SocialWork> findSocialWorkByResumeId(Integer id){
+        return userDao.findSocialWorkByResumeId(id);
+    }
 }
