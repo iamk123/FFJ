@@ -4,12 +4,15 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>NWPU校园招聘</title>
+	<link rel="icon" href="/static/img/icon.png" type="image/x-icon" />
+	<link rel="shortcut icon" href="/static/img/icon.png" type="image/x-icon" />
 	<link rel="stylesheet" href="/static/lib/bootstrap/css/bootstrap.css" >
 	<link rel="stylesheet" href="/static/css/public.css">
 	<link rel="stylesheet" href="/static/css/header.css">
 	<link rel="stylesheet" href="/static/css/footer.css">
 	<link rel="stylesheet" href="/static/css/positionInfo.css">
+
 
 
 </head>
@@ -66,15 +69,15 @@
 				<div class="position-content">
 					<div class="position-content-l pull-left">
 						<div class="job-name" title="java开发工程师">
-							<h2>java开发工程师</h2>
-							<h5 style="color:#555;">xxxx公司</h5>
+							<h2>${jobDetail.jobName}</h2>
+							<h5 style="color:#555;">${jobDetail.company.name}</h5>
 						</div>
 						<dd>
 							<h5 style="color:#555;">
-								<span style="color:#fd5f39;">7k-12k </span>
-								<span> / 大三 /</span>
-								<span>老校区 /</span>
-								<span>周末</span>
+								<span style="color:#fd5f39;">${jobDetail.salary} </span>
+								<span> / ${jobDetail.location} /</span>
+								<span>${jobDetail.needNum}人 /</span>
+								<span>${jobDetail.kind}</span>
 							</h5>
 						</dd>
 					</div>
@@ -108,13 +111,17 @@
 				<dt></dt>
 				<dd>
 					<h4><strong>职位描述</strong></h4>
+					<br>
 					<div>
 						<h5><strong>技能要求：</strong></h5>
-						<p>c++, Java, Python</p>
+						<p>${jobDetail.jobRequire}</p>
+						<br>
 						<h5><strong>工作描述：</strong></h5>
-						<p>在公司技术体系框架下，负责智能化、信息化业务系统设计、技术支持；负责解决方案的研发、测试、架构和售前技术工作；配合工程实施、项目执行。</p>
+						<p>${jobDetail.jobInfo}</p>
+						<br>
 						<h5><strong>工作地点：</strong></h5>
-						<p>新校区</p>
+						<p>${jobDetail.location}</p>
+						<br>
 						<h5><strong>其他：</strong></h5>
 						<p>无</p>
 					</div>
@@ -126,15 +133,17 @@
 						<a href="">
 							<div>
 								<div class="company-icon"><img src="/static/img/company1.png" alt=""></div>
-								<div><h4>xxx公司<i class="glyphicon glyphicon-check" style="margin-left: 10px; color:#00b38a;"></i></h4></div>
+								<div><h4>${jobDetail.company.name}<i class="glyphicon glyphicon-check" style="margin-left: 10px; color:#00b38a;"></i></h4></div>
 							</div>
 						</a>
 					</dt>
+					<br>
 					<dd>
 						<ul>
-							<li>移动互联网,数据服务</li>
-							<li>移动互联网,数据服务</li>
-							<li>移动互联网,数据服务</li>
+							<li>地址： ${jobDetail.company.location}</li>
+							<li>简介： <p>${jobDetail.company.companyInfo}</p></li>
+							<li>联系人： ${companyUser.name}</li>
+							<li>联系电话： ${companyUser.phone}</li>
 						</ul>
 					</dd>
 				</div>

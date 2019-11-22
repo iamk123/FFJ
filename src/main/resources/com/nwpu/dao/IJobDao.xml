@@ -21,6 +21,32 @@
         <result property="kind" column="kind"></result>
     </resultMap>
 
+    <resultMap id="jobCompanyMap" type="job">
+        <!--主键-->
+        <id property="id" column="id"></id>
+        <!--非主键-->
+        <result property="companyId" column="companyId"></result>
+        <result property="jobName" column="jobName"></result>
+        <result property="needNum" column="needNum"></result>
+        <result property="jobRequire" column="jobRequire"></result>
+        <result property="salary" column="salary"></result>
+        <result property="location" column="location"></result>
+        <result property="jobInfo" column="jobInfo"></result>
+        <result property="createTime" column="createTime"></result>
+        <result property="contact" column="contact"></result>
+        <result property="kind" column="kind"></result>
+
+        <association property="company" javaType="company">
+            <!--主键-->
+            <id property="id" column="id"></id>
+            <!--非主键-->
+            <result property="name" column="name"></result>
+            <result property="userId" column="userId"></result>
+            <result property="location" column="location"></result>
+            <result property="companyInfo" column="companyInfo"></result>
+        </association>
+    </resultMap>
+
 
 
 
@@ -92,4 +118,11 @@
         select count(id) from job
     </select>
 
+    <!--查找job详细信息及对应公司信息 关联查询-->
+    <select id="findJobCompanyById" resultMap="jobCompanyMap" parameterType="int">
+        select j.*, c.name, c.location, c.companyInfo, c.userId
+        from job j, company c
+        where j.companyId = c.id
+        and j.id = #{id}
+    </select>
 </mapper>

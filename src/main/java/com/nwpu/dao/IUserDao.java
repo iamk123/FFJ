@@ -31,4 +31,6 @@ public interface IUserDao {
      * @return
      */
     User findByUserNameAndPassword(Map map);
+
+    User findById(int id);
 }

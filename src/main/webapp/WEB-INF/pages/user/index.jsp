@@ -4,7 +4,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>NWPU校园招聘</title>
+    <link rel="icon" href="/static/img/icon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="/static/img/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="/static/lib/bootstrap/css/bootstrap.css" >
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/header.css">

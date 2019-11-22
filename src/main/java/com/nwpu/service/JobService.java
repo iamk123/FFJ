@@ -3,6 +3,7 @@ package com.nwpu.service;
 import com.nwpu.domain.Job;
 import com.nwpu.pojo.PageBean;
 
+import java.util.List;
 import java.util.Map;
 
 public interface JobService {
@@ -30,4 +31,12 @@ public interface JobService {
      * @return
      */
     PageBean<Job> findByCondition(Map<String, Object> map, int currentPage, int rows);
+
+    /**
+     * 查找职位详细信息 及 对应的公司
+     * @param id
+     * @return
+     */
+    Job findJobCompanyById(int id);
+
 }

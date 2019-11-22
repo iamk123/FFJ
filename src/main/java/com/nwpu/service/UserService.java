@@ -27,5 +27,5 @@ public interface UserService {
     public User findUserByUserNameAndPassword(String userName, String password);
 
 
-
+    User findUserById(Integer userId);
 }

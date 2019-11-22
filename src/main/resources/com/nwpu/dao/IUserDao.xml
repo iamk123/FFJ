@@ -32,4 +32,8 @@
         where userName = #{userName}
         and password = #{password}
     </select>
+
+    <select id="findById" resultMap="userMap" parameterType="int">
+        select * from user where id = #{id}
+    </select>
 </mapper>

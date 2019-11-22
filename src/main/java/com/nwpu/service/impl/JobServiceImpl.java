@@ -17,12 +17,24 @@ public class JobServiceImpl implements JobService {
     @Autowired
     private IJobDao jobDao;
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public int findOneTotal(int id) {
         return jobDao.findOneTotal(id);
     }
 
 
+    /**
+     * 分页查询
+     * @param key
+     * @param currentPage
+     * @param rows
+     * @return
+     */
     @Override
     public PageBean<Job> findByPage(String key, int currentPage, int rows) {
 
@@ -57,6 +69,13 @@ public class JobServiceImpl implements JobService {
 
     }
 
+    /**
+     * 条件 分页查询
+     * @param map
+     * @param currentPage
+     * @param rows
+     * @return
+     */
     @Override
     public PageBean<Job> findByCondition(Map<String, Object> map, int currentPage, int rows) {
 
@@ -83,8 +102,16 @@ public class JobServiceImpl implements JobService {
         //封装每页显示的数据
         List<Job> list = jobDao.findByPage(map);
         pageBean.setList(list);
-
-        System.out.println("---jobserviceimpl: " + pageBean);
         return pageBean;
+    }
+
+    /**
+     * 查找职位详细信息 及 对应公司
+     * @param id
+     * @return
+     */
+    @Override
+    public Job findJobCompanyById(int id) {
+        return jobDao.findJobCompanyById(id);
     }
 }

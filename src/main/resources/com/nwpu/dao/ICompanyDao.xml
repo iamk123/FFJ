@@ -60,4 +60,8 @@
         select count(id) from company
     </select>
 
+    <!--根据id查找-->
+    <select id="findById" resultMap="companyMap">
+        select * from company where id = #{id}
+    </select>
 </mapper>

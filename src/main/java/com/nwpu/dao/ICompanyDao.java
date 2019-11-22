@@ -39,4 +39,6 @@ public interface ICompanyDao {
      * @return
      */
     List<Company> findSome(int num);
+
+    Company findById(int id);
 }

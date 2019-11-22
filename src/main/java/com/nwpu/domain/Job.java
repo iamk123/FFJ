@@ -20,6 +20,16 @@ public class Job implements Serializable {
     private String contact;     //联系方式
     private String kind;        //类别
 
+    private Company company;    //一对一级联查询
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -122,6 +132,7 @@ public class Job implements Serializable {
                 ", createTime=" + createTime +
                 ", contact='" + contact + '\'' +
                 ", kind='" + kind + '\'' +
+                ", company=" + company +
                 '}';
     }
 }

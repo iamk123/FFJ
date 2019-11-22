@@ -46,4 +46,10 @@ public class UserServiceImpl implements UserService {
         return userDao.findByUserNameAndPassword(map);
     }
 
+    @Override
+    public User findUserById(Integer userId) {
+        return userDao.findById(userId);
+    }
+
+
 }

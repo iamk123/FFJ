@@ -4,7 +4,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>NWPU校园招聘</title>
+    <link rel="icon" href="/static/img/icon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="/static/img/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="/static/lib/bootstrap/css/bootstrap.css" >
     <link rel="stylesheet" href="/static/css/header.css">
     <link rel="stylesheet" href="/static/css/footer.css">
@@ -101,7 +103,7 @@
                     <c:forEach var="pb" items="${job.list}">
                         <div class="job-item">
                             <div>
-                                <a href="">
+                                <a href="/job/jobDetail/${pb.id}">
                                     <p><span style="color:#00c2b3;font-size: 16px;">${pb.jobName}</span>  <span style="color: #fc703e; font-size: 16px">${pb.salary}</span></p>
                                     <p style="color:#9fa3b0; font-size: 12px;"><span>${pb.location}</span> | <span>${pb.needNum} 人</span> | <span>${pb.jobRequire}</span> | <span>${pb.kind}</span> </p>
                                 </a>
@@ -116,13 +118,15 @@
                         <nav aria-label="Page navigation">
                             <ul class="pagination">
                                 <!--前一页禁用-->
-                                <c:if test="${job.currentPage == 1}">
+                                <c:if test="${job.currentPage <= 1}">
                                     <li class="disabled">
+                                        <a href="javascript:void(0);" aria-label="Previous">
                                 </c:if>
-                                <c:if test="${job.currentPage != 1}">
+                                <c:if test="${job.currentPage > 1}">
                                     <li>
+                                        <a href="/job/search2?currentPage=${job.currentPage-1}&&key=${conditionMap.get('key')}&&address=${conditionMap.get('address')}&&kind=${conditionMap.get('kind')}" aria-label="Previous">
                                 </c:if>
-                                    <a href="/job/search2?currentPage=${job.currentPage-1}&&key=${conditionMap.get('key')}&&address=${conditionMap.get('address')}&&kind=${conditionMap.get('kind')}" aria-label="Previous">
+
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
@@ -130,13 +134,14 @@
                                     <li><a href="/job/search2?currentPage=${job.currentPage=i}&&key=${conditionMap.get('key')}&&address=${conditionMap.get('address')}&&kind=${conditionMap.get('kind')}">${i}</a></li>
                                 </c:forEach>
                                 <!--后一页禁用-->
-                                <c:if test="${job.currentPage == job.totalPage}">
-                                <li class="disabled">
-                                    </c:if>
-                                    <c:if test="${job.currentPage != job.totalPage}">
-                                <li>
-                                    </c:if>
-                                    <a href="/job/search2?currentPage=${job.currentPage+1}&&key=${conditionMap.get('key')}&&address=${conditionMap.get('address')}&&kind=${conditionMap.get('kind')}" aria-label="Next">
+                                <c:if test="${conditionMap.get('currentPage') >= job.totalPage}">
+                                    <li class="disabled">
+                                        <a href="javascript:void(0);" aria-label="Next">
+                                </c:if>
+                                <c:if test="${conditionMap.get('currentPage') < job.totalPage}">
+                                    <li>
+                                        <a href="/job/search2?currentPage=${job.currentPage+1}&&key=${conditionMap.get('key')}&&address=${conditionMap.get('address')}&&kind=${conditionMap.get('kind')}" aria-label="Next">
+                                </c:if>
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>

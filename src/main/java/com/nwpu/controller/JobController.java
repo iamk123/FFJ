@@ -1,10 +1,14 @@
 package com.nwpu.controller;
 
+import com.nwpu.domain.Job;
+import com.nwpu.domain.User;
 import com.nwpu.pojo.ConditionBean;
 import com.nwpu.service.JobService;
+import com.nwpu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +22,8 @@ public class JobController {
 
     @Autowired
     private JobService jobService;
+    @Autowired
+    private UserService userService;
 
     /**
      * 查询
@@ -28,7 +34,7 @@ public class JobController {
                           @RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
                           @RequestParam(value = "rows", defaultValue = "5") int rows){
 
-        System.out.println(conditionBean);
+        // System.out.println(conditionBean);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("key",  conditionBean.getKey());
         map.put("address", conditionBean.getAddress());
@@ -42,7 +48,16 @@ public class JobController {
         return "user/search";
     }
 
-
+    /**
+     * 分页标签查询
+     * @param key
+     * @param address
+     * @param kind
+     * @param currentPage
+     * @param rows
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/search2", method = RequestMethod.GET)
     public String search2(@RequestParam(value = "key", defaultValue = "") String key,
                           @RequestParam(value = "address", defaultValue = "") String address,
@@ -62,4 +77,24 @@ public class JobController {
         model.addAttribute("conditionMap", map);
         return "user/search";
     }
+
+    /**
+     * 查看职位详情
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/jobDetail/{id}", method = RequestMethod.GET)
+    public String jobDetail(@PathVariable int id, Model model){
+
+        Job jobDetail = jobService.findJobCompanyById(id);
+
+        User user = userService.findUserById(jobDetail.getCompany().getUserId());
+        model.addAttribute("companyUser",user);
+        model.addAttribute("jobDetail", jobDetail);
+
+        return "user/jobInfo";
+    }
+
+
 }

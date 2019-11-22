@@ -34,4 +34,6 @@ public interface IJobDao {
      * @return
      */
     int findByPageTotal(Map<String, Object> map);
+
+    Job findJobCompanyById(int id);
 }
