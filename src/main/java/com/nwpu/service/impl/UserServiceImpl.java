@@ -17,11 +17,31 @@ public class UserServiceImpl implements UserService {
     private IUserDao userDao;
 
     /**
-     * 查询所有user
+     *
+     * @param userType
+     * @param currentPage
+     * @param rows
      * @return
      */
-    public List<User> findAll(){
-        return userDao.findAll();
+    public PageBean<User> findAllByPage(int userType, int currentPage, int rows){
+        PageBean<User> pageBean = new PageBean<>();
+        pageBean.setCurrentPage(currentPage);
+        pageBean.setRows(rows);
+
+        Map<String, Object> map = new HashMap<>();
+        int totalCount = userDao.findAllByUserType(userType);
+
+        System.err.println(totalCount);
+
+        //double tc = totalCount;
+        Double num = Math.ceil(((double)totalCount)/rows);
+        pageBean.setTotalPage(num.intValue());
+        map.put("userType", userType);
+        map.put("start", (currentPage-1)*rows);
+        map.put("size", pageBean.getRows());
+        List<User> users=  userDao.findAllByPage(map);
+        pageBean.setList(users);
+        return pageBean;
     }
 
     /**

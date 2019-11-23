@@ -51,9 +51,24 @@
         <result property="resumeId" column="resumeId"></result>
     </resultMap>
 
-    <!--查询所有-->
-    <select id="findAll" resultMap="userMap">
-        select * from USER
+    <select id="findAllByUserType" resultType="Integer" >
+        select count(*) from USER
+        <where>
+            <if test="userType!= null and userType != 3">
+                userType = #{userType}
+            </if>
+        </where>
+    </select>
+
+    <!--查询所有类型分页-->
+    <select id="findAllByPage" resultMap="userMap" parameterType="java.util.Map">
+        select  * from USER
+        <where>
+            <if test="userType!= null and userType!= 3">
+                userType = #{userType}
+            </if>
+        </where>
+            limit #{start},#{size}
     </select>
 
     <!--根据userName查询-->
@@ -97,4 +112,5 @@
         select * from SOCIALWORK s
         where s.resumeId = #{id}
     </select>
+
 </mapper>

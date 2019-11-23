@@ -33,7 +33,7 @@
                     <li><a href="#">职位</a></li>
                     <li><a href="#">职位</a></li>
                     <li><a href="#">职位</a></li>
-                    <li><a href="#">职位</a></li>
+                    <li><a href="/admin/userList">userList</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">消息</a></li>

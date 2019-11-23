@@ -9,7 +9,8 @@ public interface UserService {
      * 查询所有user
      * @return
      */
-    List<User> findAll();
+
+    PageBean<User> findAllByPage(int userType, int currentPage, int rows);
 
     /**
      * 查询用户

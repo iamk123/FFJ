@@ -16,7 +16,7 @@ public interface IUserDao {
      * 查询所有用户
      * @return
      */
-    List<User> findAll();
+    int findAllByUserType(@Param("userType") Integer userType);
 
     /**
      * 根据用户名查询用户
@@ -48,4 +48,6 @@ public interface IUserDao {
     List<Honor> findHonorByResumeId(Integer id);
 
     List<SocialWork> findSocialWorkByResumeId(Integer id);
+
+    List<User> findAllByPage(Map<String, Object> map);
 }

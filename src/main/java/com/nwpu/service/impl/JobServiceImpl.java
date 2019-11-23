@@ -57,6 +57,7 @@ public class JobServiceImpl implements JobService {
 
     }
 
+    @Override
     public Job findOne(Integer id){
         return jobDao.findOne(id);
     }
