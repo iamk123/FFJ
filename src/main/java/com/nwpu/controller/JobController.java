@@ -3,6 +3,7 @@ package com.nwpu.controller;
 import com.nwpu.domain.Job;
 import com.nwpu.domain.User;
 import com.nwpu.pojo.ConditionBean;
+import com.nwpu.service.CompanyService;
 import com.nwpu.service.JobService;
 import com.nwpu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class JobController {
     private JobService jobService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CompanyService companyService;
 
     /**
      * 查询

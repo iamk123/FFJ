@@ -4,11 +4,11 @@
 
     <mapper namespace="com.nwpu.dao.IAccountDao">
         <select id="findAll" resultType="com.nwpu.domain.Account">
-            select * from account
+            select * from ACCOUNT;
         </select>
 
         <!-- 新增账户 -->
         <insert id="save" parameterType="com.nwpu.domain.Account">
-            insert into account(name,money) values(#{name},#{money});
+            insert into ACCOUNT(name,money) values(#{name},#{money});
         </insert>
     </mapper>

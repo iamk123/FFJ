@@ -52,27 +52,27 @@
 
     <!--查询所有-->
     <select id="findAll" resultMap="jobMap">
-        select * from job
+        select * from JOB
     </select>
 
     <!--根据Name查询-->
     <select id="findByName" resultMap="jobMap" parameterType="String">
-        select * from job where jobName = #{name}
+        select * from JOB where jobName = #{name}
     </select>
 
     <!--查找部分-->
     <select id="findSome" resultMap="jobMap">
-        select * from job limit 0,#{num}
+        select * from JOB limit 0,#{num}
     </select>
 
     <!--根据关键字模糊查询-->
     <select id="findByKey" resultMap="jobMap">
-        select * from job where jobName like #{name} limit 0, #{i}
+        select * from JOB where jobName like #{name} limit 0, #{i}
     </select>
 
     <!--分页查询-->
     <select id="findByPage" parameterType="Map" resultMap="jobMap">
-        select * from job
+        select * from JOB
         <where>
             <if test="key != null and key !=''">
                 <!--bind可以防止sql注入-->

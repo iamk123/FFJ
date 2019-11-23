@@ -11,6 +11,15 @@ public class SocialWork implements Serializable {
     private String name;
     private String description;
     private String work;
+    private Integer resumeId;
+
+    public Integer getResumeId() {
+        return resumeId;
+    }
+
+    public void setResumeId(Integer resumeId) {
+        this.resumeId = resumeId;
+    }
 
     public Integer getId() {
         return id;
@@ -51,6 +60,7 @@ public class SocialWork implements Serializable {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", work='" + work + '\'' +
+                ", resumeId=" + resumeId +
                 '}';
     }
 }

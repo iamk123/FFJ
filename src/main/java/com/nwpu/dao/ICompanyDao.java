@@ -40,5 +40,15 @@ public interface ICompanyDao {
      */
     List<Company> findSome(int num);
 
-    Company findById(int id);
+    Company findCompanyByJobId(int id);
+
+
+    /**
+     * my
+     */
+
+    Company findCompanyByJobId(Integer id);
+
+    List<Map<String, Integer>> findBaseInfo();
+
 }

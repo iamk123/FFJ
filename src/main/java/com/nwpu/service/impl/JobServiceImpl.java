@@ -114,4 +114,9 @@ public class JobServiceImpl implements JobService {
     public Job findJobCompanyById(int id) {
         return jobDao.findJobCompanyById(id);
     }
+
+    @Override
+    public Job findOne(Integer id){
+        return jobDao.findOne(id);
+    }
 }

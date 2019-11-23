@@ -8,6 +8,15 @@ import java.io.Serializable;
 public class Honor implements Serializable {
     private Integer id;
     private String name;
+    private Integer resumeId;
+
+    public Integer getResumeId() {
+        return resumeId;
+    }
+
+    public void setResumeId(Integer resumeId) {
+        this.resumeId = resumeId;
+    }
 
     public Integer getId() {
         return id;
@@ -30,6 +39,7 @@ public class Honor implements Serializable {
         return "Honor{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", resumeId=" + resumeId +
                 '}';
     }
 }

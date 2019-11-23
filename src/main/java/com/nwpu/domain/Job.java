@@ -19,6 +19,15 @@ public class Job implements Serializable {
     private Date createTime;    //创建时间
     private String contact;     //联系方式
     private String kind;        //类别
+    private Integer resumeId;
+
+    public Integer getResumeId() {
+        return resumeId;
+    }
+
+    public void setResumeId(Integer resumeId) {
+        this.resumeId = resumeId;
+    }
 
     private Company company;    //一对一级联查询
 
@@ -132,6 +141,7 @@ public class Job implements Serializable {
                 ", createTime=" + createTime +
                 ", contact='" + contact + '\'' +
                 ", kind='" + kind + '\'' +
+                ", resumeId=" + resumeId +
                 ", company=" + company +
                 '}';
     }

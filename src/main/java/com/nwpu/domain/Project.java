@@ -11,6 +11,15 @@ public class Project implements Serializable {
     private String name;
     private String description;
     private String work;
+    private Integer resumeId;
+
+    public Integer getResumeId() {
+        return resumeId;
+    }
+
+    public void setResumeId(Integer resumeId) {
+        this.resumeId = resumeId;
+    }
 
     public Integer getId() {
         return id;
@@ -46,11 +55,12 @@ public class Project implements Serializable {
 
     @Override
     public String toString() {
-        return "SocialWork{" +
+        return "Project{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", work='" + work + '\'' +
+                ", resumeId=" + resumeId +
                 '}';
     }
 }

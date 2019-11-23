@@ -39,4 +39,5 @@ public interface JobService {
      */
     Job findJobCompanyById(int id);
 
+    Job findOne(Integer id);
 }

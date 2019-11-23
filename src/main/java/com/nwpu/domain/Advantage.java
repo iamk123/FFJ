@@ -6,6 +6,15 @@ public class Advantage implements Serializable {
 
     private Integer id;
     private String name;
+    private Integer resumeId;
+
+    public Integer getResumeId() {
+        return resumeId;
+    }
+
+    public void setResumeId(Integer resumeId) {
+        this.resumeId = resumeId;
+    }
 
     public Integer getId() {
         return id;
@@ -25,9 +34,10 @@ public class Advantage implements Serializable {
 
     @Override
     public String toString() {
-        return "Honor{" +
+        return "Advantage{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", resumeId=" + resumeId +
                 '}';
     }
 }

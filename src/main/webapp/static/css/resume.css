@@ -2,17 +2,17 @@
  * 公共
  */ 
 /*  编辑  /  添加 */
-#edit-logo {
+#resume .userInfo-container .edit-logo {
 	position: absolute;
 	right: 15px;
 	top:15px;
 	font-size: 12px;
 }
-#edit-logo i{
+#resume .userInfo-container .edit-logo i{
 	margin-right: 8px;
 	color:#00B38A;;
 }
-#edit-logo a{
+#resume .userInfo-container.edit-logo a{
 	color:#00B38A;
 }
 

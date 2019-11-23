@@ -63,25 +63,25 @@
 <section id="resume">
 	<div class="container userInfo-container">
 		<div class="col-md-8 col-md-offset-2 userInfo-title">当前简历信息不完善,影响聊天回复率,修改后你将获得更多的求职机会
-		<a href=""><i class="glyphicon glyphicon-pencil"></i>修改</a>
+			<a href=""><i class="glyphicon glyphicon-pencil"></i>修改</a>
 		</div>
 		<div class="col-md-8 col-md-offset-2 userInfo-box">
 			<div class="media userInfo">
-			  <div class="media-body">
-			    <h2 class="media-heading">小明</h2>
-				<div class="userInfo-labels">
-					<p><span><i class="glyphicon glyphicon-briefcase"></i>2017级</span></p>
-					<p><span><i class="glyphicon glyphicon-education"></i>软件学院</span></p>
-					<p><span><i class="glyphicon glyphicon-earphone"></i>14792076163</span></p>
+				<div class="media-body">
+					<h2 class="media-heading">${sessionScope.user.name}</h2>
+					<div class="userInfo-labels">
+						<p><span><i class="glyphicon glyphicon-briefcase"></i>${resume.grade}</span></p>
+						<p><span><i class="glyphicon glyphicon-education"></i>${resume.location}</span></p>
+						<p><span><i class="glyphicon glyphicon-earphone"></i>${sessionScope.user.phone}</span></p>
+					</div>
 				</div>
-			  </div>
-			  <div class="media-right">
-			    <div class="user-icon">
-			    	<img class="media-object" src="/static/img/nwpu.png" alt="...">
-			    </div>
-			  </div>
+				<div class="media-right">
+					<div class="user-icon">
+						<img class="media-object" src="/static/img/nwpu.png" alt="...">
+					</div>
+				</div>
 			</div>
-			<div id="edit-logo">
+			<div class="edit-logo">
 				<a href=""><i class="glyphicon glyphicon-pencil"></i>编辑</a>
 			</div>
 		</div>
@@ -89,121 +89,213 @@
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 个人优势</h3>
 				<ul class="list-inline">
-					<li><i class="glyphicon glyphicon-heart-empty"></i> UI设计</li>
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 编程</li>
+					<c:forEach items="${advantages}" var="advantage">
+						<li><i class="glyphicon glyphicon-heart-empty"></i> ${advantage.name}</li>
+					</c:forEach>
 				</ul>
 			</div>
-			<div id="edit-logo">
-				<a href=""><i class="glyphicon glyphicon-pencil"></i>添加</a>
+			<div class="edit-logo">
+				<span  data-toggle="modal" data-target="#myModal-advantage"><i class="glyphicon glyphicon-pencil"></i>添加</span>
 			</div>
+			<!-- 期望职位模态框 -->
+			<div class="modal fade" id="myModal-advantage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h3 class="modal-title" id="myModalLabel-advantage"><strong>添加特长</strong></h3>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<label for="exampleInputText-advantage1">特长名称</label>
+									<input type="text" class="form-control" id="exampleInputText-advantage1" placeholder="Email">
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /期望职位模态框 -->
 		</div>
 		<div class="col-md-8 col-md-offset-2 user-resume">
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 期望职位</h3>
 				<ul class="list-inline">
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 建模</li>
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 编程</li>
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 写作</li>
+					<c:forEach items="${jobNames}" var="jobName">
+						<li><i class="glyphicon glyphicon-heart-empty"></i> ${jobName}</li>
+					</c:forEach>
 				</ul>
 			</div>
-			<div id="edit-logo">
-				<a href=""><i class="glyphicon glyphicon-pencil"></i>添加</a>
+			<div class="edit-logo">
+				<span  data-toggle="modal" data-target="#myModal-expect"><i class="glyphicon glyphicon-pencil"></i>添加</span>
 			</div>
+			<!-- 期望职位模态框 -->
+			<div class="modal fade" id="myModal-expect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h3 class="modal-title" id="myModalLabel-expect"><strong>添加期望职位</strong></h3>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<label for="exampleInputText-expect1">职位名称</label>
+									<input type="text" class="form-control" id="exampleInputText-expect1" placeholder="Email">
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /期望职位模态框 -->
 		</div>
 		<div class="col-md-8 col-md-offset-2 user-resume">
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 项目经历</h3>
 				<ul class="list-inline">
-					<li><i class="glyphicon glyphicon-heart-empty"></i> IT图书管理系统</li>
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 班级管理系统</li>
+					<c:forEach items="${projects}" var="project">
+						<li><i class="glyphicon glyphicon-heart-empty"></i> ${project.name}</li>
+					</c:forEach>
 				</ul>
 			</div>
-			<div id="edit-logo">
-				<a href=""><i class="glyphicon glyphicon-pencil"></i>添加</a>
+			<div class="edit-logo">
+				<span  data-toggle="modal" data-target="#myModal-project"><i class="glyphicon glyphicon-pencil"></i>添加</span>
 			</div>
-		</div>
-		<div class="col-md-8 col-md-offset-2 user-resume">
-			<div class="summary user-resume-item">
-				<h3><i class="glyphicon glyphicon-tags"></i> 资格证书</h3>
-				<ul class="list-inline">
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 四级证书</li>
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 六级证书</li>
-				</ul>
-			</div>
-			<div id="edit-logo">
-				<a href=""><i class="glyphicon glyphicon-pencil"></i>添加</a>
-			</div>
-		</div>
-		<div class="col-md-8 col-md-offset-2 user-resume">
-			<div class="summary user-resume-item">
-				<h3><i class="glyphicon glyphicon-tags"></i> 实习经历</h3>
-				<ul class="">
-					<li>
-						<div>
-							<p>名字</p>
-							<p>这是一次实习经历</p>
+			<!-- 项目经历模态框 -->
+			<div class="modal fade" id="myModal-project" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h3 class="modal-title" id="myModalLabel-project"><strong>添加项目经历</strong></h3>
 						</div>
-					</li>
-					<li>
-						<div>
-							<p>名字</p>
-							<p>这是一次实习经历</p>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<label for="exampleInputText-project1">项目名称</label>
+									<input type="text" class="form-control" id="exampleInputText-project1" placeholder="Email">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputText-project2">负责任务</label>
+									<input type="text" class="form-control" id="exampleInputText-project2" placeholder="Email">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputText-project3">项目介绍</label>
+									<textarea class="form-control" rows="3" id="exampleInputText-project3"></textarea>
+								</div>
+
+							</form>
 						</div>
-					</li>
-				</ul>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save</button>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div id="edit-logo">
-				<span  data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-pencil"></i>添加</span>
-			</div>
-			<!-- 实习经历模态框 -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h3 class="modal-title" id="myModalLabel"><strong>添加实习经历</strong></h3>
-			      </div>
-			      <div class="modal-body">
-			        <form>
-					  <div class="form-group">
-					    <label for="exampleInputText1">实习单位</label>
-					    <input type="text" class="form-control" id="exampleInputText1" placeholder="Email">
-					  </div>
-					  <div class="form-group">
-					    <label for="exampleInputText2">负责任务</label>
-					    <input type="text" class="form-control" id="exampleInputText2" placeholder="Email">
-					  </div>
-					  <div class="form-group">
-					  	<label for="exampleInputText3">实习介绍</label>
-					  	<textarea class="form-control" rows="3" id="exampleInputText2"></textarea>
-					  </div>
-					  <button type="submit" class="btn btn-default">添加</button>
-					</form>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary">Save changes</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-			<!-- /实习经历模态框 -->
+			<!-- /项目经历模态框 -->
 		</div>
 		<div class="col-md-8 col-md-offset-2 user-resume">
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 获奖情况</h3>
 				<ul class="list-inline">
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 校数模一等奖</li>
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 校数模二等奖</li>
-					<li><i class="glyphicon glyphicon-heart-empty"></i> 校数模三等奖</li>
+					<c:forEach items="${honors}" var="honor">
+						<li><i class="glyphicon glyphicon-heart-empty"></i> ${honor.name}</li>
+					</c:forEach>
 				</ul>
 			</div>
-			<div id="edit-logo">
-				<a href=""><i class="glyphicon glyphicon-pencil"></i>添加</a>
+			<div class="edit-logo">
+				<span  data-toggle="modal" data-target="#myModal-honor"><i class="glyphicon glyphicon-pencil"></i>添加</span>
 			</div>
+			<!-- 获奖情况模态框 -->
+			<div class="modal fade" id="myModal-honor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h3 class="modal-title" id="myModalLabel-honor"><strong>添加获奖情况</strong></h3>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<label for="exampleInputText-honor1">名称</label>
+									<input type="text" class="form-control" id="exampleInputText-honor1" placeholder="Email">
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /获奖情况模态框 -->
+		</div>
+		<div class="col-md-8 col-md-offset-2 user-resume">
+			<div class="summary user-resume-item">
+				<h3><i class="glyphicon glyphicon-tags"></i> 实习经历</h3>
+				<ul class="social_work">
+					<c:forEach items="${socialWorks}" var="socialWork">
+						<li>
+							<div>
+								<p>${socialWork.name}</p>
+								<p>${socialWork.description}</p>
+							</div>
+						</li>
+					</c:forEach>
+				</ul>
+			</div>
+			<div class="edit-logo">
+				<span  data-toggle="modal" data-target="#myModal-socialWorks"><i class="glyphicon glyphicon-pencil"></i>添加</span>
+			</div>
+			<!-- 实习经历模态框 -->
+			<div class="modal fade" id="myModal-socialWorks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h3 class="modal-title" id="myModalLabel-socialWorks"><strong>添加实习经历</strong></h3>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<label for="exampleInputText1">实习单位</label>
+									<input type="text" class="form-control" id="exampleInputText1" placeholder="Email">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputText2">负责任务</label>
+									<input type="text" class="form-control" id="exampleInputText2" placeholder="Email">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputText3">实习介绍</label>
+									<textarea class="form-control" rows="3" id="exampleInputText3"></textarea>
+								</div>
+
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /实习经历模态框 -->
 		</div>
 
-		
+
+
 	</div>
 </section>
 <!-- /个人简历 -->

@@ -13,7 +13,7 @@
 </head>
 <body>
 <script>NProgress.start()</script>
-
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 <div class="main">
     <nav class="navbar">
         <button class="btn btn-default navbar-btn fa fa-bars"></button>
@@ -43,20 +43,80 @@
             <div style="display: flex;">
                 <div style="margin-right:20px;">用户类型: </div>
                 <div class="search-option">
-                    <select name="address">
-                        <option value="">不限</option>
-                        <option value="招聘者">招聘者</option>
-                        <option value="应聘者">应聘者</option>
-                    </select>
+                    <form action="${pageContext.request.contextPath}userList" method="GET"  id="getUserList">
+                        <select id="selectId" name="userType" onchange="submitForm();">
+                            <option disabled="disabled" selected="selected"></option>
+                            <option value="3" id="op3">不限</option>
+                            <option value="0" id="op0">应聘者</option>
+                            <option value="1" id="op1">招聘者</option>
+                            <option value="2" id="op2">管理员</option>
+
+                        </select>
+
+                        <script type="text/javascript">
+                            function submitForm() {
+                                var form = document.getElementById("getUserList"); //获取form表单对象
+                                form.submit();//form表单提交
+                            }
+                            $(function select() {
+                                var select = document.getElementById("selectId");
+                                var test = window.location.search.substr(1);
+                                console.log(test);
+                                console.log(test.split("=")[1]);
+                                console.log(test.split("=")[0] == "userType");
+                                if (test.split("=")[0] == "userType") {
+                                    console.log(select.options.length);
+                                    for (var i = 1; i < select.length; i++) {
+                                        if (select.options[i].value == test.split('=')[1]){
+                                            console.log(select.options[i].text);
+                                            select.options[0].text = select.options[i].text;
+                                            break;}
+                                    }
+                                }
+                                else select.options[0].text = "不限";
+                            })
+                        </script>
+
+                    </form>
                 </div>
             </div>
-            <ul class="pagination pagination-sm pull-right">
-                <li><a href="#">上一页</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">下一页</a></li>
-            </ul>
+            <div class="pull-right">
+                当前第${users.currentPage}页，共${users.totalPage}页！
+                <c:if test="${users.totalPage > 1 }">
+                    <ul class="pagination">
+                        <!--前一页禁用-->
+                        <c:if test="${users.currentPage == 1}">
+                        <li class="disabled">
+                            </c:if>
+                            <c:if test="${users.currentPage != 1}">
+                        <li>
+                            </c:if>
+                            <a href="userList?<c:if test="${param.userType}!=''">${param.userType}&currentPage=${users.currentPage-1}</c:if>
+                            userType=${users.list[0].userType}&currentPage=${users.currentPage-1}"
+                               aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <c:forEach begin="1" end="${users.totalPage}" var="i">
+                            <li><a href="userList?<c:if test="${param.userType}!=''">${param.userType}&currentPage=${i}</c:if>
+                            userType=${users.list[0].userType}&currentPage=${i}">${i}
+                            </a></li>
+                        </c:forEach>
+                        <!--后一页禁用-->
+                        <c:if test="${users.currentPage == users.totalPage}">
+                        <li class="disabled">
+                            </c:if>
+                            <c:if test="${users.currentPage != users.totalPage}">
+                        <li>
+                            </c:if>
+                            <a href="userList?<c:if test="${param.userType}!=''">${param.userType}&currentPage=${users.currentPage+1}</c:if>
+                            userType=${users.list[0].userType}&currentPage=${users.currentPage+1}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </c:if>
+            </div>
         </div>
         <table class="table table-striped table-bordered table-hover">
             <thead>
@@ -65,7 +125,7 @@
                 <th>id</th>
                 <th>name</th>
                 <th>username</th>
-                <th>password</th>
+                <%-- <th>password</th>--%>
                 <th>email</th>
                 <th>phone</th>
                 <th>userType</th>
@@ -73,34 +133,33 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="danger">
-                <td class="text-center"><input type="checkbox"></td>
-                <th>id</th>
-                <th>name</th>
-                <th>username</th>
-                <th>password</th>
-                <th>email</th>
-                <th>phone</th>
-                <th>应聘者</th>
-                <td class="text-center">
-                    <a href="post-add.html" class="btn btn-info btn-xs">修改</a>
-                    <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-                </td>
-            </tr>
-            <tr class="danger">
-                <td class="text-center"><input type="checkbox"></td>
-                <th>id</th>
-                <th>name</th>
-                <th>username</th>
-                <th>password</th>
-                <th>email</th>
-                <th>phone</th>
-                <th>招聘者</th>
-                <td class="text-center">
-                    <a href="post-add.html" class="btn btn-info btn-xs">修改</a>
-                    <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-                </td>
-            </tr>
+            <c:forEach items="${users.list}" var="user" varStatus="i">
+                <c:if test="${i.count%2 == 0}">
+                    <tr>
+                </c:if>
+                <c:if test="${i.count%2 == 1}">
+                    <tr class="warning">
+                </c:if>
+                    <td class="text-center"><input type="checkbox"></td>
+                    <th>${user.id}</th>
+                    <th>${user.name}</th>
+                    <th>${user.userName}</th>
+                        <%--<th>password</th>--%>
+                    <th>${user.email}</th>
+                    <th>${user.phone}</th>
+                    <th>
+                        <c:choose>
+                            <c:when test="${user.userType == 0}">应聘者</c:when>
+                            <c:when test="${user.userType == 1}">招聘者</c:when>
+                            <c:when test="${user.userType == 2}">管理员</c:when>
+                        </c:choose>
+                    </th>
+                    <td class="text-center">
+                        <a href="post-add.html" class="btn btn-info btn-xs">修改</a>
+                        <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
+                    </td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
@@ -108,7 +167,7 @@
 
 <div class="aside">
     <div class="profile">
-        <img class="avatar" src="/static/img/nwpu.png">
+        <img class="avatar" src="/static/img/rng.jpg">
         <h3 class="name">小明</h3>
     </div>
     <ul class="nav">
@@ -127,7 +186,7 @@
             </ul>
         </li>
         <li class="active">
-            <a href="comments.html"><i class="fa fa-comments"></i>xx</a>
+            <a href="/admin/userList"><i class="fa fa-comments"></i>用户列表</a>
         </li>
         <li>
             <a href="users.html"><i class="fa fa-users"></i>xx</a>

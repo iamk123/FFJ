@@ -75,4 +75,14 @@ public class CompanyServiceImpl implements CompanyService {
         return pageBean;
 
     }
+
+    @Override
+    public Company findCompanyByJobId(Integer id){
+        return companyDao.findCompanyByJobId(id);
+    }
+
+    @Override
+    public List<Map<String, Integer>> findBaseInfo(){
+        return companyDao.findBaseInfo();
+    }
 }

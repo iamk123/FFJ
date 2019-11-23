@@ -14,7 +14,7 @@
         <result property="location" column="loction"></result>
         <result property="companyInfo" column="companyInfo"></result>
     </resultMap>
-    <resultMap id="baseCompanyMap" type="baseCompany">
+    <resultMap id="baseCompanyMap" type="java.util.Map">
         <id property="c_id" column="id"></id>
         <result property="c_name" column="name"></result>
 <!--        <result property="" column="userId"></result>-->
@@ -31,28 +31,25 @@
 
     <!--查询所有-->
     <select id="findAll" resultMap="companyMap">
-        select * from company
-    </select>
-
-    <!--根据Name查询-->
-    <select id="findByName" resultMap="companyMap" parameterType="String">
-        select * from company where userName = #{name}
+        select * from COMPANY;
     </select>
 
     <!--查找部分-->
     <select id="findSome" resultMap="companyMap">
-        select * from company limit 0,#{num}
+        select * from COMPANY limit 0, #{num}
     </select>
 
-    <!--根据关键字模糊查询-->
-    <select id="findByKey" resultMap="companyMap">
-        select * from company where name like #{name} limit 0, #{i}
+    <!--根据Name查询-->
+    <select id="findByName" resultMap="companyMap" parameterType="String">
+        select * from COMPANY where userName = #{name}
     </select>
 
-    <!--分页查询-->
-    <select id="findByPage" parameterType="Map" resultMap="companyMap">
-        select * from company
-
+    <!--查询热门企业信息-->
+    <select id="findBaseInfo" resultType="java.util.Map" >
+        select c.name, count(*) as number
+        from COMPANY c, JOB j
+        where c.id = j.companyId
+        group by c.name
     </select>
 
     <!--查找总条数-->
@@ -61,7 +58,7 @@
     </select>
 
     <!--根据id查找-->
-    <select id="findById" resultMap="companyMap">
-        select * from company where id = #{id}
+    <select id="findCompanyByJobId" resultMap="companyMap">
+        select * from COMPANY where id = #{id}
     </select>
 </mapper>

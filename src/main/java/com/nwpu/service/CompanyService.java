@@ -4,6 +4,7 @@ import com.nwpu.domain.Company;
 import com.nwpu.pojo.PageBean;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CompanyService {
 
@@ -36,4 +37,8 @@ public interface CompanyService {
      * @return
      */
     PageBean<Company> findByPage(String key, int currentPage, int rows);
+
+    List<Map<String, Integer>> findBaseInfo();
+
+    Company findCompanyByJobId(Integer id);
 }
