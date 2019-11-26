@@ -119,4 +119,29 @@ public class JobServiceImpl implements JobService {
     public Job findOne(Integer id){
         return jobDao.findOne(id);
     }
+
+    @Override
+    public PageBean<Map<String, Object>> findAllByPage(int status, int currentPage, int rows){
+        PageBean<Map<String, Object>> pageBean = new PageBean<>();
+        pageBean.setCurrentPage(currentPage);
+        pageBean.setRows(rows);
+
+        Map<String, Object> map = new HashMap<>();
+        int totalCount = jobDao.findAllByStatus(status);
+
+        System.err.println(totalCount);
+
+        //double tc = totalCount;
+        Double num = Math.ceil(((double) totalCount) / rows);
+        pageBean.setTotalPage(num.intValue());
+        map.put("status", status);
+        map.put("start", (currentPage - 1) * rows);
+        map.put("size", pageBean.getRows());
+        List<Map<String, Object>> jobs = jobDao.findAllByPage(map);
+        for(String key: jobs.get(0).keySet()){
+            System.err.println("key: " + key + " value: " + jobs.get(0).get(key));
+        }
+        pageBean.setList(jobs);
+        return pageBean;
+    }
 }

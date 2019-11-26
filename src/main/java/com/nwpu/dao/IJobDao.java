@@ -1,6 +1,7 @@
 package com.nwpu.dao;
 
 import com.nwpu.domain.Job;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -41,4 +42,8 @@ public interface IJobDao {
      * my
      */
     Job findOne(Integer id);
+
+    List<Map<String, Object>> findAllByPage(Map<String, Object> map);
+
+    int findAllByStatus(@Param("status") int status);
 }

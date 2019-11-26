@@ -108,4 +108,9 @@ public class UserServiceImpl implements UserService {
         pageBean.setList(users);
         return pageBean;
     }
+
+    @Override
+    public void save(User user){
+        userDao.save(user);
+    }
 }

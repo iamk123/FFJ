@@ -40,4 +40,7 @@ public interface JobService {
     Job findJobCompanyById(int id);
 
     Job findOne(Integer id);
+
+    PageBean<Map<String, Object>> findAllByPage(int status, int currentPage, int rows);
+
 }
