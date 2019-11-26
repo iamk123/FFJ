@@ -66,7 +66,7 @@
     </select>
 
     <!--查询所有类型分页-->
-        <select id="findAllByPage" resultMap="userMap" parameterType="java.util.Map">
+    <select id="findAllByPage" resultMap="userMap" parameterType="java.util.Map">
             select  * from USER
         <where>
             <if test="userType!= null and userType!= 3">
@@ -122,4 +122,25 @@
         select * from SOCIALWORK s
         where s.resumeId = #{id}
     </select>
+
+    <!--插入一个用户-->
+    <insert id="save" parameterType="user" keyProperty="id" useGeneratedKeys="true">
+        insert into USER (name, userName, password, email, phone, userType)
+        values(#{name}, #{userName}, #{password}, #{email}, #{phone}, #{userType})
+    </insert>
+
+    <!--更新用户信息-->
+    <update id="updateUser" parameterType="user">
+        update USER set name=#{name}, email=#{email}, phone=#{phone} where id=#{id}
+    </update>
+
+    <!--更新简历-->
+    <update id="updateResume" parameterType="resume">
+        update RESUME set location=#{location}, grade=#{grade} where userId=#{userId}
+    </update>
+
+    <!--修改密码-->
+    <update id="updatePassword">
+        update USER set password=#{password} where id=#{id}
+    </update>
 </mapper>

@@ -16,3 +16,8 @@
 	background-color:#f6f6f8;
 	margin-bottom: 30px;
 }
+
+.active{
+	background-color:#eee;
+	border-color:#ddd;
+}

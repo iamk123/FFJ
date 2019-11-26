@@ -38,6 +38,10 @@ public interface CompanyService {
      */
     PageBean<Company> findByPage(String key, int currentPage, int rows);
 
+    /**
+     * 热门企业
+     * @return
+     */
     List<Map<String, Integer>> findBaseInfo();
 
     Company findCompanyByJobId(Integer id);

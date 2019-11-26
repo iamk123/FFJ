@@ -1,3 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
 <!-- footer -->
 <footer id="footer">
 	<div class="container hidden-xs hidden-sm">
@@ -42,15 +50,14 @@
 					休息9:30-18:30
 					<span></span>
 				</p>
-			<!-- 	<p class="footer-icon">
-					<a href=""></a>
-				</p> -->
+				<!-- 	<p class="footer-icon">
+                        <a href=""></a>
+                    </p> -->
 			</dd>
 		</div>
 	</div>
 </footer>
 <!-- /footer -->
-
 <!-- copyright -->
 <div class="copyright container hidden-xs hidden-sm">
 	<p>
@@ -64,3 +71,5 @@
 	</p>
 </div>
 <!-- /copyright -->
+</body>
+</html>

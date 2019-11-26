@@ -83,6 +83,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public List<Map<String, Integer>> findBaseInfo(){
+
         return companyDao.findBaseInfo();
     }
 }

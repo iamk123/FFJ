@@ -35,15 +35,6 @@ public interface IUserDao {
 
     User findById(int id);
 
-
-    /**
-     * my
-     */
-    /**
-     *
-     * @param id
-     * @return
-     */
     List<Advantage> findAdvantageByResumeId(Integer id);
 
     Resume findResumeById(Integer id);
@@ -58,6 +49,15 @@ public interface IUserDao {
 
     int findAllByUserType(@Param("userType") Integer userType);
 
-
     List<User> findAllByPage(Map<String, Object> map);
+
+    int save(User user);
+
+    int updateUser(User user);
+
+    int updateResume(Resume resume);
+
+    int updatePassword(@Param("id") Integer id, @Param("password") String password );
+
+    // void save(User user);
 }

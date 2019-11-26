@@ -36,11 +36,14 @@
                     <span class="text">Remember me</span>
                     <button type="submit" class="btn btn-default">登录</button>
                 </div>
+                <div class="form-group pull-left">
+                    <a href="/register">没账号？去注册</a>
+                </div>
             </form>
+            <h5 style="color:red;">${msg}</h5>
         </div>
     </div>
 </div>
-
 
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>

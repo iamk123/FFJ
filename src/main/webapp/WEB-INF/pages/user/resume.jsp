@@ -12,60 +12,92 @@
 	<link rel="stylesheet" href="/static/css/header.css">
 	<link rel="stylesheet" href="/static/css/footer.css">
 	<link rel="stylesheet" href="/static/css/resume.css">
+	<link rel="stylesheet" href="/static/lib/toastr/toastr.css">
+	<script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/static/lib/toastr/toastr.min.js"></script>
+	<style>
+		.toast-center-center{
+			top:20%;
+			left:35%;
+		}
+		#deliver{
+			color:#fff;
+			cursor: pointer;
+		}
+	</style>
+	<script type="text/javascript">
+		toastr.options = {
+			closeButton: false,
+			debug: false,
+			progressBar: false,
+			positionClass: "toast-center-center",
+			onclick: null,
+			showDuration: "300",
+			hideDuration: "1000",
+			timeOut: "1000",
+			extendedTimeOut: "1000",
+			showEasing: "swing",
+			hideEasing: "linear",
+			showMethod: "fadeIn",
+			hideMethod: "fadeOut"
+		};
+	</script>
+
+	<script type="text/javascript">
+		$(function(){
+				var msg = '${msg}';
+				console.log(msg);
+				if(msg == '0'){
+					toastr.error("添加失败！请重试！");
+				}else if(msg == "1"){
+					toastr.success("添加成功~");
+				}else if(msg == "2"){
+					toastr.warning("请检查信息！");
+				}else if(msg == "3"){
+					toastr.success("删除成功！");
+				}
+
+		});
+
+		function submitAdvantageForm() {
+			$("#advantageForm").submit();
+		}
+
+		function submitProjectForm() {
+			$("#projectForm").submit();
+		}
+
+		function submitHonorForm() {
+			$("#honorForm").submit();
+		}
+
+		function submitSocialWorkForm() {
+			$("#socialWorkForm").submit();
+		}
+
+	</script>
+
 
 </head>
 
 <body>
 <!-- 头部区域 -->
 <header>
-	<!-- 导航条 -->
-	<nav class="navbar navbar-nwpu">
-	  <div class="container">
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand" href="#">Brand</a>
-	    </div>
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="#">首页 <span class="sr-only">(current)</span></a></li>
-	        <li><a href="#">职位</a></li>
-	        <li><a href="#">职位</a></li>
-	        <li><a href="#">职位</a></li>
-	        <li><a href="#">职位</a></li>
-	      </ul>
-	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="#">消息</a></li>
-	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户昵称 <span class="caret"></span></a>
-	          <ul class="dropdown-menu dropdown-mean-nwpu">
-	            <li><a href="#">个人中心</a></li>
-	            <li><a href="#">账号设置</a></li>
-	            <li><a href="#">修改密码</a></li>
-	            <li role="separator" class="divider"></li>
-	            <li><a href="#">退出登录</a></li>
-	          </ul>
-	        </li>
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
-	<!-- /导航条 -->
-
+	<!--导航条-->
+	<c:import url="../head.jsp"></c:import>
+	<!--/导航条-->
 </header>
 <!--/头部区域  -->
 
 <!-- 个人简历 -->
-<section id="resume">
+<section id="resume" style="background-color:#f6f6f8;margin-bottom: 30px;">
 	<div class="container userInfo-container">
-		<div class="col-md-8 col-md-offset-2 userInfo-title">当前简历信息不完善,影响聊天回复率,修改后你将获得更多的求职机会
+		<div class="col-md-8 col-md-offset-2 userInfo-title" style="box-shadow: 5px 5px 5px 5px #ccc;border-radius:10px 10px 0 0;">
+            当前简历信息不完善,影响聊天回复率,修改后你将获得更多的求职机会
 			<a href=""><i class="glyphicon glyphicon-pencil"></i>修改</a>
 		</div>
-		<div class="col-md-8 col-md-offset-2 userInfo-box">
+		<div class="col-md-8 col-md-offset-2 userInfo-box" style="box-shadow: 5px 5px 5px 5px #ccc;border-radius: 0 0 10px 10px;">
 			<div class="media userInfo">
 				<div class="media-body">
 					<h2 class="media-heading">${sessionScope.user.name}</h2>
@@ -82,22 +114,22 @@
 				</div>
 			</div>
 			<div class="edit-logo">
-				<a href=""><i class="glyphicon glyphicon-pencil"></i>编辑</a>
+				<a href="/user/personInfo"><i class="glyphicon glyphicon-pencil"></i>编辑</a>
 			</div>
 		</div>
-		<div class="col-md-8 col-md-offset-2 user-resume">
+		<div class="col-md-8 col-md-offset-2 user-resume" style="box-shadow: 5px 5px 5px 5px #ccc;border-radius: 10px;">
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 个人优势</h3>
 				<ul class="list-inline">
 					<c:forEach items="${advantages}" var="advantage">
-						<li><i class="glyphicon glyphicon-heart-empty"></i> ${advantage.name}</li>
+						<li><i class="glyphicon glyphicon-heart-empty"></i> ${advantage.name}<a href="/user/deleteAdvantage/${advantage.id}">x</a></li>
 					</c:forEach>
 				</ul>
 			</div>
 			<div class="edit-logo">
 				<span  data-toggle="modal" data-target="#myModal-advantage"><i class="glyphicon glyphicon-pencil"></i>添加</span>
 			</div>
-			<!-- 期望职位模态框 -->
+			<!-- 个人优势模态框 -->
 			<div class="modal fade" id="myModal-advantage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
@@ -106,65 +138,34 @@
 							<h3 class="modal-title" id="myModalLabel-advantage"><strong>添加特长</strong></h3>
 						</div>
 						<div class="modal-body">
-							<form>
+							<form action="/user/addAdvantage" id="advantageForm" method="POST">
+								<input type="text" value="${resume.id}" class="sr-only" name="resumeId">
 								<div class="form-group">
 									<label for="exampleInputText-advantage1">特长名称</label>
-									<input type="text" class="form-control" id="exampleInputText-advantage1" placeholder="Email">
+									<input type="text" class="form-control" id="exampleInputText-advantage1" placeholder="Email" name="name">
 								</div>
 							</form>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save</button>
+							<button type="button" class="btn btn-primary" onclick="submitAdvantageForm()">Save</button>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- /期望职位模态框 -->
+			<!-- /个人优势模态框 -->
 		</div>
-		<div class="col-md-8 col-md-offset-2 user-resume">
-			<div class="summary user-resume-item">
-				<h3><i class="glyphicon glyphicon-tags"></i> 期望职位</h3>
-				<ul class="list-inline">
-					<c:forEach items="${jobNames}" var="jobName">
-						<li><i class="glyphicon glyphicon-heart-empty"></i> ${jobName}</li>
-					</c:forEach>
-				</ul>
-			</div>
-			<div class="edit-logo">
-				<span  data-toggle="modal" data-target="#myModal-expect"><i class="glyphicon glyphicon-pencil"></i>添加</span>
-			</div>
-			<!-- 期望职位模态框 -->
-			<div class="modal fade" id="myModal-expect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h3 class="modal-title" id="myModalLabel-expect"><strong>添加期望职位</strong></h3>
-						</div>
-						<div class="modal-body">
-							<form>
-								<div class="form-group">
-									<label for="exampleInputText-expect1">职位名称</label>
-									<input type="text" class="form-control" id="exampleInputText-expect1" placeholder="Email">
-								</div>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /期望职位模态框 -->
-		</div>
-		<div class="col-md-8 col-md-offset-2 user-resume">
+		<div class="col-md-8 col-md-offset-2 user-resume" style="box-shadow: 5px 5px 5px 5px #ccc;border-radius: 10px;">
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 项目经历</h3>
-				<ul class="list-inline">
+				<ul class="">
 					<c:forEach items="${projects}" var="project">
-						<li><i class="glyphicon glyphicon-heart-empty"></i> ${project.name}</li>
+						<li style="margin-bottom: 30px;">
+							<p><i class="glyphicon glyphicon-heart-empty"></i>项目名称： ${project.name}<a href="/user/deleteProject/${project.id}">x</a></p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>负责工作： </span>${project.work}</p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>项目简介： </span>${project.description}</p>
+
+						</li>
 					</c:forEach>
 				</ul>
 			</div>
@@ -180,37 +181,37 @@
 							<h3 class="modal-title" id="myModalLabel-project"><strong>添加项目经历</strong></h3>
 						</div>
 						<div class="modal-body">
-							<form>
+							<form action="/user/addProject" id="projectForm" method="POST">
+								<input type="text" value="${resume.id}" class="sr-only" name="resumeId">
 								<div class="form-group">
 									<label for="exampleInputText-project1">项目名称</label>
-									<input type="text" class="form-control" id="exampleInputText-project1" placeholder="Email">
+									<input type="text" class="form-control" id="exampleInputText-project1" placeholder="项目名称" name="name">
 								</div>
 								<div class="form-group">
 									<label for="exampleInputText-project2">负责任务</label>
-									<input type="text" class="form-control" id="exampleInputText-project2" placeholder="Email">
+									<input type="text" class="form-control" id="exampleInputText-project2" placeholder="负责任务" name="work">
 								</div>
 								<div class="form-group">
 									<label for="exampleInputText-project3">项目介绍</label>
-									<textarea class="form-control" rows="3" id="exampleInputText-project3"></textarea>
+									<textarea class="form-control" rows="3" id="exampleInputText-project3" name="description"></textarea>
 								</div>
-
 							</form>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save</button>
+							<button type="button" class="btn btn-primary" onclick="submitProjectForm()">Save</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- /项目经历模态框 -->
 		</div>
-		<div class="col-md-8 col-md-offset-2 user-resume">
+		<div class="col-md-8 col-md-offset-2 user-resume" style="box-shadow: 5px 5px 5px 5px #ccc;border-radius: 10px;">
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 获奖情况</h3>
 				<ul class="list-inline">
 					<c:forEach items="${honors}" var="honor">
-						<li><i class="glyphicon glyphicon-heart-empty"></i> ${honor.name}</li>
+						<li class="delete"><i class="glyphicon glyphicon-heart-empty"></i> ${honor.name}<a href="/user/deleteHonor/${honor.id}">x</a></li>
 					</c:forEach>
 				</ul>
 			</div>
@@ -226,32 +227,33 @@
 							<h3 class="modal-title" id="myModalLabel-honor"><strong>添加获奖情况</strong></h3>
 						</div>
 						<div class="modal-body">
-							<form>
+							<form action="/user/addHonor" id="honorForm" method="POST">
+								<input type="text" value="${resume.id}" class="sr-only" name="resumeId">
 								<div class="form-group">
 									<label for="exampleInputText-honor1">名称</label>
-									<input type="text" class="form-control" id="exampleInputText-honor1" placeholder="Email">
+									<input type="text" class="form-control" id="exampleInputText-honor1" placeholder="名称" name="name">
 								</div>
 							</form>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save</button>
+							<button type="button" class="btn btn-primary" onclick="submitHonorForm()">Save</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- /获奖情况模态框 -->
 		</div>
-		<div class="col-md-8 col-md-offset-2 user-resume">
+		<div class="col-md-8 col-md-offset-2 user-resume" style="box-shadow: 5px 5px 5px 5px #ccc;border-radius: 10px;">
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 实习经历</h3>
-				<ul class="social_work">
+
+				<ul class="">
 					<c:forEach items="${socialWorks}" var="socialWork">
-						<li>
-							<div>
-								<p>${socialWork.name}</p>
-								<p>${socialWork.description}</p>
-							</div>
+						<li style="margin-bottom: 30px;">
+							<p><i class="glyphicon glyphicon-heart-empty"></i>实习公司： ${socialWork.name}<a href="/user/deleteSocialWork/${socialWork.id}">x</a></p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;负责工作： ${socialWork.work}</p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目简介： ${socialWork.description}</p>
 						</li>
 					</c:forEach>
 				</ul>
@@ -268,106 +270,41 @@
 							<h3 class="modal-title" id="myModalLabel-socialWorks"><strong>添加实习经历</strong></h3>
 						</div>
 						<div class="modal-body">
-							<form>
+							<form action="/user/addSocialWork" id="socialWorkForm" method="POST">
+								<input type="text" value="${resume.id}" class="sr-only" name="resumeId">
 								<div class="form-group">
 									<label for="exampleInputText1">实习单位</label>
-									<input type="text" class="form-control" id="exampleInputText1" placeholder="Email">
+									<input type="text" class="form-control" id="exampleInputText1" placeholder="Email" name="name">
 								</div>
 								<div class="form-group">
 									<label for="exampleInputText2">负责任务</label>
-									<input type="text" class="form-control" id="exampleInputText2" placeholder="Email">
+									<input type="text" class="form-control" id="exampleInputText2" placeholder="Email" name="work">
 								</div>
 								<div class="form-group">
 									<label for="exampleInputText3">实习介绍</label>
-									<textarea class="form-control" rows="3" id="exampleInputText3"></textarea>
+									<textarea class="form-control" rows="3" id="exampleInputText3" name="description"></textarea>
 								</div>
 
 							</form>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save</button>
+							<button type="button" class="btn btn-primary" onclick="submitSocialWorkForm()">Save</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- /实习经历模态框 -->
 		</div>
-
-
-
 	</div>
 </section>
 <!-- /个人简历 -->
 
-<!-- footer -->
-<footer id="footer">
-	<div class="container hidden-xs hidden-sm">
-		<div class="col-md-2 footer-item">
-			<dl>企业服务</dl>
-			<dd>
-				<a href="">职业搜索</a>
-				<a href="">新闻资讯</a>
-				<a href="">NWPU招聘</a>
-			</dd>
-		</div>
-		<div class="col-md-2 footer-item">
-			<dl>使用与帮助</dl>
-			<dd>
-				<a href="">用户协议与隐私政策</a>
-				<a href="">防骗指南</a>
-				<a href="">职位发布规则</a>
-				<a href="">使用帮助</a>
-			</dd>
-		</div>
-		<div class="col-md-4 footer-item">
-			<dl>联系NWPU招聘</dl>
-			<dd>
-				<a href="">陕西NWPU校园招聘</a>
-				<a href="">公司地址 陕西省西安市长安区西北工业大学</a>
-				<a href="">联系电话 14792076163</a>
-				<a href="">违法和不良信息举报邮箱 1249248952@qq.com</a>
-			</dd>
-		</div>
-		<div class="col-md-4  footer-item footer-companyInfo">
-			<dl>NWPU招聘</dl>
-			<dd>
-				<p>
-					企业服务热线和举报电话
-					<span>400 000 000</span>
-				</p>
-				<p>
-					工作日
-					<span>8:00-24:00</span>
-				</p>
-				<p>
-					休息9:30-18:30
-					<span></span>
-				</p>
-			<!-- 	<p class="footer-icon">
-					<a href=""></a>
-				</p> -->
-			</dd>
-		</div>
-	</div>
-</footer>
-<!-- /footer -->
+<!--footer-->
+<c:import url="footer.jsp"></c:import>
+<!--/footer-->
 
-<!-- copyright -->
-<div class="copyright container hidden-xs hidden-sm">
-	<p>
-		<span>Copyright © 2019 NWPU招聘</span>
-		<span>京ICP备14013441号-5</span>
-		<span>京ICP证150923号</span>
-		<span><a href=""><i class="glyphicon glyphicon-bullhorn"></i> 电子营业执照</a></span>
-		<span><a href=""><i class="glyphicon glyphicon-align-justify"></i> 京公网安备11010502032801</a></span>
-		<span><a href="http://sdwj.zhipin.com/web/index.html"><i class="glyphicon glyphicon-user"></i> 首都网警</a></span>
-		<span><a href=""><i class="glyphicon glyphicon-tag"></i> 人力资源服务许可证</a></span>
-	</p>
-</div>
-<!-- /copyright -->
-
-<script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
-<script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>
+<%--<script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>--%>
+<%--<script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>--%>
 </body>
 </html>

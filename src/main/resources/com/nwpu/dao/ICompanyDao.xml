@@ -50,6 +50,7 @@
         from COMPANY c, JOB j
         where c.id = j.companyId
         group by c.name
+        limit 0,8
     </select>
 
     <!--查找总条数-->
@@ -61,4 +62,5 @@
     <select id="findCompanyByJobId" resultMap="companyMap">
         select * from COMPANY where id = #{id}
     </select>
+
 </mapper>

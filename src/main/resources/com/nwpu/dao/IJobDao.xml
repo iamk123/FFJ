@@ -125,4 +125,32 @@
         where j.companyId = c.id
         and j.id = #{id}
     </select>
+
+    <select id="findJobCompanyByName" resultMap="jobCompanyMap" >
+        select j.*, c.name, c.location, c.companyInfo, c.userId
+        from JOB j, COMPANY c
+        where c.name = #{name} and c.id = j.companyId
+    </select>
+
+    <select id="findAllByStatus" resultType="java.lang.Integer">
+        select count(*) from JOB j, RESUMEDELIVER rd
+        <where>
+            <if test="status!= null and status != 3">
+                rd.status = #{status} and
+            </if>
+            j.id = rd.jobId
+        </where>
+    </select>
+
+    <select id="findAllByPage" resultType="java.util.Map" parameterType="java.util.Map">
+        select  j.id, j.jobName, c.name, u.userName, j.createTime, rd.status from JOB j, RESUMEDELIVER rd, RESUME r, COMPANY c, USER u
+        <where>
+            <if test="status!= null and status!= 3">
+                rd.status = #{status} and
+            </if>
+            rd.jobId = j.id and j.companyId = c.id and rd.resumeId = r.id  and r.userId = u.id
+        </where>
+
+        limit #{start},#{size}
+    </select>
 </mapper>

@@ -5,11 +5,11 @@ import com.nwpu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 系统主控制类
@@ -29,6 +29,7 @@ public class HomeController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model){
+
         return "login";
     }
 
@@ -53,12 +54,10 @@ public class HomeController {
     public String processLogin(@RequestParam(value = "userName", defaultValue = "") String userName, Model model,
                                @RequestParam(value = "password", defaultValue = "") String password, HttpSession session) {
 
-        System.out.println(userName);
-        System.out.println(password);
         User user = userService.findUserByUserNameAndPassword(userName, password);
         // User user = userService.findUserByUserName(userName);
         if(user != null){
-            // System.out.println(user);
+            System.out.println(user);
             session.setAttribute("user", user);
 
             //普通用户
@@ -83,6 +82,72 @@ public class HomeController {
         }
 
     }
+
+    /**
+     * 注册
+     * @return
+     */
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register(){
+        return "user/register";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register(User user, Model model){
+        System.out.println(user);
+        if(userService.findUserByUserName(user.getUserName()) != null ){
+            model.addAttribute("msg", "账号已存在！请重新注册！");
+            return "user/register";
+        }
+        if(userService.addUser(user) == 1){
+            model.addAttribute("msg", "注册成功！请登录！");
+            return "login";
+        }
+        model.addAttribute("msg", "注册失败！请重新注册！");
+        return "user/register";
+    }
+
+    /**
+     * 修改密码
+     * @return
+     */
+    @GetMapping("/updatePassword")
+    public String updatePassword(){
+
+        return "user/updatePassword";
+    }
+
+    @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
+    public String updatePassword(HttpSession session, Model model, @ModelAttribute("origin") String origin,
+                                 @ModelAttribute("newPassword") String newPassword, @ModelAttribute("confirm") String confirm){
+
+        User user = (User) session.getAttribute("user");
+        if("".equals(origin) || "".equals(newPassword) || "".equals(confirm)){
+            model.addAttribute("msg", "请完善信息！！");
+
+            return "user/updatePassword";
+        }
+        if(!user.getPassword().equals(origin)){
+            model.addAttribute("msg", "原密码错误！");
+            return "user/updatePassword";
+        }
+        if(!newPassword.equals(confirm)){
+            model.addAttribute("msg", "两次密码不一致！");
+            return "user/updatePassword";
+        }
+        if(user.getPassword().equals(newPassword)){
+            model.addAttribute("msg", "密码不能与原密码相同！！");
+            return "user/updatePassword";
+        }
+        if(userService.updatePassword(user.getId(), newPassword) == 1){
+            // model.addAttribute("msg", "修改密码成功！");
+            System.out.println("修改成功");
+            session.invalidate();
+            return "redirect:/";
+        }
+        return null;
+    }
+
 
     /**
      * 退出登录
