@@ -58,6 +58,7 @@ public interface IUserDao {
 
     int findAllByUserType(@Param("userType") Integer userType);
 
-
     List<User> findAllByPage(Map<String, Object> map);
+
+    void save(User user);
 }

@@ -40,20 +40,54 @@
             <div style="display: flex;">
                 <div style="margin-right:20px;">用户类型: </div>
                 <div class="search-option">
-                    <select name="address">
-                        <option value="">不限</option>
-                        <option value="已处理">已处理</option>
-                        <option value="约请面试">约请面试</option>
-                        <option value="抱歉">抱歉</option>
+                    <form action="${pageContext.request.contextPath}jobList" method="GET"  id="getJobList">
+                    <select id="selectId" name="status" onchange="submitForm();">
+                        <option disabled="disabled" selected="selected"></option>
+                        <option value="3">不限</option>
+                        <option value="0">未处理</option>
+                        <option value="1">约请面试</option>
+                        <option value="2">抱歉</option>
                     </select>
+                    </form>
                 </div>
             </div>
             <ul class="pagination pagination-sm pull-right">
-                <li><a href="#">上一页</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">下一页</a></li>
+                当前第${jobs.currentPage}页，共${jobs.totalPage}页！
+                <c:if test="${jobs.totalPage > 1 }">
+                <ul class="pagination">
+                    <!--前一页禁用-->
+                    <c:if test="${jobs.currentPage == 1}">
+                    <li class="disabled">
+                        </c:if>
+                        <c:if test="${jobs.currentPage != 1}">
+                    <li>
+                        </c:if>
+                        <a href="jobList?<c:if test="${param.status}!=''">${param.status}&currentPage=${jobs.currentPage-1}</c:if>
+                            status=${jobs.list[0].get("status")}&currentPage=${jobs.currentPage-1}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <c:forEach begin="1" end="${jobs.totalPage}" var="i">
+                        <li><a href="jobList?<c:if test="${param.status}!=''">${param.status}&currentPage=${i}</c:if>
+                            status=${jobs.list[0].get("status")}&currentPage=${i}">${i}
+                        </a></li>
+                    </c:forEach>
+                    <!--后一页禁用-->
+                    <c:if test="${jobs.currentPage == jobs.totalPage}">
+                    <li class="disabled">
+                        </c:if>
+                        <c:if test="${jobs.currentPage != jobs.totalPage}">
+                    <li>
+                        </c:if>
+                        <a href="jobList?<c:if test="${param.status}!=''">${param.status}&currentPage=${jobs.currentPage+1}</c:if>
+                            status=${jobs.list[0].get("status")}&currentPage=${jobs.currentPage+1}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+                </c:if>
+        </div>
             </ul>
         </div>
         <table class="table table-striped table-bordered table-hover">
@@ -63,48 +97,35 @@
                 <th>id</th>
                 <th>职位名称</th>
                 <th>公司</th>
+                <th>应聘者<th>
                 <th>创建时间</th>
                 <th>状态</th>
                 <th class="text-center" width="100">操作</th>
             </tr>
             </thead>
             <tbody>
+            <c:forEach items="${jobs.list}" var="job" varStatus="i">
             <tr class="danger">
                 <td class="text-center"><input type="checkbox"></td>
-                <th>id</th>
-                <th>xx</th>
-                <th>xx</th>
-                <th>xx</th>
-                <th>已处理</th>
+                <th>#${i.count}</th>
+                <th>${job.get("jobName")}</th>
+                <th><a href="/admin/jobHandle" name="name">${job.get("name")}</a></th>
+                <th>${job.get("userName")}</th>
+                <th>${job.get("createTime")}</th>
+                <th>
+                    <c:choose>
+                        <c:when test="${job.get('status') == 0}">未处理</c:when>
+                        <c:when test="${job.get('status') == 1}">约请面试</c:when>
+                        <c:when test="${job.get('status') == 2}">抱歉</c:when>
+                        <c:when test="${job.get('status') == 3}">不限</c:when>
+                    </c:choose>
+                </th>
                 <td class="text-center">
                     <a href="post-add.html" class="btn btn-info btn-xs">详情</a>
                     <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
                 </td>
             </tr>
-            <tr class="danger">
-                <td class="text-center"><input type="checkbox"></td>
-                <th>id</th>
-                <th>xx</th>
-                <th>xx</th>
-                <th>xx</th>
-                <th>约请面试</th>
-                <td class="text-center">
-                    <a href="post-add.html" class="btn btn-info btn-xs">详情</a>
-                    <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-                </td>
-            </tr>
-            <tr class="danger">
-                <td class="text-center"><input type="checkbox"></td>
-                <th>id</th>
-                <th>xx</th>
-                <th>xx</th>
-                <th>xx</th>
-                <th>抱歉</th>
-                <td class="text-center">
-                    <a href="post-add.html" class="btn btn-info btn-xs">详情</a>
-                    <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-                </td>
-            </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
@@ -148,9 +169,31 @@
         </li>
     </ul>
 </div>
-
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript">
+    function submitForm() {
+        var form = document.getElementById("getJobList"); //获取form表单对象
+        form.submit();//form表单提交
+    }
+    $(function select() {
+        var select = document.getElementById("selectId");
+        var test = window.location.search.substr(1);
+        console.log(test);
+        console.log(test.split("=")[0] == "status");
+        if (test.split("=")[0] == "status") {
+            console.log(select.options.length);
+            for (var i = 1; i < select.length; i++) {
+                if (select.options[i].value == test.split('=')[1]){
+                    console.log(select.options[i].text);
+                    select.options[0].text = select.options[i].text;
+                    break;}
+            }
+        }
+        else select.options[0].text = "不限";
+    })
+</script>
+
 <script>NProgress.done()</script>
 </body>
 </html>

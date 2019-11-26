@@ -44,4 +44,6 @@ public interface UserService {
     List<SocialWork> findSocialWorkByResumeId(int id);
 
     PageBean<User> findAllByPage(int userType, int currentPage, int rows);
+
+    void save(User user);
 }

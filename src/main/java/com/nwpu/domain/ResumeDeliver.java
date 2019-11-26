@@ -12,6 +12,8 @@ public class ResumeDeliver implements Serializable {
     private Date createTime;    //投递时间
     private Integer jobId;      //对应的职位
     private Integer resumeId;   //对应的简历
+    private Integer status;
+    private String comment;
 
     public Integer getId() {
         return id;
@@ -43,6 +45,23 @@ public class ResumeDeliver implements Serializable {
 
     public void setResumeId(Integer resumeId) {
         this.resumeId = resumeId;
+    }
+
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @Override

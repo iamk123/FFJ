@@ -13,7 +13,7 @@ public class LoginInterceptor2 implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException, IOException {
 
-        //获取请求的URL
+/*        //获取请求的URL
         String url = request.getRequestURI();
 
         //获取session
@@ -22,9 +22,9 @@ public class LoginInterceptor2 implements HandlerInterceptor {
         Object company = session.getAttribute("company");
         Object admin = session.getAttribute("admin");
 
-        /**
+        *//**
          * 登录后再次访问 /login
-         */
+         *//*
         //user
         if(url.contains("/login") && user != null) {
             request.getRequestDispatcher("/WEB-INF/pages/user/index.jsp").forward(request, response);
@@ -41,7 +41,7 @@ public class LoginInterceptor2 implements HandlerInterceptor {
         if(url.contains("/login") && admin != null) {
             request.getRequestDispatcher("/WEB-INF/pages/admin/index.jsp").forward(request, response);
             return false;
-        }
+        }*/
 
         return true;
     }

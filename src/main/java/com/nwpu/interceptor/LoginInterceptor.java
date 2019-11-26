@@ -13,7 +13,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException, IOException {
 
-        //获取请求的URL
+  /*      //获取请求的URL
         String url = request.getRequestURI();
 
         //login.jsp或登录请求放行，不拦截
@@ -34,6 +34,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         request.setAttribute("msg","还没登录，请先登录!");
         request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
         return false;
-
+*/
+  return true;
     }
 }

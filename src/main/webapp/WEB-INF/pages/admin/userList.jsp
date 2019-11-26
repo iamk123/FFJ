@@ -26,7 +26,7 @@
         <div class="page-title">
             <div class="pull-left"><h1>所有用户</h1></div>
             <div class="pull-right">
-                <a href="post-add.html" class="btn btn-success btn-md">添加</a>
+                <a href="/admin/userAdd" class="btn btn-success btn-md">添加</a>
             </div>
         </div>
         <!-- 有错误信息时展示 -->
@@ -141,7 +141,7 @@
                     <tr class="warning">
                 </c:if>
                     <td class="text-center"><input type="checkbox"></td>
-                    <th>${user.id}</th>
+                    <th>#${i.count}</th>
                     <th>${user.name}</th>
                     <th>${user.userName}</th>
                         <%--<th>password</th>--%>
@@ -152,6 +152,7 @@
                             <c:when test="${user.userType == 0}">应聘者</c:when>
                             <c:when test="${user.userType == 1}">招聘者</c:when>
                             <c:when test="${user.userType == 2}">管理员</c:when>
+                            <c:when test="${user.userType == 3}">不限</c:when>
                         </c:choose>
                     </th>
                     <td class="text-center">
@@ -189,7 +190,7 @@
             <a href="/admin/userList"><i class="fa fa-comments"></i>用户列表</a>
         </li>
         <li>
-            <a href="users.html"><i class="fa fa-users"></i>xx</a>
+            <a href=/admin/jobList><i class="fa fa-users"></i>工作列表</a>
         </li>
         <li>
             <a href="#menu-settings" class="collapsed" data-toggle="collapse">
