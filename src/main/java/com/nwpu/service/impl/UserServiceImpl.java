@@ -126,8 +126,8 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public int addUser(User user) {
-
-        if(userDao.save(user) == 1){
+        userDao.save(user);
+        if(userDao.findByUserName(user.getUserName()) != null){
             return 1;
         }else{
             return 0;

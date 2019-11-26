@@ -15,13 +15,7 @@
 <script>NProgress.start()</script>
 
 <div class="main">
-    <nav class="navbar">
-        <button class="btn btn-default navbar-btn fa fa-bars"></button>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="profile.html"><i class="fa fa-user"></i>个人中心</a></li>
-            <li><a href="login.html"><i class="fa fa-sign-out"></i>退出</a></li>
-        </ul>
-    </nav>
+     <c:import url="admin-head.jsp"></c:import>
     <div class="container-fluid">
         <div class="page-title">
             <h1>所有职位</h1>
@@ -108,8 +102,8 @@
             <tr class="danger">
                 <td class="text-center"><input type="checkbox"></td>
                 <th>#${i.count}</th>
-                <th>${job.get("jobName")}</th>
-                <th><a href="/admin/jobHandle" name="name">${job.get("name")}</a></th>
+                <th><a href="/admin/jobHandle?jobName=${job.get("jobName")}&name=${job.get("name")}">${job.get("jobName")}</a></th>
+                <th>${job.get("name")}</th>
                 <th>${job.get("userName")}</th>
                 <th>${job.get("createTime")}</th>
                 <th>
@@ -117,7 +111,6 @@
                         <c:when test="${job.get('status') == 0}">未处理</c:when>
                         <c:when test="${job.get('status') == 1}">约请面试</c:when>
                         <c:when test="${job.get('status') == 2}">抱歉</c:when>
-                        <c:when test="${job.get('status') == 3}">不限</c:when>
                     </c:choose>
                 </th>
                 <td class="text-center">
@@ -131,44 +124,7 @@
     </div>
 </div>
 
-<div class="aside">
-    <div class="profile">
-        <img class="avatar" src="../uploads/avatar.jpg">
-        <h3 class="name">小明</h3>
-    </div>
-    <ul class="nav">
-        <li>
-            <a href="index.html"><i class="fa fa-dashboard"></i>首页</a>
-        </li>
-        <li>
-            <a href="#menu-posts" class="collapsed" data-toggle="collapse">
-                <i class="fa fa-thumb-tack"></i>xx<i class="fa fa-angle-right"></i>
-            </a>
-            <ul id="menu-posts" class="collapse">
-
-                <li><a href="posts.html">xx</a></li>
-                <li><a href="post-add.html">xx</a></li>
-                <li><a href="categories.html">xx</a></li>
-            </ul>
-        </li>
-        <li class="active">
-            <a href="comments.html"><i class="fa fa-comments"></i>xx</a>
-        </li>
-        <li>
-            <a href="users.html"><i class="fa fa-users"></i>xx</a>
-        </li>
-        <li>
-            <a href="#menu-settings" class="collapsed" data-toggle="collapse">
-                <i class="fa fa-cogs"></i>设置<i class="fa fa-angle-right"></i>
-            </a>
-            <ul id="menu-settings" class="collapse">
-                <li><a href="nav-menus.html">导航菜单</a></li>
-                <li><a href="slides.html">图片轮播</a></li>
-                <li><a href="settings.html">网站设置</a></li>
-            </ul>
-        </li>
-    </ul>
-</div>
+<c:import url="admin-side.jsp"></c:import>
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript">

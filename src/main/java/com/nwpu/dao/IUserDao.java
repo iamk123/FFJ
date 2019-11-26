@@ -61,4 +61,10 @@ public interface IUserDao {
     List<User> findAllByPage(Map<String, Object> map);
 
     void save(User user);
+
+    int updateUser(User user);
+
+    int updateResume(Resume resume);
+
+    int updatePassword(Integer id, String password);
 }

@@ -48,4 +48,8 @@
         insert into RESUMEDELIVER (createTime, jobId, resumeId, status)
         values(#{createTime}, #{jobId},#{resumeId},#{status})
     </insert>
+
+    <update id="updateStatus" keyProperty="id" useGeneratedKeys="true">
+        update RESUMEDELIVER set status = #{status} where jobId = #{jobId} and resumeId = #{resumeId}
+    </update>
 </mapper>

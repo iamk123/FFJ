@@ -95,7 +95,7 @@
 
     <!--分页查询总条数-->
     <select id="findByPageTotal" parameterType="Map" resultType="int">
-        select count(id) as pageTotal from job
+        select count(id) as pageTotal from JOB
         <where>
             <if test="key != null and key !=''">
                 <!--bind可以防止sql注入-->
@@ -115,13 +115,13 @@
 
     <!--查找总条数-->
     <select id="findTotal" resultType="int">
-        select count(id) from job
+        select count(id) from JOB
     </select>
 
     <!--查找job详细信息及对应公司信息 关联查询-->
     <select id="findJobCompanyById" resultMap="jobCompanyMap" parameterType="int">
         select j.*, c.name, c.location, c.companyInfo, c.userId
-        from job j, company c
+        from JOB j, COMPANY c
         where j.companyId = c.id
         and j.id = #{id}
     </select>
@@ -129,7 +129,7 @@
     <select id="findJobCompanyByName" resultMap="jobCompanyMap" >
         select j.*, c.name, c.location, c.companyInfo, c.userId
         from JOB j, COMPANY c
-        where c.name = #{name} and c.id = j.companyId
+        where c.name = #{name} and c.id = j.companyId and j.jobName = #{jobName}
     </select>
 
     <select id="findAllByStatus" resultType="java.lang.Integer">
@@ -142,6 +142,16 @@
         </where>
     </select>
 
+    <select id="findAllByStatusAndId" resultType="java.lang.Integer">
+        select count(*) from JOB j, RESUMEDELIVER rd
+        <where>
+            <if test="status!= null and status != 3">
+                rd.status = #{status} and
+            </if>
+            j.id = #{id} and j.id = rd.jobId
+        </where>
+    </select>
+
     <select id="findAllByPage" resultType="java.util.Map" parameterType="java.util.Map">
         select  j.id, j.jobName, c.name, u.userName, j.createTime, rd.status from JOB j, RESUMEDELIVER rd, RESUME r, COMPANY c, USER u
         <where>
@@ -151,6 +161,17 @@
                 rd.jobId = j.id and j.companyId = c.id and rd.resumeId = r.id  and r.userId = u.id
         </where>
 
+        limit #{start},#{size}
+    </select>
+
+    <select id="findAllByPage2" resultType="java.util.Map" parameterType="java.util.Map">
+        select rd.jobId, u.userName, u.email, u.phone, u.id, rd.status from RESUMEDELIVER rd, USER u, RESUME r
+        <where>
+            <if test="status!= null and status!= 3">
+                rd.status = #{status} and
+            </if>
+            rd.jobId = #{id} and rd.resumeId = r.id  and r.userId = u.id
+        </where>
         limit #{start},#{size}
     </select>
 

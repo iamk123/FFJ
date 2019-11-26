@@ -43,4 +43,10 @@ public interface JobService {
 
     PageBean<Map<String, Object>> findAllByPage(int status, int currentPage, int rows);
 
+    Job findJobCompanyByName(String name, String jobName);
+
+    PageBean<Map<String, Object>> findAllByPage(int jobId, int status, int currentPage, int rows);
+
+    void updateStatus(int jobId, int id, int status);
+
 }
