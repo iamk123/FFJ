@@ -1,9 +1,11 @@
 package com.nwpu.service;
 
 import com.nwpu.domain.*;
+import com.nwpu.pojo.DeliverListBean;
 import com.nwpu.pojo.PageBean;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     /**
@@ -44,6 +46,34 @@ public interface UserService {
     List<SocialWork> findSocialWorkByResumeId(int id);
 
     PageBean<User> findAllByPage(int userType, int currentPage, int rows);
+
+    int addUser(User user);
+
+    int updateUser(User user, Resume resume);
+
+    int updatePassword(Integer id, String password);
+
+    PageBean<DeliverListBean> findDeliverListByPage(Integer resumeId, int currentPage, int rows, int status);
+
+    int deliverResume(ResumeDeliver resumeDeliver);
+
+    int isDeliver(Integer resumeId, Integer jobId);
+
+    int addHonor(Honor honor);
+
+    int deleteHonor(int id);
+
+    int addProject(Project project);
+
+    void deleteProject(int id);
+
+    int addAdvantage(Advantage advantage);
+
+    void deleteAdvantage(int id);
+
+    int addSocialWork(SocialWork socialWork);
+
+    void deleteSocialWork(int id);
 
     void save(User user);
 }

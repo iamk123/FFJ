@@ -15,13 +15,11 @@
 <script>NProgress.start()</script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 <div class="main">
-    <nav class="navbar">
-        <button class="btn btn-default navbar-btn fa fa-bars"></button>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="profile.html"><i class="fa fa-user"></i>个人中心</a></li>
-            <li><a href="login.html"><i class="fa fa-sign-out"></i>退出</a></li>
-        </ul>
-    </nav>
+
+    <!--导航条-->
+    <c:import url="admin-head.jsp"></c:import>
+    <!--/导航条-->
+
     <div class="container-fluid">
         <div class="page-title">
             <div class="pull-left"><h1>所有用户</h1></div>
@@ -98,7 +96,7 @@
                             </a>
                         </li>
                         <c:forEach begin="1" end="${users.totalPage}" var="i">
-                            <li><a href="userList?<c:if test="${param.userType}!=''">${param.userType}&currentPage=${i}</c:if>
+                            <li class="<c:if test='${users.currentPage == i}'>active</c:if>"><a href="userList?<c:if test="${param.userType}!=''">${param.userType}&currentPage=${i}</c:if>
                             userType=${users.list[0].userType}&currentPage=${i}">${i}
                             </a></li>
                         </c:forEach>
@@ -166,44 +164,9 @@
     </div>
 </div>
 
-<div class="aside">
-    <div class="profile">
-        <img class="avatar" src="/static/img/rng.jpg">
-        <h3 class="name">小明</h3>
-    </div>
-    <ul class="nav">
-        <li>
-            <a href="index.html"><i class="fa fa-dashboard"></i>首页</a>
-        </li>
-        <li>
-            <a href="#menu-posts" class="collapsed" data-toggle="collapse">
-                <i class="fa fa-thumb-tack"></i>xx<i class="fa fa-angle-right"></i>
-            </a>
-            <ul id="menu-posts" class="collapse">
-
-                <li><a href="posts.html">xx</a></li>
-                <li><a href="post-add.html">xx</a></li>
-                <li><a href="categories.html">xx</a></li>
-            </ul>
-        </li>
-        <li class="active">
-            <a href="/admin/userList"><i class="fa fa-comments"></i>用户列表</a>
-        </li>
-        <li>
-            <a href=/admin/jobList><i class="fa fa-users"></i>工作列表</a>
-        </li>
-        <li>
-            <a href="#menu-settings" class="collapsed" data-toggle="collapse">
-                <i class="fa fa-cogs"></i>设置<i class="fa fa-angle-right"></i>
-            </a>
-            <ul id="menu-settings" class="collapse">
-                <li><a href="nav-menus.html">导航菜单</a></li>
-                <li><a href="slides.html">图片轮播</a></li>
-                <li><a href="settings.html">网站设置</a></li>
-            </ul>
-        </li>
-    </ul>
-</div>
+<!--侧边栏-->
+<c:import url="admin-side.jsp"></c:import>
+<!--/侧边栏-->
 
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>

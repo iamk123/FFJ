@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nwpu.dao.IResumeDao">
+
+    <resultMap id="baseResumeMap" type="resume">
+        <id property="id" column="id"></id>
+        <result property="userId" column="userId"></result>
+        <result property="location" column="location"></result>
+        <result property="grade" column="grade"></result>
+    </resultMap>
+
+    <!--获奖经历-->
+    <insert id="addHonor" parameterType="honor" keyProperty="id" useGeneratedKeys="true">
+        insert into HONOR (name, resumeId)
+        values(#{name}, #{resumeId});
+    </insert>
+
+    <delete id="deleteHonor" parameterType="int">
+        delete from HONOR where id = #{id}
+    </delete>
+
+    <!--项目经历-->
+    <insert id="addProject" parameterType="project" keyProperty="id" useGeneratedKeys="true">
+        insert into PROJECT (name, description, work, resumeId)
+        values(#{name}, #{description}, #{work}, #{resumeId});
+    </insert>
+
+    <delete id="deleteProject" parameterType="int">
+        delete from PROJECT where id = #{id}
+    </delete>
+
+    <!--社会工作-->
+    <insert id="addSocialWork" parameterType="socialWork" keyProperty="id" useGeneratedKeys="true">
+        insert into SOCIALWORK (name, description, work, resumeId)
+        values(#{name}, #{description}, #{work}, #{resumeId});
+    </insert>
+
+    <delete id="deleteSocialWork" parameterType="int">
+        delete from SOCIALWORK where id = #{id}
+    </delete>
+
+    <!--个人优势-->
+    <insert id="addAdvantage" parameterType="advantage" keyProperty="id" useGeneratedKeys="true">
+        insert into ADVANTAGE (name, resumeId)
+        values(#{name}, #{resumeId});
+    </insert>
+
+    <delete id="deleteAdvantage" parameterType="int">
+        delete from ADVANTAGE where id = #{id}
+    </delete>
+</mapper>

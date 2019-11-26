@@ -14,11 +14,6 @@
 </head>
 
 <body>
-
-
-
-
-
 <!-- 个人信息 -->
 <section id="personInfo-session">
     <div class="container personInfo">
@@ -26,27 +21,27 @@
             <img src="/static/img/logo.png" alt="">
         </div>
         <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 personInfo-form">
-            <form>
+            <form method="POST" action="/register">
                 <div class="personInfo-form-title">欢迎注册！</div>
                 <div class="form-group">
                     <label for="exampleInputEmail1"><h4>昵称</h4></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="nickName">
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="nickName" name="name">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail2"><h4>学号</h4></label>
-                    <input type="text" class="form-control" id="exampleInputEmail2" placeholder="userName">
+                    <input type="text" class="form-control" id="exampleInputEmail2" placeholder="userName" name="userName">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail3"><h4>密码</h4></label>
-                    <input type="password" class="form-control" id="exampleInputEmail3" placeholder="password">
+                    <input type="password" class="form-control" id="exampleInputEmail3" placeholder="password" name="password">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail4"><h4>邮箱</h4></label>
-                    <input type="email" class="form-control" id="exampleInputEmail4" placeholder="email">
+                    <input type="email" class="form-control" id="exampleInputEmail4" placeholder="email" name="email">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail5"><h4>联系电话</h4></label>
-                    <input type="email" class="form-control" id="exampleInputEmail5" placeholder="email">
+                    <input type="text" class="form-control" id="exampleInputEmail5" placeholder="phone" name="phone">
                 </div>
                 <div class="list-inline" >
                     <label style="margin-right: 20px;"><input name="userType" type="radio" value="0" checked/> 我是应聘者 </label>
@@ -54,7 +49,7 @@
                 </div>
                 <div style="display: flex;">
                     <button type="submit" class="btn btn-default personInfo-btn">注册</button>
-                    <div style="margin-top:50px;margin-left: 10px;"><a href="">已注册？去登录</a></div>
+                    <div style="margin-top:50px;margin-left: 10px;"><a href="/login">已注册？去登录</a></div>
                 </div>
             </form>
         </div>

@@ -7,6 +7,7 @@
 	right: 15px;
 	top:15px;
 	font-size: 12px;
+	cursor: pointer;
 }
 #resume .userInfo-container .edit-logo i{
 	margin-right: 8px;
@@ -15,6 +16,9 @@
 #resume .userInfo-container.edit-logo a{
 	color:#00B38A;
 }
+/*删除*/
+.
+
 
 /**
  * 个人简历
@@ -85,4 +89,12 @@
 }
 #resume .user-resume .user-resume-item ul li{
 	margin-right: 20px;
+}
+#resume .user-resume .user-resume-item ul li a {
+	color: #ccc;
+	margin-left:20px;
+	display: inline-block;
+}
+#resume .user-resume .user-resume-item ul li a:hover{
+	color:red;
 }

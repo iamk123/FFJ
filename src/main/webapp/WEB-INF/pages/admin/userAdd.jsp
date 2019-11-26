@@ -16,6 +16,9 @@
 <body>
 
 
+
+
+
 <!-- 个人信息 -->
 <section id="personInfo-session">
     <div class="container personInfo">
@@ -31,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail2"><h4>学号</h4></label>
-                    <input type="text" class="form-control" id="exampleInputEmail2" placeholder="userName" name="userName" onfocus="this.placeholder=''>
+                    <input type="text" class="form-control" id="exampleInputEmail2" placeholder="userName" name="userName" onfocus="this.placeholder=''">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail3"><h4>密码</h4></label>
@@ -39,11 +42,11 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail4"><h4>邮箱</h4></label>
-                    <input type="email" class="form-control" id="exampleInputEmail4" placeholder="email" name="email" onfocus="this.placeholder=''>
+                    <input type="email" class="form-control" id="exampleInputEmail4" placeholder="email" name="email" onfocus="this.placeholder=''">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail5"><h4>联系电话</h4></label>
-                    <input type="text" class="form-control" id="exampleInputEmail5" placeholder="phone" name="phone" onfocus="this.placeholder=''>
+                    <input type="text" class="form-control" id="exampleInputEmail5" placeholder="phone" name="phone" onfocus="this.placeholder=''">
                 </div>
                 <div class="list-inline" >
                     <label style="margin-right: 20px;"><input name="userType" type="radio" value="0" checked/> 应聘者 </label>
@@ -57,8 +60,13 @@
             </form>
         </div>
     </div>
+
+
+
 </section>
 <!-- /个人信息 -->
+
+
 
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>
