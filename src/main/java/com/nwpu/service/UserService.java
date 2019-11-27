@@ -76,4 +76,7 @@ public interface UserService {
     void deleteSocialWork(int id);
 
     void save(User user);
+
+    void deleteUserById(int userId);
+
 }

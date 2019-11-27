@@ -251,4 +251,18 @@ public class UserIndexController {
         return "redirect:/user/resume?msg=3";
     }
 
+
+    /**
+     * 删除一个用户
+     * @param userId
+     * @return
+     */
+    @GetMapping(value = "/deleteUser/{userId}/{currentPage}")
+    public String deleteUser(HttpSession session, @PathVariable int userId, @PathVariable int currentPage){
+        User admin = (User) session.getAttribute("admin");
+        if(userId != admin.getId()){
+            userService.deleteUserById(userId);
+        }
+        return "redirect:/admin/userList?currentPage=" + currentPage;
+    }
 }

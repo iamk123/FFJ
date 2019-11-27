@@ -142,7 +142,6 @@
                     <th>#${i.count}</th>
                     <th>${user.name}</th>
                     <th>${user.userName}</th>
-                        <%--<th>password</th>--%>
                     <th>${user.email}</th>
                     <th>${user.phone}</th>
                     <th>
@@ -154,8 +153,8 @@
                         </c:choose>
                     </th>
                     <td class="text-center">
-                        <a href="post-add.html" class="btn btn-info btn-xs">修改</a>
-                        <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
+                        <a href="/admin/personInfo/${user.id}" class="btn btn-info btn-xs">修改</a>
+                        <a href="/user/deleteUser/${user.id}/${users.currentPage}" class="btn btn-danger btn-xs">删除</a>
                     </td>
                 </tr>
             </c:forEach>

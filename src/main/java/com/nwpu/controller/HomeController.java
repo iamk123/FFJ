@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 系统主控制类
@@ -117,7 +115,7 @@ public class HomeController {
     @GetMapping("/updatePassword")
     public String updatePassword(){
 
-        return "user/updatePassword";
+        return "user/password-reset";
     }
 
     @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
@@ -128,19 +126,19 @@ public class HomeController {
         if("".equals(origin) || "".equals(newPassword) || "".equals(confirm)){
             model.addAttribute("msg", "请完善信息！！");
 
-            return "user/updatePassword";
+            return "user/password-reset";
         }
         if(!user.getPassword().equals(origin)){
             model.addAttribute("msg", "原密码错误！");
-            return "user/updatePassword";
+            return "user/password-reset";
         }
         if(!newPassword.equals(confirm)){
             model.addAttribute("msg", "两次密码不一致！");
-            return "user/updatePassword";
+            return "user/password-reset";
         }
         if(user.getPassword().equals(newPassword)){
             model.addAttribute("msg", "密码不能与原密码相同！！");
-            return "user/updatePassword";
+            return "user/password-reset";
         }
         if(userService.updatePassword(user.getId(), newPassword) == 1){
             // model.addAttribute("msg", "修改密码成功！");

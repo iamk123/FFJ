@@ -127,55 +127,23 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public PageBean<Map<String, Object>> findAllByPage(int status, int currentPage, int rows){
-        PageBean<Map<String, Object>> pageBean = new PageBean<>();
+    public PageBean<Job> findAllByPage(int currentPage, int rows){
+        PageBean<Job> pageBean = new PageBean<>();
         pageBean.setCurrentPage(currentPage);
         pageBean.setRows(rows);
 
         Map<String, Object> map = new HashMap<>();
-        int totalCount = jobDao.findAllByStatus(status);
-
-        System.err.println(totalCount);
-
-        //double tc = totalCount;
+        int totalCount = jobDao.findCountJobs();
         Double num = Math.ceil(((double) totalCount) / rows);
         pageBean.setTotalPage(num.intValue());
-        map.put("status", status);
         map.put("start", (currentPage - 1) * rows);
         map.put("size", pageBean.getRows());
-        List<Map<String, Object>> jobs = jobDao.findAllByPage(map);
-        for(String key: jobs.get(0).keySet()){
-            System.err.println("key: " + key + " value: " + jobs.get(0).get(key));
-        }
+        List<Job> jobs = jobDao.findAllByPage(map);
+        System.out.println(jobs);
         pageBean.setList(jobs);
         return pageBean;
     }
 
-    @Override
-    public PageBean<Map<String, Object>> findAllByPage(int jobId, int status, int currentPage, int rows){
-        PageBean<Map<String, Object>> pageBean = new PageBean<>();
-        pageBean.setCurrentPage(currentPage);
-        pageBean.setRows(rows);
-
-        Map<String, Object> map = new HashMap<>();
-        int totalCount = jobDao.findAllByStatusAndId(jobId, status);
-
-        System.err.println(totalCount);
-
-        //double tc = totalCount;
-        Double num = Math.ceil(((double) totalCount) / rows);
-        pageBean.setTotalPage(num.intValue());
-        map.put("id", jobId);
-        map.put("status", status);
-        map.put("start", (currentPage - 1) * rows);
-        map.put("size", pageBean.getRows());
-        List<Map<String, Object>> users = jobDao.findAllByPage2(map);
-  /*      for(String key: users.get(0).keySet()){
-            System.err.println("key: " + key + " value: " + users.get(0).get(key));
-        }*/
-        pageBean.setList(users);
-        return pageBean;
-    }
 
     @Override
     public void updateStatus(int jobId, int id, int status){
@@ -207,5 +175,10 @@ public class JobServiceImpl implements JobService {
         pageBean.setList(list);
 
         return pageBean;
+    }
+
+    @Override
+    public void deleteJobById(int jobId) {
+        jobDao.deleteJobById(jobId);
     }
 }

@@ -19,7 +19,7 @@
 <!-- 头部区域 -->
 <header>
     <!--导航条-->
-    <c:import url="../head.jsp"></c:import>
+    <c:import url="head.jsp"></c:import>
     <!--/导航条-->
 
 </header>
@@ -53,7 +53,7 @@
 <!-- /个人信息 -->
 
 <!--footer-->
-<c:import url="../footer.jsp"></c:import>
+<c:import url="footer.jsp"></c:import>
 <!--/footer-->
 
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>

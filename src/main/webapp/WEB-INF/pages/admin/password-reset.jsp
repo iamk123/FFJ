@@ -28,28 +28,29 @@
         <!-- <div class="alert alert-danger">
           <strong>错误！</strong>发生XXX错误
         </div> -->
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="POST" action="/admin/adminPasswordReset">
             <div class="form-group">
                 <label for="old" class="col-sm-3 control-label">旧密码</label>
                 <div class="col-sm-7">
-                    <input id="old" class="form-control" type="password" placeholder="旧密码">
+                    <input id="old" name="origin" class="form-control" type="password" placeholder="旧密码" value="${origin}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="password" class="col-sm-3 control-label">新密码</label>
                 <div class="col-sm-7">
-                    <input id="password" class="form-control" type="password" placeholder="新密码">
+                    <input id="password" name="newPassword" class="form-control" type="password" placeholder="新密码" value="${newPassword}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="confirm" class="col-sm-3 control-label">确认新密码</label>
                 <div class="col-sm-7">
-                    <input id="confirm" class="form-control" type="password" placeholder="确认新密码">
+                    <input id="confirm" name="confirm" class="form-control" type="password" placeholder="确认新密码" value="${confirm}">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-7">
                     <button type="submit" class="btn btn-primary">修改密码</button>
+                    <h5 style="color:red;">${msg}</h5>
                 </div>
             </div>
         </form>

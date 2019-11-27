@@ -41,14 +41,16 @@ public interface JobService {
 
     Job findOne(Integer id);
 
-    PageBean<Map<String, Object>> findAllByPage(int status, int currentPage, int rows);
+    PageBean<Job> findAllByPage(int currentPage, int rows);
 
     Job findJobCompanyByName(String name, String jobName);
 
-    PageBean<Map<String, Object>> findAllByPage(int jobId, int status, int currentPage, int rows);
+
 
     void updateStatus(int jobId, int id, int status);
 
 
     PageBean<Job> findPostJobsByPage(Integer companyId, int currentPage, int rows, int status);
+
+    void deleteJobById(int jobId);
 }

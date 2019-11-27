@@ -24,10 +24,7 @@
         <div class="page-title">
             <h1>所有职位</h1>
         </div>
-        <!-- 有错误信息时展示 -->
-        <!-- <div class="alert alert-danger">
-          <strong>错误！</strong>发生XXX错误
-        </div> -->
+
         <div class="page-action">
             <!-- show when multiple checked -->
             <div class="btn-batch" style="display: none">
@@ -35,56 +32,42 @@
                 <button class="btn btn-warning btn-sm">批量拒绝</button>
                 <button class="btn btn-danger btn-sm">批量删除</button>
             </div>
-            <div style="display: flex;">
-                <div style="margin-right:20px;">用户类型: </div>
-                <div class="search-option">
-                    <form action="${pageContext.request.contextPath}jobList" method="GET"  id="getJobList">
-                        <select id="selectId" name="status" onchange="submitForm();">
-                            <option disabled="disabled" selected="selected"></option>
-                            <option value="3">不限</option>
-                            <option value="0">未处理</option>
-                            <option value="1">约请面试</option>
-                            <option value="2">抱歉</option>
-                    </select>
-                    </form>
-                </div>
-            </div>
             <ul class="pagination pagination-sm pull-right">
-                当前第${jobs.currentPage}页，共${jobs.totalPage}页！
-                <c:if test="${jobs.totalPage > 1 }">
+                当前第${pb.currentPage}页，共${pb.totalPage}页！
+                <c:if test="${pb.totalPage > 1 }">
                     <ul class="pagination">
                     <!--前一页禁用-->
-                    <c:if test="${jobs.currentPage == 1}">
+                    <c:if test="${pb.currentPage == 1}">
                         <li class="disabled">
                             </c:if>
-                            <c:if test="${jobs.currentPage != 1}">
+                            <c:if test="${pb.currentPage != 1}">
                         <li>
                             </c:if>
-                            <a href="jobList?<c:if test="${param.status}!=''">${param.status}&currentPage=${jobs.currentPage-1}</c:if>
-                            status=${jobs.list[0].get("status")}&currentPage=${jobs.currentPage-1}"
+                            <a href="jobList?<c:if test="${param.status}!=''">${param.status}&currentPage=${pb.currentPage-1}</c:if>
+                            &currentPage=${pb.currentPage-1}"
                                aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <c:forEach begin="1" end="${jobs.totalPage}" var="i">
-                            <li class="<c:if test='${jobs.currentPage == i}'>active</c:if>"><a href="jobList?<c:if test="${param.status}!=''">${param.status}&currentPage=${i}</c:if>
-                            status=${jobs.list[0].get("status")}&currentPage=${i}">${i}
+                        <c:forEach begin="1" end="${pb.totalPage}" var="i">
+                            <li class="<c:if test='${pb.currentPage == i}'>active</c:if>"><a href="jobList?<c:if test="${param.status}!=''">${param.status}&currentPage=${i}</c:if>
+                            &currentPage=${i}">${i}
                             </a></li>
                         </c:forEach>
                         <!--后一页禁用-->
-                        <c:if test="${jobs.currentPage == jobs.totalPage}">
+                        <c:if test="${pb.currentPage == pb.totalPage}">
                         <li class="disabled">
                             </c:if>
-                            <c:if test="${jobs.currentPage != jobs.totalPage}">
+                            <c:if test="${pb.currentPage != pb.totalPage}">
                         <li>
                             </c:if>
-                            <a href="jobList?<c:if test="${param.status}!=''">${param.status}&currentPage=${jobs.currentPage+1}</c:if>
-                            status=${jobs.list[0].get("status")}&currentPage=${jobs.currentPage+1}" aria-label="Next">
+                            <a href="jobList?${param.status}&currentPage=${pb.currentPage+1}</c:if>
+                            &currentPage=${pb.currentPage+1}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
                     </ul>
-                </c:if>
+
             </ul>
         </div>
         <table class="table table-striped table-bordered table-hover">
@@ -94,31 +77,34 @@
                     <th>id</th>
                     <th>职位名称</th>
                     <th>公司名称</th>
-                    <th>应聘者</th>
+                    <th>类别</th>
+                    <th>工作地址</th>
+                    <th>薪水</th>
+                    <th>联系人</th>
                     <th>创建时间</th>
-                    <th>状态</th>
                     <th class="text-center" width="100">操作</th>
                 </tr>
             </thead>
             <tbody>
-            <c:forEach items="${jobs.list}" var="job" varStatus="i">
-                <tr class="danger">
+            <c:forEach items="${pb.list}" var="job" varStatus="i">
+                <c:if test="${i.count%2 == 0}">
+                    <tr>
+                </c:if>
+                <c:if test="${i.count%2 == 1}">
+                    <tr class="warning">
+                </c:if>
                     <td class="text-center"><input type="checkbox"></td>
                     <th>#${i.count}</th>
-                    <th>${job.get("jobName")}</th>
-                    <th><a href="/admin/jobHandle?jobName=${job.get("jobName")}&name=${job.get("name")}">${job.get("jobName")}</a></th>
-                    <th>${job.get("name")}</th>
-                    <th>${job.get("createTime")}</th>
-                    <th class="text-center">
-                        <c:choose>
-                            <c:when test="${job.get('status') == 0}">未处理</c:when>
-                            <c:when test="${job.get('status') == 1}">约请面试</c:when>
-                            <c:when test="${job.get('status') == 2}">抱歉</c:when>
-                        </c:choose>
-                    </th>
+                    <th>${job.jobName}</th>
+                    <th>${job.company.name}</th>
+                    <th>${job.kind}</th>
+                    <th>${job.location}</th>
+                    <th>${job.salary}</th>
+                    <th>${job.contact}</th>
+                    <th>${job.createTime}</th>
                     <td class="text-center">
-                        <a href="post-add.html" class="btn btn-info btn-xs">详情</a>
-                        <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
+                        <a href="/admin/jobDetail/${job.id}" class="btn btn-info btn-xs">详情</a>
+                        <a href="/job/deleteJob/${job.id}/${pb.currentPage}" class="btn btn-danger btn-xs">删除</a>
                     </td>
                 </tr>
             </c:forEach>

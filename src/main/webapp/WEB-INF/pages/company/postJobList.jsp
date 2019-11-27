@@ -34,11 +34,9 @@
     <div class="container">
         <div class="">
             <div class="panel panel-default">
-                <div class="panel-heading" >我的应聘<div class="pull-right"><a href="/company" class="btn btn-success btn-xs">返回</a></div></div>
+                <div class="panel-heading" >我的应聘<div class="pull-right">
+                    <a href="#" class="btn btn-success btn-xs" onclick="javascript:history.back()">返回</a></div></div>
                 <div class="panel-body">
-                    <div style="display: flex;">
-                        <div style="margin-right:20px;">简历状态: </div>
-                    </div>
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                         <tr>

@@ -19,7 +19,7 @@
 <!-- 头部区域 -->
 <header>
 	<!--导航条-->
-	<c:import url="../head.jsp"></c:import>
+	<c:import url="head.jsp"></c:import>
 	<!--/导航条-->
 
 </header>
@@ -57,8 +57,8 @@
 					<p>地址</p>
 					<div>
 						<select name="location">
-							<option value="长安校区" <c:if test="<${resume.location.equals('长安校区')}">checked</c:if>>长安校区</option>
-							<option value="友谊校区" <c:if test="<${resume.location.equals('友谊校区')}">checked</c:if>>友谊校区</option>
+							<option value="长安校区" <c:if test="${resume.location.equals('长安校区')}">selected</c:if>>长安校区</option>
+							<option value="友谊校区" <c:if test="${resume.location.equals('友谊校区')}">selected</c:if>>友谊校区</option>
 						</select>
 					</div>
 				</div>
@@ -72,7 +72,7 @@
 <!-- /个人信息 -->
 
 <!--footer-->
-<c:import url="../footer.jsp"></c:import>
+<c:import url="footer.jsp"></c:import>
 <!--/footer-->
 
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>

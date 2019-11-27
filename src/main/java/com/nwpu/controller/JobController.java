@@ -109,15 +109,10 @@ public class JobController {
     @ResponseBody
     public String deliver(Integer userId, Integer jobId, Model model){
 
-        System.out.println("123");
-        System.out.println("userId " + userId);
-        System.out.println("companyId" + jobId);
         Resume resume = userService.findResumeById(userId);
-        System.out.println(resume);
 
         //判断是否已经投递过
         int isDeliver = userService.isDeliver(resume.getId(), jobId);
-        System.out.println("是否投递 " + isDeliver);
         //已投递
         if(isDeliver != 0){
             return "0";
@@ -128,14 +123,25 @@ public class JobController {
         resumeDeliver.setJobId(jobId);
         resumeDeliver.setStatus(4);
         resumeDeliver.setResumeId(resume.getId());
-        System.out.println("resumeDeliver: " + resumeDeliver);
 
         //投递成功
         if(userService.deliverResume(resumeDeliver)==1){
             return "1";
         }
-
         return null;
+    }
+
+    /**
+     * 删除一条职位
+     * @param jobId
+     * @param currentPage
+     * @return
+     */
+    @GetMapping(value = "/deleteJob/{jobId}/{currentPage}")
+    public String deleteJob(@PathVariable int jobId, @PathVariable int currentPage){
+        System.out.println("删除 " +jobId);
+        jobService.deleteJobById(jobId);
+        return "redirect:/admin/jobList?currentPage=" + currentPage;
     }
 
 

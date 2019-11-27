@@ -43,9 +43,9 @@ public interface IJobDao {
      */
     Job findOne(Integer id);
 
-    List<Map<String, Object>> findAllByPage(Map<String, Object> map);
+    List<Job> findAllByPage(Map<String, Object> map);
 
-    int findAllByStatus(@Param("status") int status);
+    int findCountJobs();
 
     int findAllByStatusAndId(@Param("id") int id, @Param("status") int status);
 
@@ -57,4 +57,6 @@ public interface IJobDao {
     int findCountPostJobsByCompanyId(Integer companyId);
 
     List<Job> findPostJobsByPage(Map<String, Object> map);
+
+    void deleteJobById(int jobId);
 }

@@ -59,5 +59,6 @@ public interface IUserDao {
 
     int updatePassword(@Param("id") Integer id, @Param("password") String password );
 
-    // void save(User user);
+    void deleteUserById(int userId);
+
 }

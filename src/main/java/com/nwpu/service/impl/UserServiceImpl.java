@@ -265,4 +265,9 @@ public class UserServiceImpl implements UserService {
         userDao.save(user);
     }
 
+    @Override
+    public void deleteUserById(int userId) {
+        userDao.deleteUserById(userId);
+    }
+
 }

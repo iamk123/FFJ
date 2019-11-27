@@ -9,8 +9,8 @@
 <nav class="navbar">
     <button class="btn btn-default navbar-btn fa fa-bars"></button>
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="profile.html"><i class="fa fa-user"></i>个人中心</a></li>
-        <li><a href="login.html"><i class="fa fa-sign-out"></i>退出</a></li>
+        <li><a href="/admin/adminPasswordReset"><i class="fa fa-user"></i>修改密码</a></li>
+        <li><a href="/logout"><i class="fa fa-sign-out"></i>退出</a></li>
     </ul>
 </nav>
 

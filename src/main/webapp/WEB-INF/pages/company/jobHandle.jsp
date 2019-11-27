@@ -46,8 +46,8 @@
                             <div class="job-collection pull-left">
                                 编辑
                             </div>
-                            <div class="resume-deliver pull-right">
-                                <a href="/admin/jobList">返回</a>
+                            <div class="resume-deliver pull-right" onclick="javascript:history.back()">
+                                <a href="javascript:;">返回</a>
                             </div>
                         </div>
                         <div class="tool-icon">

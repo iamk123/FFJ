@@ -131,7 +131,7 @@
 
     <!--更新用户信息-->
     <update id="updateUser" parameterType="user">
-        update USER set name=#{name}, email=#{email}, phone=#{phone} where id=#{id}
+        update USER set name=#{name}, email=#{email}, phone=#{phone}, password=#{password} where id=#{id}
     </update>
 
     <!--更新简历-->
@@ -143,4 +143,9 @@
     <update id="updatePassword">
         update USER set password=#{password} where id=#{id}
     </update>
+
+    <!--删除用户-->
+    <delete id="deleteUserById" parameterType="int">
+        delete from USER where id = #{userId}
+    </delete>
 </mapper>

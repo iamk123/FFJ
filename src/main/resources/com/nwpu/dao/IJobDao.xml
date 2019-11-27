@@ -155,14 +155,9 @@
         where c.name = #{name} and c.id = j.companyId and j.jobName = #{jobName}
     </select>
 
-    <select id="findAllByStatus" resultType="java.lang.Integer">
-        select count(*) from JOB j, RESUMEDELIVER rd
-        <where>
-            <if test="status!= null and status != 3">
-                rd.status = #{status} and
-            </if>
-            j.id = rd.jobId
-        </where>
+    <select id="findCountJobs" resultType="java.lang.Integer">
+        select count(*) from JOB j, COMPANY c
+        where j.companyId = c.id
     </select>
 
     <select id="findAllByStatusAndId" resultType="java.lang.Integer">
@@ -175,15 +170,11 @@
         </where>
     </select>
 
-    <select id="findAllByPage" resultType="java.util.Map" parameterType="java.util.Map">
-        select  j.id, j.jobName, c.name, u.userName, j.createTime, rd.status from JOB j, RESUMEDELIVER rd, RESUME r, COMPANY c, USER u
-        <where>
-            <if test="status!= null and status!= 3">
-                rd.status = #{status} and
-            </if>
-            rd.jobId = j.id and j.companyId = c.id and rd.resumeId = r.id  and r.userId = u.id
-        </where>
-
+    <select id="findAllByPage" resultMap="jobCompanyMap" parameterType="map">
+        select *
+        from JOB j, COMPANY c
+        where j.companyId = c.id
+        order by createTime desc
         limit #{start},#{size}
     </select>
 
@@ -212,5 +203,9 @@
         limit #{start},#{size}
     </select>
 
+    <!--删除职位-->
+    <delete id="deleteJobById" parameterType="int">
+        delete from JOB where id = #{jobId}
+    </delete>
 
 </mapper>

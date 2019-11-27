@@ -55,7 +55,7 @@
                 </div>
                 <div style="display: flex;">
                     <button type="submit" class="btn btn-default personInfo-btn" style="margin-right: 20px;">添加</button>
-                    <a href=""><button type="button" class="btn btn-default personInfo-btn">返回</button> </a>
+                    <a href="#" onclick="javascript:history.back()"><button type="button" class="btn btn-default personInfo-btn">返回</button> </a>
                 </div>
             </form>
         </div>
