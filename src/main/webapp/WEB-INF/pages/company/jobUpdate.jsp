@@ -1,24 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8"  language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Add new post &laquo; Admin</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/static/img/icon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="/static/img/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="/static/lib/bootstrap/css/bootstrap.css" >
-    <link rel="stylesheet" href="/static/lib/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="/static/lib/nprogress/nprogress.css">
-    <link rel="stylesheet" href="/static/css/admin/admin.css">
-    <script src="/static/lib/nprogress/nprogress.js"></script>
+    <link rel="stylesheet" href="/static/css/public.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <link rel="stylesheet" href="/static/css/positionInfo.css">
 </head>
+
 <body>
-<script>NProgress.start()</script>
-
-<div class="main">
-
+<!-- 头部区域 -->
+<header>
     <!--导航条-->
-    <c:import url="admin-head.jsp"></c:import>
+    <c:import url="head.jsp"></c:import>
     <!--/导航条-->
+</header>
+<!--/头部区域  -->
 
     <div class="container-fluid">
         <div class="page-title">
@@ -66,16 +68,21 @@
                 <button class="btn btn-primary" type="submit">保存</button>
             </div>
 
-        </form>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+    </div>
+</section>
 
-<!--侧边栏-->
-<c:import url="admin-side.jsp"></c:import>
-<!--/侧边栏-->
+<!--/register-->
+
+<!--footer-->
+<c:import url="../footer.jsp"></c:import>
+<!--/footer-->
 
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>
-<script>NProgress.done()</script>
 </body>
 </html>

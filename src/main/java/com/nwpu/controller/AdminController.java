@@ -1,16 +1,15 @@
 package com.nwpu.controller;
 
-import com.nwpu.domain.User;
+import com.nwpu.domain.*;
 import com.nwpu.service.JobService;
 import com.nwpu.service.UserService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -19,6 +18,16 @@ public class AdminController {
     UserService userService;
     @Autowired
     JobService jobService;
+
+    /**
+     * 首页
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    public String index(){
+
+        return "admin/index";
+    }
 
     @GetMapping("/userList")
     public String getUserList(@RequestParam(value = "userType", defaultValue = "3") int userType,
@@ -52,9 +61,13 @@ public class AdminController {
         return "/admin/jobList";
     }
 
-    @GetMapping("/jobHandle")
-    public String getJobHandle(@RequestParam String name){
 
-        return "/admin/jobHandle";
+    @ResponseBody
+    @PostMapping("/updateStatus")
+    public String updateStatus( @RequestParam("status") int status, @RequestParam int jobId,
+                                @RequestParam int resumeId){
+
+        jobService.updateStatus(jobId,resumeId,status);
+        return "OK";
     }
 }

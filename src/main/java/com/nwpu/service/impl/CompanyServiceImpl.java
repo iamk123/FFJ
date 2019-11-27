@@ -2,6 +2,7 @@ package com.nwpu.service.impl;
 
 import com.nwpu.dao.ICompanyDao;
 import com.nwpu.domain.Company;
+import com.nwpu.domain.Job;
 import com.nwpu.pojo.PageBean;
 import com.nwpu.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,7 @@ public class CompanyServiceImpl implements CompanyService {
     public Company findCompanyByJobId(Integer id){
         return companyDao.findCompanyByJobId(id);
     }
+
 
     @Override
     public List<Map<String, Integer>> findBaseInfo(){

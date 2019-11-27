@@ -106,7 +106,7 @@
                     <td class="text-center"><input type="checkbox"></td>
                     <th>#${i.count}</th>
                     <th>${job.get("jobName")}</th>
-                    <th><a href="/admin/jobHandle" name="name">${job.get("name")}</a></th>
+                    <th><a href="/admin/jobHandle?jobName=${job.get("jobName")}&name=${job.get("name")}">${job.get("jobName")}</a></th>
                     <th>${job.get("name")}</th>
                     <th>${job.get("createTime")}</th>
                     <th class="text-center">
@@ -114,7 +114,6 @@
                             <c:when test="${job.get('status') == 0}">未处理</c:when>
                             <c:when test="${job.get('status') == 1}">约请面试</c:when>
                             <c:when test="${job.get('status') == 2}">抱歉</c:when>
-                            <c:when test="${job.get('status') == 3}">不限</c:when>
                         </c:choose>
                     </th>
                     <td class="text-center">

@@ -57,21 +57,24 @@ public class HomeController {
         User user = userService.findUserByUserNameAndPassword(userName, password);
         // User user = userService.findUserByUserName(userName);
         if(user != null){
-            System.out.println(user);
-            session.setAttribute("user", user);
-
             //普通用户
             if(user.getUserType() == 0){
+                session.setAttribute("user", user);
+                System.out.println("user: " + session.getAttribute("user"));
                 return "redirect:/user";
             }
 
             //公司
             if(user.getUserType() == 1){
-                return "redirect:/";
+                session.setAttribute("company", user);
+                System.out.println("company: " + session.getAttribute("company"));
+                return "redirect:/company";
             }
 
             if(user.getUserType() == 2){
-                return "redirect:/";
+                session.setAttribute("admin", user);
+                System.out.println("admin" + session.getAttribute("admin"));
+                return "redirect:/admin";
             }
             return null;
 

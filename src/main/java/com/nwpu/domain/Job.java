@@ -21,6 +21,16 @@ public class Job implements Serializable {
     private String kind;        //类别
     private Integer resumeId;
 
+    private ResumeDeliver resumeDeliver;
+
+    public ResumeDeliver getResumeDeliver() {
+        return resumeDeliver;
+    }
+
+    public void setResumeDeliver(ResumeDeliver resumeDeliver) {
+        this.resumeDeliver = resumeDeliver;
+    }
+
     public Integer getResumeId() {
         return resumeId;
     }
@@ -142,6 +152,7 @@ public class Job implements Serializable {
                 ", contact='" + contact + '\'' +
                 ", kind='" + kind + '\'' +
                 ", resumeId=" + resumeId +
+                ", resumeDeliver=" + resumeDeliver +
                 ", company=" + company +
                 '}';
     }

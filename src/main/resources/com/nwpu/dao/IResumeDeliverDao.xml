@@ -4,6 +4,14 @@
 
 <mapper namespace="com.nwpu.dao.IResumeDeliverDao">
 
+    <resultMap id="resumeDeliverMap" type="resumeDeliver">
+        <id property="id" column="id"></id>
+        <result property="createTime" column="createTime"></result>
+        <result property="jobId" column="jobId"></result>
+        <result property="resumeId" column="resumeId"></result>
+        <result property="status" column="status"></result>
+    </resultMap>
+
     <resultMap id="deliverListMap" type="deliverListBean">
         <id property="deliverId" column="deliverId"></id>
         <result property="jobId" column="jobId"></result>
@@ -26,7 +34,7 @@
         limit #{start},#{size}
     </select>
 
-    <select id="findAllByDeliverByStatus" resultType="int" parameterType="int">
+    <select id="findAllByDeliverByStatus" resultType="int">
         select count(j.id)
         from RESUMEDELIVER r, JOB j, COMPANY c
         where r.jobId = j.id

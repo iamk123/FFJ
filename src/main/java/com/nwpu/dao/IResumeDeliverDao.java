@@ -16,4 +16,6 @@ public interface IResumeDeliverDao {
     int saveDeliver(ResumeDeliver resumeDeliver);
 
     int isDeliver(@Param("resumeId") Integer resumeId, @Param("jobId") Integer jobId);
+
+    void updateStatus(@Param("status")int status, @Param("resumeId")int resumeId, @Param("jobId")int jobId);
 }

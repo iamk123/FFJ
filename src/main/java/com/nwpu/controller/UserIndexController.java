@@ -58,13 +58,11 @@ public class UserIndexController {
         User user = (User)session.getAttribute("user");
         Resume resume = userService.findResumeById(user.getId());
         int resumeId = resume.getId();
-        // System.err.println("resumeId: " + resumeId);
         List<Advantage> advantages = userService.findAdvantageByResumeId(resumeId);
         List<String> jobNames = userService.findJobByResumeId(resumeId);
         List<Project> projects = userService.findProjectByResumeId(resumeId);
         List<Honor> honors = userService.findHonorByResumeId(resumeId);
         List<SocialWork> socialWorks = userService.findSocialWorkByResumeId(resumeId);
-        // System.out.println(advantages.get(1).getName());
         model.addAttribute("resume", resume);
         model.addAttribute("advantages", advantages);
         model.addAttribute("jobNames", jobNames);

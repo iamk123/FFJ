@@ -1,6 +1,7 @@
 package com.nwpu.service;
 
 import com.nwpu.domain.Company;
+import com.nwpu.domain.Job;
 import com.nwpu.pojo.PageBean;
 
 import java.util.List;
@@ -45,4 +46,5 @@ public interface CompanyService {
     List<Map<String, Integer>> findBaseInfo();
 
     Company findCompanyByJobId(Integer id);
+
 }

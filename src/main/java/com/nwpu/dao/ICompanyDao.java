@@ -1,6 +1,7 @@
 package com.nwpu.dao;
 
 import com.nwpu.domain.Company;
+import com.nwpu.domain.Job;
 
 import java.util.List;
 import java.util.Map;
@@ -51,4 +52,5 @@ public interface ICompanyDao {
 
     List<Map<String, Integer>> findBaseInfo();
 
+    List<Job> findJobsByConpanyId(Integer id);
 }

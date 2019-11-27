@@ -90,7 +90,7 @@
     </select>
 
     <select id="findById" resultMap="userMap" parameterType="int">
-        select * from user where id = #{id}
+        select * from USER where id = #{id}
     </select>
 
     <select id="findAdvantageByResumeId" resultMap="advantageMap">

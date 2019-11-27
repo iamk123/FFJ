@@ -247,7 +247,7 @@
 <!-- /城市热招 -->
 
 <!--footer-->
-<c:import url="footer.jsp"></c:import>
+<c:import url="../footer.jsp"></c:import>
 <!--/footer-->
 
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
