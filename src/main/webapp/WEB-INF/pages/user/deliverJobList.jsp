@@ -42,10 +42,9 @@
                             <div class="search-option">
                                 <select name="status" onchange="submitForm()">
                                     <option value="3" <c:if test="${status==3}">selected</c:if>>不限</option>
-                                    <option value="0" <c:if test="${status==0}">selected</c:if>>已处理</option>
+                                    <option value="0" <c:if test="${status==0}">selected</c:if>>未处理</option>
                                     <option value="1" <c:if test="${status==1}">selected</c:if>>约请面试</option>
                                     <option value="2" <c:if test="${status==2}">selected</c:if>>抱歉</option>
-                                    <option value="4" <c:if test="${status==4}">selected</c:if>>未处理</option>
                                 </select>
                             </div>
                         </form>

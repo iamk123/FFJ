@@ -21,6 +21,16 @@
         <result property="status" column="status"></result>
     </resultMap>
 
+    <resultMap id="jobReceiveResumeMap" type="java.util.Map">
+        <id property="jobId" column="jobId"></id>
+        <result property="userName" column="userName"></result>
+        <result property="email" column="email"></result>
+        <result property="phone" column="phone"></result>
+        <result property="resumeId" column="resumeId"></result>
+        <result property="status" column="status"></result>
+    </resultMap>
+
+    <!--查询用户投递列表-->
     <select id="findDeliverListByPage" resultMap="deliverListMap" parameterType="map">
             select r.id as deliverId, r.jobId, c.name as companyName, j.jobName, r.createTime, r.status
             from RESUMEDELIVER r, JOB j, COMPANY c
@@ -34,6 +44,7 @@
         limit #{start},#{size}
     </select>
 
+    <!--查询用户投递列表总数-->
     <select id="findAllByDeliverByStatus" resultType="int">
         select count(j.id)
         from RESUMEDELIVER r, JOB j, COMPANY c
@@ -43,6 +54,35 @@
         <if test="status!= null and status != 3">
            and status = #{status}
         </if>
+    </select>
+
+    <!--查询某工作收到简历列表总数-->
+    <select id="findCountJobReceiveByStatus" resultType="int">
+        select count(j.id)
+        from JOB j, RESUMEDELIVER rd, RESUME r, USER u
+        where j.id = rd.jobId
+        and rd.resumeId = r.id
+        and r.userId = u.id
+        and j.id=#{jobId}
+        and u.userType=0
+        <if test="status!= null and status != 3">
+            and status = #{status}
+        </if>
+    </select>
+
+    <!--查询某工作收到简历列表-->
+    <select id="findJobReceiveResumesByPage" resultMap="jobReceiveResumeMap" parameterType="map">
+        select j.id as jobId, u.userName, u.email, u.phone, r.id as resumeId, rd.status, u.id as userId
+        from JOB j, RESUMEDELIVER rd, RESUME r, USER u
+        where j.id = rd.jobId
+        and rd.resumeId = r.id
+        and r.userId = u.id
+        and j.id=#{jobId}
+        and u.userType=0
+        <if test="status!= null and status!= 3">
+            and status = #{status}
+        </if>
+        limit #{start},#{size}
     </select>
 
     <select id="isDeliver" resultType="int" parameterType="Integer">
@@ -56,4 +96,9 @@
         insert into RESUMEDELIVER (createTime, jobId, resumeId, status)
         values(#{createTime}, #{jobId},#{resumeId},#{status})
     </insert>
+
+    <!--更新一个简历状态-->
+    <update id="updateStatus" keyProperty="id" useGeneratedKeys="true">
+        update RESUMEDELIVER set status = #{status} where jobId = #{jobId} and resumeId = #{resumeId}
+    </update>
 </mapper>

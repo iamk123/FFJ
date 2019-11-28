@@ -201,6 +201,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public PageBean<Object> findJobReceiveResumesByPage(int jobId, int currentPage, int rows, int status) {
+        PageBean<Object> pageBean = new PageBean<>();
+        pageBean.setCurrentPage(currentPage);
+        pageBean.setRows(rows);
+
+        Map<String, Object> map = new HashMap<>();
+        int totalCount = resumeDeliverDao.findCountJobReceiveByStatus(jobId, status);
+        System.err.println(totalCount);
+
+        double tc = totalCount;
+        Double num = Math.ceil(((double) totalCount) / rows);
+        pageBean.setTotalPage(num.intValue());
+
+        map.put("status", status);
+        map.put("start", (currentPage - 1) * rows);
+        map.put("size", pageBean.getRows());
+        map.put("jobId", jobId);
+
+        List<Object> list = resumeDeliverDao.findJobReceiveResumesByPage(map);
+        System.err.println("---------"+list);
+        pageBean.setList(list);
+
+        return pageBean;
+    }
+
+    @Override
     public int deliverResume(ResumeDeliver resumeDeliver) {
         return resumeDeliverDao.saveDeliver(resumeDeliver);
     }

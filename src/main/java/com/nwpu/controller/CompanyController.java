@@ -77,7 +77,10 @@ public class CompanyController {
      * @return
      */
     @RequestMapping(value = "/jobHandle", method = RequestMethod.GET)
-    public String jobDetail(@RequestParam int jobId, Model model){
+    public String jobDetail(@RequestParam int jobId, Model model,HttpSession session,
+                            @RequestParam(value = "status", defaultValue = "3") int status,
+                            @RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+                            @RequestParam(value = "rows", defaultValue = "5") int rows){
 
         Job jobDetail = jobService.findJobCompanyById(jobId);
         User user = userService.findUserById(jobDetail.getCompany().getUserId());
@@ -85,20 +88,22 @@ public class CompanyController {
         model.addAttribute("jobDetail", jobDetail);
 
         //TODO 查询应聘者列表
+        //
+        PageBean<Object> deliverList = userService.findJobReceiveResumesByPage(jobId, currentPage, rows, status);
+
+        model.addAttribute("pb", deliverList);
+        model.addAttribute("status", status);
+        model.addAttribute("jobId", jobId);
         return "company/jobHandle";
     }
 
-    // @RequestMapping(value = "/resumeHandle", method = RequestMethod.GET)
-    // public String resumeHandle(@RequestParam int resumeId, Model model){
-    //
-    //     System.out.println("查看一个投递者简历");
-    //     // Job jobDetail = jobService.findJobCompanyById(resumeId);
-    //     // User user = userService.findUserById(jobDetail.getCompany().getUserId());
-    //     // model.addAttribute("companyUser",user);
-    //     // model.addAttribute("jobDetail", jobDetail);
-    //
-    //     return "company/resumeHandle";
-    // }
+    /**
+     * 查看一个投递者的简历
+     * @param userId
+     * @param jobId
+     * @param model
+     * @return
+     */
     @GetMapping("/resumeHandle")
     public String getResumeHandle(@RequestParam int userId, @RequestParam int jobId, Model model){
         System.out.println("查看一个投递者简历");
@@ -119,6 +124,26 @@ public class CompanyController {
         model.addAttribute("socialWorks", socialWorks);
         model.addAttribute("jobId", jobId);
         return "/company/resumeHandle";
+    }
+
+    /**
+     * 处理一个简历
+     * @param status
+     * @param jobId
+     * @param resumeId
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("/updateStatus")
+    public String updateStatus( @RequestParam("status") int status, @RequestParam int jobId,
+                                @RequestParam int resumeId){
+
+        System.out.println("--------------------------");
+        System.out.println(status);
+        System.out.println(jobId);
+        System.out.println(resumeId);
+        jobService.updateStatus(jobId,resumeId,status);
+        return "OK";
     }
 
 

@@ -55,6 +55,8 @@ public interface UserService {
 
     PageBean<DeliverListBean> findDeliverListByPage(Integer resumeId, int currentPage, int rows, int status);
 
+    PageBean<Object> findJobReceiveResumesByPage(int jobId, int currentPage, int rows, int status);
+
     int deliverResume(ResumeDeliver resumeDeliver);
 
     int isDeliver(Integer resumeId, Integer jobId);

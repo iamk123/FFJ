@@ -51,7 +51,4 @@
         delete from ADVANTAGE where id = #{id}
     </delete>
 
-    <update id="updateStatus" keyProperty="id" useGeneratedKeys="true">
-        update RESUMEDELIVER set status = #{status} where jobId = #{jobId} and resumeId = #{resumeId}
-    </update>
 </mapper>

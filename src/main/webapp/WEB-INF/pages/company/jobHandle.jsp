@@ -46,9 +46,9 @@
                             <div class="job-collection pull-left">
                                 编辑
                             </div>
-                            <div class="resume-deliver pull-right" onclick="javascript:history.back()">
-                                <a href="javascript:;">返回</a>
-                            </div>
+<%--                            <div class="resume-deliver pull-right">--%>
+                                <a href="/company/postJobList" style="color:#fff;"><div class="resume-deliver pull-right">返回</div></a>
+
                         </div>
                         <div class="tool-icon">
                             <ul class="list-inline">
@@ -131,45 +131,47 @@
             <div style="display: flex;">
                 <div style="margin-right:20px;">处理状态: </div>
                 <div class="search-option"  style="margin-bottom: 20px;">
-                    <form action="/admin/jobHandle" method="get" id="getJobHandle">
+                    <form action="/company/jobHandle" method="get" id="getJobHandle">
+                        <input type="text" class="sr-only" value="${jobId}" name="jobId">
                         <select name="status" id="selectId" onchange="submitForm();">
-                            <option value="3" <c:if test="${users.list[0].get('status').equals(3)}">selected</c:if>>不限</option>
-                            <option value="0" <c:if test="${users.list[0].get('status').equals(0)}">selected</c:if>>未处理</option>
-                            <option value="1" <c:if test="${users.list[0].get('status').equals(1)}">selected</c:if>>约请面试</option>
-                            <option value="2" <c:if test="${users.list[0].get('status').equals(2)}">selected</c:if>>抱歉</option>
+                            <option value="3" <c:if test="${status==3}">selected</c:if>>不限</option>
+                            <option value="0" <c:if test="${status==0}">selected</c:if>>未处理</option>
+                            <option value="1" <c:if test="${status==1}">selected</c:if>>约请面试</option>
+                            <option value="2" <c:if test="${status==2}">selected</c:if>>抱歉</option>
                         </select>
-                        <input type="text" name="jobName" value="${jobDetail.jobName}" hidden="hidden">
-                        <input type="text" name="name" value="${jobDetail.company.name}" hidden="hidden">
+                        <input type="text" class="sr-only" value="${pb.currentPage}" name="currentPage">
+
                     </form>
                 </div>
+                <div style="margin-left:30px;"><h5>当前第${pb.currentPage}页！共${pb.totalPage}页！</h5></div>
             </div>
-            <c:if test="${users.totalPage != 1}">
+            <c:if test="${pb.totalPage != 1}">
 
             </c:if>
-            <c:if test="${users.totalPage > 1}">
+            <c:if test="${pb.totalPage > 1}">
                 <ul class="pagination pagination-sm pull-right">
-                    <c:if test="${users.currentPage <= 1}">
+                    <c:if test="${pb.currentPage <= 1}">
                     <li class="disabled">
                         <a href="javascript:void(0);" aria-label="Previous">
                             </c:if>
-                            <c:if test="${users.currentPage > 1}">
+                            <c:if test="${pb.currentPage > 1}">
                     <li>
-                        <a href="/admin/jobHandle?jobName=${jobDetail.jobName}&name=${jobDetail.company.name}&currentPage=${users.currentPage-1}" aria-label="Previous">
+                        <a href="/admin/jobHandle?jobId=${jobId}&currentPage=${users.currentPage-1}" aria-label="Previous">
                             </c:if>
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <c:forEach begin="1" end="${users.totalPage}" var="i">
-                        <li class="<c:if test='${users.currentPage == i}'>active</c:if>"><a href="/admin/jobHandle?jobName=${jobDetail.jobName}&name=${jobDetail.company.name}&currentPage=${i}">${i}</a></li>
+                    <c:forEach begin="1" end="${pb.totalPage}" var="i">
+                        <li class="<c:if test='${pb.currentPage == i}'>active</c:if>"><a href="/admin/jobHandle?jobId=${jobId}&currentPage=${i}">${i}</a></li>
                     </c:forEach>
                     <!--后一页禁用-->
-                    <c:if test="${users.currentPage >= users.totalPage}">
+                    <c:if test="${pb.currentPage >= pb.totalPage}">
                     <li class="disabled">
                         <a href="javascript:void(0);" aria-label="Next">
                             </c:if>
-                            <c:if test="${users.currentPage < users.totalPage}">
+                            <c:if test="${pb.currentPage < pb.totalPage}">
                     <li>
-                        <a href="/admin/jobHandle?jobName=${jobDetail.jobName}&name=${jobDetail.company.name}&currentPage=${users.currentPage+1}" aria-label="Next">
+                        <a href="/admin/jobHandle?jobId=${jobId}&currentPage=${users.currentPage+1}" aria-label="Next">
                             </c:if>
                             <span aria-hidden="true">&raquo;</span>
                         </a>
@@ -189,23 +191,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="warning">
-                <td class="text-center"><input type="checkbox"></td>
-                <th>name</th>
-                <th>email</th>
-                <th>phone</th>
-                <th>未处理</th>
-                <td class="text-center">
-                    <a href="/company/resumeHandle?userId=1&&jobId=${jobDetail.id}" class="btn btn-info btn-xs">查看简历</a>
-                    <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-                </td>
-            </tr>
-            <c:forEach items="${users.list}" var="user" varStatus="i">
+            <c:forEach items="${pb.list}" var="user" varStatus="i">
                 <tr class="warning">
                     <td class="text-center"><input type="checkbox"></td>
-                    <th>name${user.get("userName")}</th>
-                    <th>email${user.get("email")}</th>
-                    <th>phone${user.get("phone")}</th>
+                    <th>${user.get("userName")}</th>
+                    <th>${user.get("email")}</th>
+                    <th>${user.get("phone")}</th>
                     <th>
                         <c:choose>
                             <c:when test="${user.get('status') == 0}">未处理</c:when>
@@ -214,7 +205,7 @@
                         </c:choose>
                     </th>
                     <td class="text-center">
-                        <a href="/admin/resumeHandle?id=${user.get("id")}&jobId=${user.get("jobId")}" class="btn btn-info btn-xs">查看简历</a>
+                        <a href="/company/resumeHandle?userId=${user.get('userId')}&jobId=${jobId}" class="btn btn-info btn-xs">查看简历</a>
                         <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
                     </td>
                 </tr>

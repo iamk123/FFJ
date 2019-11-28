@@ -80,17 +80,6 @@ public class AdminController {
         return "/admin/jobList";
     }
 
-
-    @ResponseBody
-    @PostMapping("/updateStatus")
-    public String updateStatus( @RequestParam("status") int status, @RequestParam int jobId,
-                                @RequestParam int resumeId){
-
-        jobService.updateStatus(jobId,resumeId,status);
-        return "OK";
-    }
-
-
     /**
      * 修改密码
      * @return
