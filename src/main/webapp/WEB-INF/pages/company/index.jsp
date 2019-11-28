@@ -18,7 +18,7 @@
 <!-- 头部区域 -->
 <header>
     <!--导航条-->
-    <c:import url="head.jsp"></c:import>
+    <jsp:include page="head.jsp"></jsp:include>>
     <!--/导航条-->
 </header>
 <!--/头部区域  -->
@@ -27,7 +27,7 @@
 
 
 <!--footer-->
-<c:import url="../user/footer.jsp"></c:import>
+<jsp:include page="../user/footer.jsp"></jsp:include>>
 <!--/footer-->
 
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>

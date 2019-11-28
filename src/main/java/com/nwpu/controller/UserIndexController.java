@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
@@ -265,4 +267,47 @@ public class UserIndexController {
         }
         return "redirect:/admin/userList?currentPage=" + currentPage;
     }
+
+    /**
+     * 修改密码
+     * @return
+     */
+    @GetMapping("/updatePassword")
+    public String updatePassword(){
+
+        return "user/password-reset";
+    }
+
+    @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
+    public String updatePassword(HttpSession session, Model model, @ModelAttribute("origin") String origin,
+                                 @ModelAttribute("newPassword") String newPassword, @ModelAttribute("confirm") String confirm){
+
+        User user = (User) session.getAttribute("user");
+        if("".equals(origin) || "".equals(newPassword) || "".equals(confirm)){
+            model.addAttribute("msg", "请完善信息！！");
+
+            return "user/password-reset";
+        }
+        if(!user.getPassword().equals(origin)){
+            model.addAttribute("msg", "原密码错误！");
+            return "user/password-reset";
+        }
+        if(!newPassword.equals(confirm)){
+            model.addAttribute("msg", "两次密码不一致！");
+            return "user/password-reset";
+        }
+        if(user.getPassword().equals(newPassword)){
+            model.addAttribute("msg", "密码不能与原密码相同！！");
+            return "user/password-reset";
+        }
+        if(userService.updatePassword(user.getId(), newPassword) == 1){
+            // model.addAttribute("msg", "修改密码成功！");
+            System.out.println("修改成功");
+            session.removeAttribute("user");
+            session.invalidate();
+            return "redirect:/";
+        }
+        return null;
+    }
+
 }

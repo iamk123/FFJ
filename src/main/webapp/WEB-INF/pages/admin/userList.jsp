@@ -17,7 +17,7 @@
 <div class="main">
 
     <!--导航条-->
-    <c:import url="admin-head.jsp"></c:import>
+    <jsp:include page="admin-head.jsp"></jsp:include>
     <!--/导航条-->
 
     <div class="container-fluid">
@@ -164,7 +164,7 @@
 </div>
 
 <!--侧边栏-->
-<c:import url="admin-side.jsp"></c:import>
+<jsp:include page="admin-side.jsp"></jsp:include>
 <!--/侧边栏-->
 
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>

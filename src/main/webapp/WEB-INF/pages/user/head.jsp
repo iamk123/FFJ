@@ -31,10 +31,10 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="/user/deliverJobList">我的应聘</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>${sessionScope.user.name}</strong> <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>${sessionScope.user.userName}</strong> <span class="caret"></span></a>
 						<ul class="dropdown-menu dropdown-mean-nwpu">
 							<li><a href="/user/personInfo">个人中心</a></li>
-							<li><a href="/updatePassword">修改密码</a></li>
+							<li><a href="/user/updatePassword">修改密码</a></li>
 							<li><a href="/user/resume">个人简历</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="/logout">退出登录</a></li>

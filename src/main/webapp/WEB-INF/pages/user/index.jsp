@@ -18,7 +18,7 @@
 <!-- 头部区域 -->
 <header>
     <!--导航条-->
-    <c:import url="head.jsp"></c:import>
+    <jsp:include page="head.jsp"></jsp:include>
     <!--/导航条-->
 
     <!-- 搜索栏 -->
@@ -247,7 +247,7 @@
 <!-- /城市热招 -->
 
 <!--footer-->
-<c:import url="footer.jsp"></c:import>
+<jsp:include page="footer.jsp"></jsp:include>
 <!--/footer-->
 
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
