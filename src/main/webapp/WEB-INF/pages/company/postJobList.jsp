@@ -25,6 +25,7 @@
 <header>
     <!--导航条-->
     <c:import url="head.jsp"></c:import>
+<%--    <jsp:include page="head.jsp"></jsp:include>--%>
     <!--/导航条-->
 </header>
 <!--/头部区域  -->

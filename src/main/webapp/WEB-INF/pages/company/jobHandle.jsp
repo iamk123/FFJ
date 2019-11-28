@@ -20,6 +20,7 @@
 
 <!--导航条-->
 <c:import url="head.jsp"></c:import>
+<%--<jsp:include page="head.jsp"></jsp:include>--%>
 <!--/导航条-->
 <!-- 个人简历 -->
 <section class="section-main">

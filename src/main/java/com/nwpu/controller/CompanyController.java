@@ -61,7 +61,8 @@ public class CompanyController {
                                  @RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
                                  @RequestParam(value = "rows", defaultValue = "5") int rows,HttpSession session, Model model){
 
-        User company = (User) session.getAttribute("company");
+        System.out.println("postJobList");
+        User company = (User) session.getAttribute("user");
         Integer companyId = company.getId();
         PageBean<Job> deliverList = jobService.findPostJobsByPage(companyId, currentPage, rows, status);
 
