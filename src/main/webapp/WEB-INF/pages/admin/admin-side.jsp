@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="mytag" uri="/WEB-INF/tld/MyTag.tld" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +10,11 @@
 <div class="aside">
     <div class="profile">
         <img class="avatar" src="/static/img/rng.jpg">
-        <h3 class="name">小明</h3>
+        <h3 class="name"><mytag:cookieHandle cookie="${cookie.user.value}"></mytag:cookieHandle></h3>
     </div>
     <ul class="nav">
         <li>
-            <a href="index.html"><i class="fa fa-dashboard"></i>首页</a>
+            <a href="./"><i class="fa fa-dashboard"></i>首页</a>
         </li>
         <li>
             <a href="#menu-posts" class="collapsed" data-toggle="collapse">

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_1.xsd"
+        version="2.0">
+    <tlib-version>1.0</tlib-version>
+
+    <short-name>mytag</short-name>
+    <tag>
+        <name>dateFormat</name>
+        <tag-class>com.nwpu.Utils.DateFormatTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>date</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>cookieHandle</name>
+        <tag-class>com.nwpu.Utils.CookieHandleTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>cookie</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+</taglib>

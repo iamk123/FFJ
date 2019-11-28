@@ -31,7 +31,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="/user/deliverJobList">我的应聘</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>${sessionScope.user.userName}</strong> <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>${cookie.user.value}</strong> <span class="caret"></span></a>
 						<ul class="dropdown-menu dropdown-mean-nwpu">
 							<li><a href="/user/personInfo">个人中心</a></li>
 							<li><a href="/user/updatePassword">修改密码</a></li>

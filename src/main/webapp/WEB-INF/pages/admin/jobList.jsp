@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"  language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="mytag" uri="/WEB-INF/tld/MyTag.tld" %>
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -101,7 +103,7 @@
                     <th>${job.location}</th>
                     <th>${job.salary}</th>
                     <th>${job.contact}</th>
-                    <th>${job.createTime}</th>
+                <th><mytag:dateFormat date="${job.createTime}"></mytag:dateFormat></th>
                     <td class="text-center">
                         <a href="/admin/jobDetail/${job.id}" class="btn btn-info btn-xs">详情</a>
                         <a href="/job/deleteJob/${job.id}/${pb.currentPage}" class="btn btn-danger btn-xs">删除</a>
