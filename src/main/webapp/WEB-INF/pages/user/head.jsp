@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="mytag" uri="/WEB-INF/tld/MyTag.tld" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +32,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="/user/deliverJobList">我的应聘</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>${sessionScope.user.name}</strong> <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong><mytag:cookieHandle cookie="${cookie.user.value}"></mytag:cookieHandle></strong> <span class="caret"></span></a>
 						<ul class="dropdown-menu dropdown-mean-nwpu">
 							<li><a href="/user/personInfo">个人中心</a></li>
 							<li><a href="/updatePassword">修改密码</a></li>

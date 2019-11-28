@@ -68,10 +68,9 @@
                                 <th>${list.companyName}</th>
                                 <th>${list.createTime}</th>
                                 <th>
-                                    <c:if test="${list.status == 0}">已处理</c:if>
+                                    <c:if test="${list.status == 0}">未处理</c:if>
                                     <c:if test="${list.status == 1}">约请面试</c:if>
                                     <c:if test="${list.status == 2}">抱歉</c:if>
-                                    <c:if test="${list.status == 4}">未处理</c:if>
                                 </th>
                                 <td class="text-center">
                                     <a href="/job/jobDetail/${list.jobId}" class="btn btn-info btn-xs">详情</a>

@@ -1,5 +1,6 @@
 package com.nwpu.controller;
 
+import com.nwpu.Utils.EncodeHandler;
 import com.nwpu.domain.User;
 import com.nwpu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class HomeController {
      */
     @RequestMapping(value={"/login", ""}, method = RequestMethod.GET)
     public String showLoginForm(HttpSession session) {
+        System.err.println(EncodeHandler.md5Encode("admin"));
         User user = (User) session.getAttribute("user");
         if (user != null) {
             switch (user.getUserType()) {
@@ -61,14 +63,18 @@ public class HomeController {
                                @RequestParam(value = "password", defaultValue = "") String password, HttpSession session,
                                HttpServletResponse response) {
 
-        User user = userService.findUserByUserNameAndPassword(userName, password);
+        // System.out.println("userName: ------- " + userName);
+        // System.out.println("password: --------" + password);
+        // System.out.println("编码" + EncodeHandler.md5Encode(password));
+        // System.out.println("解码" + );
+        User user = userService.findUserByUserNameAndPassword(userName, EncodeHandler.md5Encode(password));
         // User user = userService.findUserByUserName(userName);
         if(user != null) {
             int type = user.getUserType();
             //session.invalidate();
             session.setAttribute("user", user);
             session.setMaxInactiveInterval(60*60);
-            response.addCookie(new Cookie("user", DigestUtils.md5DigestAsHex(userName.getBytes())));
+            response.addCookie(new Cookie("user", EncodeHandler.Encryption(userName, 5)));
             switch (type) {
                 case 0:
                     return "redirect:/user";
@@ -120,18 +126,22 @@ public class HomeController {
      * @return
      */
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register(User user, Model model, HttpSession session, HttpServletResponse response){
+    public String register(){
         return "user/register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(User user, Model model){
+    public String register(User user, Model model, HttpSession session, HttpServletResponse response){
         System.out.println(user);
+        user.setPassword(EncodeHandler.md5Encode(user.getPassword()));
         if(userService.findUserByUserName(user.getUserName()) != null ){
             model.addAttribute("msg", "账号已存在！请重新注册！");
             return "user/register";
         }
-        if(userService.addUser(user) == 1){
+        if(userService.addUser(user) == 1) {
+            session.setAttribute("user", user);
+            session.setMaxInactiveInterval(60 * 60);
+            response.addCookie(new Cookie("user", EncodeHandler.Encryption(user.getUserName(), 5)));
             model.addAttribute("msg", "注册成功！请登录！");
             return "login";
         }
