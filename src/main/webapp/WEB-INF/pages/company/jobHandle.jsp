@@ -44,11 +44,8 @@
                     </div>
                     <div class="position-content-r pull-right">
                         <div class="position-deal">
-                            <div class="job-collection pull-left">
-                                编辑
-                            </div>
-<%--                            <div class="resume-deliver pull-right">--%>
-                                <a href="/company/postJobList" style="color:#fff;"><div class="resume-deliver pull-right">返回</div></a>
+                            <a href="/company/updateJob?jobId=${jobDetail.id}"> <div class="job-collection pull-left">编辑</div></a>
+                            <a href="/company/postJobList" style="color:#fff;"><div class="resume-deliver pull-right">返回</div></a>
 
                         </div>
                         <div class="tool-icon">

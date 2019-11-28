@@ -148,4 +148,11 @@
     <delete id="deleteUserById" parameterType="int">
         delete from USER where id = #{userId}
     </delete>
+
+    <!--删除简历-->
+    <delete id="deleteResumeByUserId" parameterType="int">
+        delete from RESUME where userId = #{userId}
+    </delete>
+
+
 </mapper>

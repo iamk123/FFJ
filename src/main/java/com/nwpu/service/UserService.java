@@ -81,4 +81,5 @@ public interface UserService {
 
     void deleteUserById(int userId);
 
+    void addResume(Integer id);
 }

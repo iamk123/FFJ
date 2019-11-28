@@ -23,4 +23,6 @@ public interface IResumeDao {
 
     void deleteSocialWork(int id);
 
+    void addResume(Integer id);
+
 }

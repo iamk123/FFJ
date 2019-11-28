@@ -189,16 +189,36 @@
         limit #{start},#{size}
     </select>
 
-    <select id="findCountPostJobsByCompanyId" resultType="int" parameterType="Integer">
+    <select id="findCountPostJobsByCompanyId" resultType="int" parameterType="map">
         select count(id)
         from JOB
-        where companyId = #{companyId}
+        <where>
+            companyId = #{companyId}
+            <if test="location != '' and location != null">
+                <bind name="locations" value="'%'+location+'%'"></bind>
+                and location like #{locations}
+            </if>
+            <if test="kind != '' and kind != null">
+                <bind name="kinds" value="'%'+kind+'%'"></bind>
+                and kind like #{kinds}
+            </if>
+        </where>
     </select>
 
     <select id="findPostJobsByPage" resultMap="jobMap" parameterType="map">
         select *
         from JOB
-        where companyId = #{companyId}
+        <where>
+            companyId = #{companyId}
+            <if test="location != '' and location != null">
+                <bind name="locations" value="'%'+location+'%'"></bind>
+                and location  like #{locations}
+            </if>
+            <if test="kind != '' and kind != null">
+                <bind name="kinds" value="'%'+kind+'%'"></bind>
+                and kind like #{kinds}
+            </if>
+        </where>
         order by createTime desc
         limit #{start},#{size}
     </select>
@@ -208,4 +228,10 @@
         delete from JOB where id = #{jobId}
     </delete>
 
+    <!--更新职位-->
+    <update id="updateJob" parameterType="job">
+        update JOB
+        set jobName=#{jobName},needNum=#{needNum},jobRequire=#{jobRequire},salary=#{salary},location=#{location},jobInfo=#{jobInfo},kind=#{kind},contact=#{contact}
+        where id=#{id}
+    </update>
 </mapper>

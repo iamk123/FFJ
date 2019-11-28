@@ -1,5 +1,8 @@
 package com.nwpu.domain;
 
+
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +13,7 @@ public class Job implements Serializable {
 
     private Integer id;
     private Integer companyId;  //对应公司
+    @NotNull(message = "字段不能为空")
     private String jobName;     //工作名字
     private String needNum;      //需要人数
     private String jobRequire;  //职业要求

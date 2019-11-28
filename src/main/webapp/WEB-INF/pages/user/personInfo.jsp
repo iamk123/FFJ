@@ -41,6 +41,7 @@
 					<label for="exampleInputEmail2">账号</label>
 					<input type="text" class="form-control" readonly="readonly" id="exampleInputEmail2" name="userName" placeholder="userName" value="${user.userName}">
 				</div>
+				<input type="text" class="sr-only" name="password" value="${user.password}">
 				<div class="form-group">
 					<label for="exampleInputEmail5">邮箱</label>
 					<input type="email" class="form-control" id="exampleInputEmail5" name="email" placeholder="email" value="${user.email}">
@@ -62,9 +63,8 @@
 						</select>
 					</div>
 				</div>
-				<div style="color:red;"><h5>${msg}</h5></div>
 				<button type="submit" class="btn btn-default personInfo-btn">修改</button>
-				<a href="/user"><button type="button" class="btn btn-default personInfo-btn personInfo-btn-return">返回</button></a>
+				<a href="/user/resume"><button type="button" class="btn btn-default personInfo-btn personInfo-btn-return">返回</button></a>
 			</form>
 		</div>
 	</div>
@@ -75,7 +75,49 @@
 <c:import url="footer.jsp"></c:import>
 <!--/footer-->
 
+<link rel="stylesheet" href="/static/lib/toastr/toastr.css">
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/static/lib/toastr/toastr.min.js"></script>
+<style>
+	.toast-center-center{
+		top:20%;
+		left:35%;
+	}
+	#deliver{
+		color:#fff;
+		cursor: pointer;
+	}
+</style>
+<script type="text/javascript">
+	toastr.options = {
+		closeButton: false,
+		debug: false,
+		progressBar: false,
+		positionClass: "toast-center-center",
+		onclick: null,
+		showDuration: "300",
+		hideDuration: "1000",
+		timeOut: "1000",
+		extendedTimeOut: "1000",
+		showEasing: "swing",
+		hideEasing: "linear",
+		showMethod: "fadeIn",
+		hideMethod: "fadeOut"
+	};
+</script>
+
+<script type="text/javascript">
+	$(function(){
+		var msg = '${msg}';
+		if(msg == "2"){
+			toastr.info("信息不能为空！");
+		}else if(msg == "1"){
+			toastr.success("修改成功！");
+		}else if(msg == "0"){
+			toastr.error("修改失败！");
+		}
+	})
+</script>
 </body>
 </html>

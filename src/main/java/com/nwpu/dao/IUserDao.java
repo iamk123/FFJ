@@ -61,4 +61,6 @@ public interface IUserDao {
 
     void deleteUserById(int userId);
 
+    void deleteResumeByUserId(int userId);
+
 }

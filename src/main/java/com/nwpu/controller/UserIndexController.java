@@ -57,6 +57,13 @@ public class UserIndexController {
         //HashMap map = new HashMap<>();
         User user = (User)session.getAttribute("user");
         Resume resume = userService.findResumeById(user.getId());
+
+        //简历为空
+        if(resume == null){
+            userService.addResume(user.getId());
+            resume = userService.findResumeById(user.getId());
+        }
+
         int resumeId = resume.getId();
         List<Advantage> advantages = userService.findAdvantageByResumeId(resumeId);
         List<String> jobNames = userService.findJobByResumeId(resumeId);
@@ -249,20 +256,6 @@ public class UserIndexController {
         return "redirect:/user/resume?msg=3";
     }
 
-
-    /**
-     * 删除一个用户
-     * @param userId
-     * @return
-     */
-    @GetMapping(value = "/deleteUser/{userId}/{currentPage}")
-    public String deleteUser(HttpSession session, @PathVariable int userId, @PathVariable int currentPage){
-        User admin = (User) session.getAttribute("admin");
-        if(userId != admin.getId()){
-            userService.deleteUserById(userId);
-        }
-        return "redirect:/admin/userList?currentPage=" + currentPage;
-    }
 
     /**
      * 修改密码

@@ -46,17 +46,17 @@
 
 	<script type="text/javascript">
 		$(function(){
-				var msg = '${msg}';
-				console.log(msg);
-				if(msg == '0'){
-					toastr.error("添加失败！请重试！");
-				}else if(msg == "1"){
-					toastr.success("添加成功~");
-				}else if(msg == "2"){
-					toastr.warning("请检查信息！");
-				}else if(msg == "3"){
-					toastr.success("删除成功！");
-				}
+			var msg = '${msg}';
+			console.log(msg);
+			if(msg == '0'){
+				toastr.error("添加失败！请重试！");
+			}else if(msg == "1"){
+				toastr.success("添加成功~");
+			}else if(msg == "2"){
+				toastr.warning("请检查信息！");
+			}else if(msg == "3"){
+				toastr.success("删除成功！");
+			}
 
 		});
 
@@ -94,16 +94,16 @@
 <section id="resume" style="background-color:#f6f6f8;margin-bottom: 30px;">
 	<div class="container userInfo-container">
 		<div class="col-md-8 col-md-offset-2 userInfo-title" style="box-shadow: 5px 5px 5px 5px #ccc;border-radius:10px 10px 0 0;">
-            当前简历信息不完善,影响聊天回复率,修改后你将获得更多的求职机会
-			<a href=""><i class="glyphicon glyphicon-pencil"></i>修改</a>
+			当前简历信息不完善,影响聊天回复率,修改后你将获得更多的求职机会
+			<a href="/user/personInfo"><i class="glyphicon glyphicon-pencil"></i>修改</a>
 		</div>
 		<div class="col-md-8 col-md-offset-2 userInfo-box" style="box-shadow: 5px 5px 5px 5px #ccc;border-radius: 0 0 10px 10px;">
 			<div class="media userInfo">
 				<div class="media-body">
 					<h2 class="media-heading">${sessionScope.user.name}</h2>
 					<div class="userInfo-labels">
-						<p><span><i class="glyphicon glyphicon-briefcase"></i>${resume.grade}</span></p>
-						<p><span><i class="glyphicon glyphicon-education"></i>${resume.location}</span></p>
+						<p><span><i class="glyphicon glyphicon-briefcase"></i><c:if test="${resume != null}">${resume.grade}</c:if> </span></p>
+						<p><span><i class="glyphicon glyphicon-education"></i><c:if test="${resume != null}">${resume.location}</c:if></span></p>
 						<p><span><i class="glyphicon glyphicon-earphone"></i>${sessionScope.user.phone}</span></p>
 					</div>
 				</div>
@@ -121,9 +121,11 @@
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 个人优势</h3>
 				<ul class="list-inline">
-					<c:forEach items="${advantages}" var="advantage">
-						<li><i class="glyphicon glyphicon-heart-empty"></i> ${advantage.name}<a href="/user/deleteAdvantage/${advantage.id}">x</a></li>
-					</c:forEach>
+					<c:if test="${advantages != null}">
+						<c:forEach items="${advantages}" var="advantage">
+							<li><i class="glyphicon glyphicon-heart-empty"></i> ${advantage.name}<a href="/user/deleteAdvantage/${advantage.id}">x</a></li>
+						</c:forEach>
+					</c:if>
 				</ul>
 			</div>
 			<div class="edit-logo">
@@ -159,14 +161,16 @@
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 项目经历</h3>
 				<ul class="">
-					<c:forEach items="${projects}" var="project">
-						<li style="margin-bottom: 30px;">
-							<p><i class="glyphicon glyphicon-heart-empty"></i>项目名称： ${project.name}<a href="/user/deleteProject/${project.id}">x</a></p>
-							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>负责工作： </span>${project.work}</p>
-							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>项目简介： </span>${project.description}</p>
+					<c:if test="${projects != null}">
+						<c:forEach items="${projects}" var="project">
+							<li style="margin-bottom: 30px;">
+								<p><i class="glyphicon glyphicon-heart-empty"></i>项目名称： ${project.name}<a href="/user/deleteProject/${project.id}">x</a></p>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>负责工作： </span>${project.work}</p>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>项目简介： </span>${project.description}</p>
 
-						</li>
-					</c:forEach>
+							</li>
+						</c:forEach>
+					</c:if>
 				</ul>
 			</div>
 			<div class="edit-logo">
@@ -210,9 +214,11 @@
 			<div class="summary user-resume-item">
 				<h3><i class="glyphicon glyphicon-tags"></i> 获奖情况</h3>
 				<ul class="list-inline">
-					<c:forEach items="${honors}" var="honor">
-						<li class="delete"><i class="glyphicon glyphicon-heart-empty"></i> ${honor.name}<a href="/user/deleteHonor/${honor.id}">x</a></li>
-					</c:forEach>
+					<c:if test="${honors != null}">
+						<c:forEach items="${honors}" var="honor">
+							<li class="delete"><i class="glyphicon glyphicon-heart-empty"></i> ${honor.name}<a href="/user/deleteHonor/${honor.id}">x</a></li>
+						</c:forEach>
+					</c:if>
 				</ul>
 			</div>
 			<div class="edit-logo">
@@ -249,13 +255,15 @@
 				<h3><i class="glyphicon glyphicon-tags"></i> 实习经历</h3>
 
 				<ul class="">
-					<c:forEach items="${socialWorks}" var="socialWork">
-						<li style="margin-bottom: 30px;">
-							<p><i class="glyphicon glyphicon-heart-empty"></i>实习公司： ${socialWork.name}<a href="/user/deleteSocialWork/${socialWork.id}">x</a></p>
-							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;负责工作： ${socialWork.work}</p>
-							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目简介： ${socialWork.description}</p>
-						</li>
-					</c:forEach>
+					<c:if test="${socialWorks!= null}">
+						<c:forEach items="${socialWorks}" var="socialWork">
+							<li style="margin-bottom: 30px;">
+								<p><i class="glyphicon glyphicon-heart-empty"></i>实习公司： ${socialWork.name}<a href="/user/deleteSocialWork/${socialWork.id}">x</a></p>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;负责工作： ${socialWork.work}</p>
+								<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目简介： ${socialWork.description}</p>
+							</li>
+						</c:forEach>
+					</c:if>
 				</ul>
 			</div>
 			<div class="edit-logo">

@@ -23,5 +23,7 @@ public interface IResumeDeliverDao {
 
     void updateStatus(@Param("status")int status, @Param("resumeId")int resumeId, @Param("jobId")int jobId);
 
+    ResumeDeliver findJobByJobId(int jobId);
 
+    void deleteById(int id);
 }

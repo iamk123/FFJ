@@ -30,29 +30,6 @@ public class JobController {
     private CompanyService companyService;
 
     /**
-     * 查询
-     * @return
-     */
-    // @RequestMapping(value = "/search", method = RequestMethod.GET)
-    // public String search(ConditionBean conditionBean, Model model,
-    //                       @RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
-    //                       @RequestParam(value = "rows", defaultValue = "5") int rows){
-    //
-    //     // System.out.println(conditionBean);
-    //     Map<String, Object> map = new HashMap<String, Object>();
-    //     map.put("key",  conditionBean.getKey());
-    //     map.put("address", conditionBean.getAddress());
-    //     map.put("kind", conditionBean.getKind());
-    //
-    //     model.addAttribute("job",jobService.findByCondition(map, currentPage, rows));
-    //     //信息回填
-    //     map.put("currentPage", currentPage);
-    //     map.put("rows", rows);
-    //     model.addAttribute("conditionMap", map);
-    //     return "user/search";
-    // }
-
-    /**
      * 分页标签查询
      * @param key
      * @param address
@@ -139,8 +116,10 @@ public class JobController {
      */
     @GetMapping(value = "/deleteJob/{jobId}/{currentPage}")
     public String deleteJob(@PathVariable int jobId, @PathVariable int currentPage){
-        System.out.println("删除 " +jobId);
+
         jobService.deleteJobById(jobId);
+        //如果resumeDeliver中有该job,也要删除
+        jobService.deleteResumeDeliverByJobId(jobId);
         return "redirect:/admin/jobList?currentPage=" + currentPage;
     }
 

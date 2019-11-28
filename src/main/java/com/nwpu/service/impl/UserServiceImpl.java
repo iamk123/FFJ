@@ -128,6 +128,8 @@ public class UserServiceImpl implements UserService {
     public int addUser(User user) {
 
         userDao.save(user);
+        //添加简历
+        resumeDao.addResume(user.getId());
         if(userDao.findByUserName(user.getUserName()) != null){
             return 1;
         }else{
@@ -200,6 +202,14 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * 查找职位收到的简历
+     * @param jobId
+     * @param currentPage
+     * @param rows
+     * @param status
+     * @return
+     */
     @Override
     public PageBean<Object> findJobReceiveResumesByPage(int jobId, int currentPage, int rows, int status) {
         PageBean<Object> pageBean = new PageBean<>();
@@ -226,6 +236,11 @@ public class UserServiceImpl implements UserService {
         return pageBean;
     }
 
+    /**
+     * 投递简历
+     * @param resumeDeliver
+     * @return
+     */
     @Override
     public int deliverResume(ResumeDeliver resumeDeliver) {
         return resumeDeliverDao.saveDeliver(resumeDeliver);
@@ -294,6 +309,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById(int userId) {
         userDao.deleteUserById(userId);
+        //如果简历存在则删除简历
+        Resume resume = userDao.findResumeById(userId);
+        if(resume != null){
+            userDao.deleteResumeByUserId(userId);
+        }
+    }
+
+    @Override
+    public void addResume(Integer id) {
+        resumeDao.addResume(id);
     }
 
 }

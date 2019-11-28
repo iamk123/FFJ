@@ -181,5 +181,18 @@ public class AdminController {
         return "admin/personInfo-update";
     }
 
+    /**
+     * 删除一个用户
+     * @param userId
+     * @return
+     */
+    @GetMapping(value = "/deleteUser/{userId}/{currentPage}")
+    public String deleteUser(HttpSession session, @PathVariable int userId, @PathVariable int currentPage){
+        User admin = (User) session.getAttribute("user");
+        if(userId != admin.getId()){
+            userService.deleteUserById(userId);
+        }
 
+        return "redirect:/admin/userList?currentPage=" + currentPage;
+    }
 }

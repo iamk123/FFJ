@@ -154,7 +154,7 @@
                     </th>
                     <td class="text-center">
                         <a href="/admin/personInfo/${user.id}" class="btn btn-info btn-xs">修改</a>
-                        <a href="/user/deleteUser/${user.id}/${users.currentPage}" class="btn btn-danger btn-xs">删除</a>
+                        <a href="/admin/deleteUser/${user.id}/${users.currentPage}" class="btn btn-danger btn-xs">删除</a>
                     </td>
                 </tr>
             </c:forEach>

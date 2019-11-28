@@ -3,6 +3,7 @@ package com.nwpu.service.impl;
 import com.nwpu.dao.IJobDao;
 import com.nwpu.dao.IResumeDeliverDao;
 import com.nwpu.domain.Job;
+import com.nwpu.domain.ResumeDeliver;
 import com.nwpu.pojo.PageBean;
 import com.nwpu.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -150,21 +151,24 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public PageBean<Job> findPostJobsByPage(Integer companyId, int currentPage, int rows, int status) {
+    public PageBean<Job> findPostJobsByPage(Integer companyId, int currentPage, int rows, String location, String kind) {
 
         PageBean<Job> pageBean = new PageBean<>();
         pageBean.setCurrentPage(currentPage);
         pageBean.setRows(rows);
 
         Map<String, Object> map = new HashMap<>();
-        int totalCount = jobDao.findCountPostJobsByCompanyId(companyId);
+        map.put("location", location);
+        map.put("kind", kind);
+        map.put("companyId", companyId);
+        int totalCount = jobDao.findCountPostJobsByCompanyId(map);
         System.err.println(totalCount);
 
         double tc = totalCount;
         Double num = Math.ceil(((double) totalCount) / rows);
         pageBean.setTotalPage(num.intValue());
 
-        map.put("status", status);
+
         map.put("start", (currentPage - 1) * rows);
         map.put("size", pageBean.getRows());
         map.put("companyId", companyId);
@@ -179,5 +183,18 @@ public class JobServiceImpl implements JobService {
     @Override
     public void deleteJobById(int jobId) {
         jobDao.deleteJobById(jobId);
+    }
+
+    @Override
+    public int updateJob(Job job) {
+        return jobDao.updateJob(job);
+    }
+
+    @Override
+    public void deleteResumeDeliverByJobId(int jobId) {
+        ResumeDeliver rd = resumeDeliverDao.findJobByJobId(jobId);
+        if(rd != null){
+            resumeDeliverDao.deleteById(rd.getId());
+        }
     }
 }

@@ -35,9 +35,30 @@
     <div class="container">
         <div class="">
             <div class="panel panel-default">
-                <div class="panel-heading" >我的应聘<div class="pull-right">
+                <div class="panel-heading" ><h3>职位列表</h3>
+                    <form action="/company/postJobList" method="get" id="getDeliverList">
+                        <div style="display: flex;">
+                            <div>地点: </div>
+                            <div class="search-option">
+                                <select name="location" onchange="submitForm()">
+                                    <option value="">不限</option>
+                                    <option value="长安校区" <c:if test="${location == '长安校区'}">selected</c:if>>长安校区</option>
+                                    <option value="友谊校区" <c:if test="${location == '友谊校区'}">selected</c:if>>友谊校区</option>
+                                </select>
+                            </div>
 
-                </div>
+                            <div style="margin-left: 20px;">类别：</div>
+                            <div class="search-option">
+                                <select name="kind" onchange="submitForm()">
+                                    <option value="">不限</option>
+                                    <option value="语言" <c:if test="${kind == '语言'}">selected</c:if>>语言</option>
+                                    <option value="文档" <c:if test="${kind == '文档'}">selected</c:if>>文档</option>
+                                    <option value="设计" <c:if test="${kind == '设计'}">selected</c:if>>设计</option>
+                                    <option value="编程" <c:if test="${kind == '编程'}">selected</c:if>>编程</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped table-bordered table-hover">
@@ -47,6 +68,7 @@
                             <th>职位名称</th>
                             <th>人数</th>
                             <th>薪水</th>
+                            <th>地点</th>
                             <th>类别</th>
                             <th>创建时间</th>
                             <th class="text-center" width="100">操作</th>
@@ -59,6 +81,7 @@
                                 <th>${list.jobName}</th>
                                 <th>${list.needNum}</th>
                                 <th>${list.salary}</th>
+                                <th>${list.location}</th>
                                 <th>${list.kind}</th>
                                 <th>${list.createTime}</th>
                                 <td class="text-center">

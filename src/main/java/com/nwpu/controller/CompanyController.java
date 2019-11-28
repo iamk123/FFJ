@@ -8,6 +8,7 @@ import com.nwpu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.alibaba.fastjson.JSON;
 
@@ -43,8 +44,7 @@ public class CompanyController {
     @ResponseBody
     @GetMapping("/hotCompanies")
     public String getHotCompanies(){
-        /*List<String> names = new ArrayList<>();
-        List<Integer> numbers = new ArrayList<>();*/
+
         List<Map<String, Integer>> maps = companyService.findBaseInfo();
         System.out.println(maps.toString());
         String json = JSON.toJSONString(maps);
@@ -57,17 +57,20 @@ public class CompanyController {
      * @return
      */
     @GetMapping("/postJobList")
-    public String postJobList(@RequestParam(value = "status", defaultValue = "3") int status,
-                                 @RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
-                                 @RequestParam(value = "rows", defaultValue = "5") int rows,HttpSession session, Model model){
+    public String postJobList(@RequestParam(value = "location", defaultValue = "") String location,
+                              @RequestParam(value = "kind", defaultValue = "") String kind,
+                              @RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+                              @RequestParam(value = "rows", defaultValue = "5") int rows,HttpSession session, Model model){
 
-        System.out.println("postJobList");
+        System.out.println("location " + location);
+        System.out.println("kind" + kind);
         User company = (User) session.getAttribute("user");
         Integer companyId = company.getId();
-        PageBean<Job> deliverList = jobService.findPostJobsByPage(companyId, currentPage, rows, status);
+        PageBean<Job> deliverList = jobService.findPostJobsByPage(companyId, currentPage, rows, location, kind);
 
         model.addAttribute("pb", deliverList);
-        model.addAttribute("status", status);
+        model.addAttribute("location", location);
+        model.addAttribute("kind", kind);
         return "company/postJobList";
     }
 
@@ -88,10 +91,7 @@ public class CompanyController {
         model.addAttribute("companyUser",user);
         model.addAttribute("jobDetail", jobDetail);
 
-        //TODO 查询应聘者列表
-        //
         PageBean<Object> deliverList = userService.findJobReceiveResumesByPage(jobId, currentPage, rows, status);
-
         model.addAttribute("pb", deliverList);
         model.addAttribute("status", status);
         model.addAttribute("jobId", jobId);
@@ -107,7 +107,7 @@ public class CompanyController {
      */
     @GetMapping("/resumeHandle")
     public String getResumeHandle(@RequestParam int userId, @RequestParam int jobId, Model model){
-        System.out.println("查看一个投递者简历");
+
         User user = userService.findUserById(userId);
         Resume resume = userService.findResumeById(userId);
         int resumeId = resume.getId();
@@ -139,12 +139,35 @@ public class CompanyController {
     public String updateStatus( @RequestParam("status") int status, @RequestParam int jobId,
                                 @RequestParam int resumeId){
 
-        System.out.println("--------------------------");
-        System.out.println(status);
-        System.out.println(jobId);
-        System.out.println(resumeId);
         jobService.updateStatus(jobId,resumeId,status);
         return "OK";
+    }
+
+    /**
+     * 更新职位信息
+     * @param jobId
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/updateJob", method = RequestMethod.GET)
+    public String updateJob(@RequestParam("jobId") int jobId, Model model,
+                            @RequestParam(value = "msg", defaultValue = "") String msg){
+
+        Job jobDetail = jobService.findJobCompanyById(jobId);
+        model.addAttribute("jobDetail", jobDetail);
+        model.addAttribute("msg",msg);
+        return "company/jobUpdate";
+    }
+
+    @RequestMapping(value = "/updateJob", method = RequestMethod.POST)
+    public String updateJob2(@RequestParam("jobId") int jobId, @Validated Job job, Model model){
+
+        System.out.println(job);
+        if(jobService.updateJob(job)==1){
+            return "redirect:/company/updateJob?msg=1&jobId="+jobId;
+        }else{
+            return "redirect:/company/updateJob?msg=0&jobId="+jobId;
+        }
     }
 
 

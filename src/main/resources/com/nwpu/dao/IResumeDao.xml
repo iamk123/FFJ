@@ -51,4 +51,9 @@
         delete from ADVANTAGE where id = #{id}
     </delete>
 
+    <!--插入简历-->
+    <insert id="addResume" parameterType="int" keyProperty="id" useGeneratedKeys="true">
+        insert into RESUME (userId, location, grade)
+        values(#{userId}, '', '')
+    </insert>
 </mapper>

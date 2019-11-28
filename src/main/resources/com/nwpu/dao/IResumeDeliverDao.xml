@@ -101,4 +101,13 @@
     <update id="updateStatus" keyProperty="id" useGeneratedKeys="true">
         update RESUMEDELIVER set status = #{status} where jobId = #{jobId} and resumeId = #{resumeId}
     </update>
+
+    <!--在记录表中查找一条职位-->
+    <select id="findJobByJobId" parameterType="int" resultMap="resumeDeliverMap">
+        select * from RESUMEDELIVER rd where rd.jobId = #{jobId}
+    </select>
+
+    <delete id="deleteById" parameterType="int">
+        delete from RESUMEDELIVER where id = #{id}
+    </delete>
 </mapper>

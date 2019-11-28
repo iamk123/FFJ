@@ -48,7 +48,11 @@ public interface JobService {
     void updateStatus(int jobId, int id, int status);
 
 
-    PageBean<Job> findPostJobsByPage(Integer companyId, int currentPage, int rows, int status);
+    PageBean<Job> findPostJobsByPage(Integer companyId, int currentPage, int rows, String location, String kind);
 
     void deleteJobById(int jobId);
+
+    int updateJob(Job job);
+
+    void deleteResumeDeliverByJobId(int jobId);
 }
