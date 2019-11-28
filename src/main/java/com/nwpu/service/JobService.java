@@ -45,8 +45,6 @@ public interface JobService {
 
     Job findJobCompanyByName(String name, String jobName);
 
-
-
     void updateStatus(int jobId, int id, int status);
 
 

@@ -137,9 +137,7 @@ public class UserIndexController {
     public String deliverJobList(@RequestParam(value = "status", defaultValue = "3") int status,
                                  @RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
                                  @RequestParam(value = "rows", defaultValue = "5") int rows,HttpSession session, Model model){
-        System.out.println("-----------------");
-        System.out.println(currentPage);
-        System.out.println(status);
+
         User user = (User) session.getAttribute("user");
         Integer userId = user.getId();
         Resume resume = userService.findResumeById(user.getId());

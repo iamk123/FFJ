@@ -144,7 +144,6 @@ public class JobServiceImpl implements JobService {
         return pageBean;
     }
 
-
     @Override
     public void updateStatus(int jobId, int id, int status){
         resumeDeliverDao.updateStatus(status, id, jobId);

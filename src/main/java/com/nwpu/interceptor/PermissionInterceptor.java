@@ -31,6 +31,7 @@ public class PermissionInterceptor implements HandlerInterceptor {
             }
         }else if(url.contains("company")){
             if (type == 1) {
+
                 return true;
             }else {
                 response.setStatus(403);

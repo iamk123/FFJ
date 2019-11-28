@@ -25,6 +25,7 @@
 <header>
     <!--导航条-->
     <c:import url="head.jsp"></c:import>
+<%--    <jsp:include page="head.jsp"></jsp:include>--%>
     <!--/导航条-->
 </header>
 <!--/头部区域  -->
@@ -35,7 +36,9 @@
         <div class="">
             <div class="panel panel-default">
                 <div class="panel-heading" >我的应聘<div class="pull-right">
-                    <a href="#" class="btn btn-success btn-xs" onclick="javascript:history.back()">返回</a></div></div>
+
+                </div>
+                </div>
                 <div class="panel-body">
                     <table class="table table-striped table-bordered table-hover">
                         <thead>

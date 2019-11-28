@@ -80,17 +80,6 @@ public class AdminController {
         return "/admin/jobList";
     }
 
-
-    @ResponseBody
-    @PostMapping("/updateStatus")
-    public String updateStatus( @RequestParam("status") int status, @RequestParam int jobId,
-                                @RequestParam int resumeId){
-
-        jobService.updateStatus(jobId,resumeId,status);
-        return "OK";
-    }
-
-
     /**
      * 修改密码
      * @return
@@ -105,7 +94,7 @@ public class AdminController {
     public String adminPasswordReset(HttpSession session, Model model, @ModelAttribute("origin") String origin,
                                  @ModelAttribute("newPassword") String newPassword, @ModelAttribute("confirm") String confirm){
 
-        User admin = (User) session.getAttribute("admin");
+        User admin = (User) session.getAttribute("user");
         if("".equals(origin) || "".equals(newPassword) || "".equals(confirm)){
             model.addAttribute("msg", "请完善信息！！");
             return "admin/password-reset";

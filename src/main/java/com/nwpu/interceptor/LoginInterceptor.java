@@ -29,7 +29,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         //     return false;
         // }
 
-       //System.out.println("拦截器");
+
         //获取请求的URL
   /*      String url = request.getRequestURI();
         System.out.println(url);

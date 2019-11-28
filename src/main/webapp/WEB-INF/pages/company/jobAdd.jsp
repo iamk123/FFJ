@@ -17,6 +17,7 @@
 <!-- 头部区域 -->
 <header>
     <!--导航条-->
+
     <jsp:include page="head.jsp"></jsp:include>
     <!--/导航条-->
 </header>
@@ -81,7 +82,7 @@
 <!--/register-->
 
 <!--footer-->
-<jsp:include page="../user/footer.jsp"></jsp:include>>
+
 <!--/footer-->
 
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>

@@ -18,7 +18,7 @@
 <!-- 头部区域 -->
 <header>
     <!--导航条-->
-    <jsp:include page="head.jsp"></jsp:include>>
+
     <!--/导航条-->
 </header>
 <!--/头部区域  -->
@@ -27,6 +27,7 @@
 
 
 <!--footer-->
+
 <jsp:include page="../user/footer.jsp"></jsp:include>>
 <!--/footer-->
 

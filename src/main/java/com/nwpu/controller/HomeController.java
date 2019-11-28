@@ -28,13 +28,14 @@ public class HomeController {
     private UserService userService;
 
 
+
     /**
      * 登录表单
      * @return
      */
     @RequestMapping(value={"/login", ""}, method = RequestMethod.GET)
     public String showLoginForm(HttpSession session) {
-        System.err.println(EncodeHandler.md5Encode("admin"));
+
         User user = (User) session.getAttribute("user");
         if (user != null) {
             switch (user.getUserType()) {
@@ -69,7 +70,7 @@ public class HomeController {
             //session.invalidate();
             session.setAttribute("user", user);
             session.setMaxInactiveInterval(60*60);
-            response.addCookie(new Cookie("user", EncodeHandler.Encryption(userName, 5)));
+
             switch (type) {
                 case 0:
                     return "redirect:/user";
@@ -87,7 +88,7 @@ public class HomeController {
             model.addAttribute("msg", "用户或密码错误，请重新登录");
             return "login";
         }
-           /* //普通用户
+
             if(user.getUserType() == 0){
                 session.setAttribute("user", user);
                 System.out.println("user: " + session.getAttribute("user"));
@@ -121,7 +122,7 @@ public class HomeController {
      * @return
      */
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register(){
+    public String register(User user, Model model, HttpSession session, HttpServletResponse response){
         return "user/register";
     }
 
@@ -143,6 +144,7 @@ public class HomeController {
         model.addAttribute("msg", "注册失败！请重新注册！");
         return "user/register";
     }
+
 
     /**
      * 退出登录
