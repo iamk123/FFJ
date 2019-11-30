@@ -45,7 +45,7 @@
                 </div>
                 <h5 style="color:red;">${msg}</h5>
                 <button type="submit" class="btn btn-default personInfo-btn">修改</button>
-                <a href="/user"><button type="button" class="btn btn-default personInfo-btn personInfo-btn-return">返回</button></a>
+                <a href="/company"><button type="button" class="btn btn-default personInfo-btn personInfo-btn-return">返回</button></a>
             </form>
         </div>
     </div>
@@ -53,7 +53,7 @@
 <!-- /个人信息 -->
 
 <!--footer-->
-<c:import url="footer.jsp"></c:import>
+<c:import url="../user/footer.jsp"></c:import>
 <!--/footer-->
 
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>

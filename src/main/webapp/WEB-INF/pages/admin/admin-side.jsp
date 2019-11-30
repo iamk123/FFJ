@@ -17,17 +17,6 @@
             <a href="./"><i class="fa fa-dashboard"></i>首页</a>
         </li>
         <li>
-            <a href="#menu-posts" class="collapsed" data-toggle="collapse">
-                <i class="fa fa-thumb-tack"></i>xx<i class="fa fa-angle-right"></i>
-            </a>
-            <ul id="menu-posts" class="collapse">
-
-                <li><a href="posts.html">xx</a></li>
-                <li><a href="post-add.html">xx</a></li>
-                <li><a href="categories.html">xx</a></li>
-            </ul>
-        </li>
-        <li>
             <a href="/admin/userList"><i class="fa fa-comments"></i>用户列表</a>
         </li>
         <li>

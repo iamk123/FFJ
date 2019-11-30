@@ -35,6 +35,10 @@ public class UserServiceImpl implements UserService {
         return userDao.findAll();
     }
 
+    public int countAll(){
+        return userDao.countAll();
+    }
+
     /**
      * 查询用户
      * @param userName
@@ -106,7 +110,7 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> map = new HashMap<>();
         int totalCount = userDao.findAllByUserType(userType);
 
-        System.err.println(totalCount);
+        // System.err.println(totalCount);
 
         //double tc = totalCount;
         Double num = Math.ceil(((double) totalCount) / rows);
@@ -135,7 +139,11 @@ public class UserServiceImpl implements UserService {
         }else{
             return 0;
         }
+    }
 
+    @Override
+    public void save(User user){
+        userDao.save(user);
     }
 
     /**
@@ -153,6 +161,12 @@ public class UserServiceImpl implements UserService {
         int i2 = userDao.updateResume(resume);
 
         return i1 + i2;
+    }
+
+    @Override
+    public int update(User user) {
+
+        return userDao.updateUser(user);
     }
 
     /**
@@ -183,7 +197,7 @@ public class UserServiceImpl implements UserService {
 
         Map<String, Object> map = new HashMap<>();
         int totalCount = resumeDeliverDao.findAllByDeliverByStatus(resumeId, status);
-        System.err.println(totalCount);
+        // System.err.println(totalCount);
 
         double tc = totalCount;
         Double num = Math.ceil(((double) totalCount) / rows);
@@ -195,7 +209,7 @@ public class UserServiceImpl implements UserService {
         map.put("resumeId", resumeId);
 
         List<DeliverListBean> list = resumeDeliverDao.findDeliverListByPage(map);
-        System.err.println(list);
+        // System.err.println(list);
         pageBean.setList(list);
 
         return pageBean;
@@ -218,7 +232,7 @@ public class UserServiceImpl implements UserService {
 
         Map<String, Object> map = new HashMap<>();
         int totalCount = resumeDeliverDao.findCountJobReceiveByStatus(jobId, status);
-        System.err.println(totalCount);
+        // System.err.println(totalCount);
 
         double tc = totalCount;
         Double num = Math.ceil(((double) totalCount) / rows);
@@ -230,7 +244,7 @@ public class UserServiceImpl implements UserService {
         map.put("jobId", jobId);
 
         List<Object> list = resumeDeliverDao.findJobReceiveResumesByPage(map);
-        System.err.println("---------"+list);
+        // System.err.println("---------"+list);
         pageBean.setList(list);
 
         return pageBean;
@@ -299,11 +313,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteSocialWork(int id) {
         resumeDao.deleteSocialWork(id);
-    }
-
-    @Override
-    public void save(User user){
-        userDao.save(user);
     }
 
     @Override

@@ -19,26 +19,6 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException, IOException {
 
-        // HttpSession session = request.getSession();
-        // if(session.getAttribute("user") != null || session.getAttribute("company") != null || session.getAttribute("admin") != null){
-        //     return true;
-        // }else{
-        //     System.out.println("拦截");
-        //     request.setAttribute("msg","还没登录，请先登录!");
-        //     response.sendRedirect(request.getContextPath()+"/login");
-        //     return false;
-        // }
-
-        //System.out.println("拦截器");
-        //获取请求的URL
-  /*      String url = request.getRequestURI();
-        System.out.println(url);
-        //login.jsp或登录请求放行，不拦截
-        if(url.contains("/login")){
-            System.out.println("不拦截");
-            return true;
-        }*/
-
         //获取session
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute("user");

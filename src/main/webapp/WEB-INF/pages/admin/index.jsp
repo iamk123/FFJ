@@ -33,11 +33,11 @@
                         <h3 class="panel-title">站点内容统计：</h3>
                     </div>
                     <ul class="list-group">
-                        <li class="list-group-item">应聘者总数：<strong>10</strong>人</li>
-                        <li class="list-group-item">招聘者总数：<strong>6</strong>个</li>
-                        <li class="list-group-item">管理员总数：<strong>5</strong>人</li>
-                        <li class="list-group-item">职位总数：<strong>5</strong>个</li>
-                        <li class="list-group-item">当前在线：<strong>5</strong>人</li>
+                        <li class="list-group-item">应聘者总数：<strong>${countUser}</strong>人</li>
+                        <li class="list-group-item">招聘者总数：<strong>${countCompany}</strong>个</li>
+<%--                        <li class="list-group-item">管理员总数：<strong>5</strong>人</li>--%>
+                        <li class="list-group-item">职位总数：<strong>${countJob}</strong>个</li>
+<%--                        <li class="list-group-item">当前在线：<strong>5</strong>人</li>--%>
                     </ul>
                 </div>
             </div>

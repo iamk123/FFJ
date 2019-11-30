@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="mytag" uri="/WEB-INF/tld/MyTag.tld" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,19 +19,22 @@
 <!-- 头部区域 -->
 <header>
     <!--导航条-->
-<%--    <c:import url="head.jsp"></c:import>--%>
-    <jsp:include page="head.jsp"></jsp:include>
+    <jsp:include page="../head.jsp"></jsp:include>
     <!--/导航条-->
 </header>
 <!--/头部区域  -->
 
-<h1>这是company的首页</h1>
+<div class="container" style="margin-top:50px;">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="jumbotron">
+            <h1>Hello, welcome!</h1>
+            <p><a class="btn btn-primary btn-lg" href="/company/postJob" role="button">发布职位</a></p>
+        </div>
+    </div>
+</div>
 
 
-<!--footer-->
-<%--<c:import url="../user/footer.jsp"></c:import>--%>
-<jsp:include page="../user/footer.jsp"></jsp:include>>
-<!--/footer-->
+
 
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>

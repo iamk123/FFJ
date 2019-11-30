@@ -34,6 +34,10 @@
         select * from COMPANY;
     </select>
 
+    <select id="countAll" resultType="int">
+        select count(id) from COMPANY
+    </select>
+
     <!--查找部分-->
     <select id="findSome" resultMap="companyMap">
         select * from COMPANY limit 0, #{num}

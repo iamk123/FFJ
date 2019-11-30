@@ -85,13 +85,14 @@
                         <!--前一页禁用-->
                         <c:if test="${users.currentPage == 1}">
                         <li class="disabled">
+                            <a href="javascript:void(0);" aria-label="Previous">
                             </c:if>
                             <c:if test="${users.currentPage != 1}">
                         <li>
-                            </c:if>
                             <a href="userList?<c:if test="${param.userType}!=''">${param.userType}&currentPage=${users.currentPage-1}</c:if>
                             userType=${users.list[0].userType}&currentPage=${users.currentPage-1}"
-                               aria-label="Previous">
+                           aria-label="Previous">
+                            </c:if>
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
@@ -103,12 +104,13 @@
                         <!--后一页禁用-->
                         <c:if test="${users.currentPage == users.totalPage}">
                         <li class="disabled">
+                            <a href="javascript:void(0);" aria-label="Next">
                             </c:if>
                             <c:if test="${users.currentPage != users.totalPage}">
                         <li>
-                            </c:if>
                             <a href="userList?<c:if test="${param.userType}!=''">${param.userType}&currentPage=${users.currentPage+1}</c:if>
                             userType=${users.list[0].userType}&currentPage=${users.currentPage+1}" aria-label="Next">
+                            </c:if>
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
@@ -167,8 +169,48 @@
 <c:import url="admin-side.jsp"></c:import>
 <!--/侧边栏-->
 
+<link rel="stylesheet" href="/static/lib/toastr/toastr.css">
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/static/lib/toastr/toastr.min.js"></script>
+<style>
+    .toast-center-center{
+        top:20%;
+        left:35%;
+    }
+    #deliver{
+        color:#fff;
+        cursor: pointer;
+    }
+</style>
+<script type="text/javascript">
+    toastr.options = {
+        closeButton: false,
+        debug: false,
+        progressBar: false,
+        positionClass: "toast-center-center",
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    };
+</script>
+
+<script type="text/javascript">
+    $(function(){
+        var msg = '${msg}';
+        if(msg == "1"){
+            toastr.success("操作成功！");
+        }else if(msg =="0"){
+            toastr.error("操作失败！")
+        }
+    })
+</script>
 <script>NProgress.done()</script>
 </body>
 </html>

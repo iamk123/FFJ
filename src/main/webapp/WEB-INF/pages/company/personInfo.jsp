@@ -30,7 +30,7 @@
 <section id="personInfo-session">
 	<div class="container personInfo">
 		<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 personInfo-form" style="box-shadow: 5px 5px 5px 5px #ccc;border-radius:10px;">
-			<form method="POST" action="/user/updateUserInfo">
+			<form method="POST" action="/company/updateUserInfo">
 				<input type="text" name="id" value="${sessionScope.user.id}" class="sr-only">
 				<div class="personInfo-form-title">基本信息</div>
 				<div class="form-group">
@@ -50,22 +50,8 @@
 					<label for="exampleInputEmail6">联系方式</label>
 					<input type="text" class="form-control" id="exampleInputEmail6" placeholder="phone" name="phone" value="${user.phone}">
 				</div>
-				<div class="form-group">
-					<label for="exampleInputEmail7">年级</label>
-					<input type="text" class="form-control" id="exampleInputEmail7" placeholder="grade" name="grade" value="${resume.grade}">
-				</div>
-				<div class="form-group">
-					<p>地址</p>
-					<div>
-						<select name="location">
-							<option value="长安校区" <c:if test="${resume.location.equals('长安校区')}">selected</c:if>>长安校区</option>
-							<option value="友谊校区" <c:if test="${resume.location.equals('友谊校区')}">selected</c:if>>友谊校区</option>
-						</select>
-					</div>
-				</div>
-				<div><h5 style="color:red;"><c:if test="${msg== '手机号码为11位'}">${msg}</c:if> </h5></div>
 				<button type="submit" class="btn btn-default personInfo-btn">修改</button>
-				<a href="/user/resume"><button type="button" class="btn btn-default personInfo-btn personInfo-btn-return">返回</button></a>
+				<a href="/company"><button type="button" class="btn btn-default personInfo-btn personInfo-btn-return">返回</button></a>
 			</form>
 		</div>
 	</div>
@@ -73,7 +59,7 @@
 <!-- /个人信息 -->
 
 <!--footer-->
-<c:import url="footer.jsp"></c:import>
+<c:import url="../user/footer.jsp"></c:import>
 <!--/footer-->
 
 <link rel="stylesheet" href="/static/lib/toastr/toastr.css">

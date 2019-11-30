@@ -25,51 +25,51 @@
         <div class="page-title">
             <h1>所有职位</h1>
         </div>
+        <div class="pull-right">
+            <!--分页-->
+            <c:if test="${pb.totalPage != 1}">
 
-        <div class="page-action">
-            <!-- show when multiple checked -->
-            <div class="btn-batch" style="display: none">
-                <button class="btn btn-info btn-sm">批量批准</button>
-                <button class="btn btn-warning btn-sm">批量拒绝</button>
-                <button class="btn btn-danger btn-sm">批量删除</button>
-            </div>
-            <ul class="pagination pagination-sm pull-right">
-                当前第${pb.currentPage}页，共${pb.totalPage}页！
-                <c:if test="${pb.totalPage > 1 }">
+            </c:if>
+            <c:if test="${pb.totalPage > 1}">
+                <nav aria-label="Page navigation">
                     <ul class="pagination">
-                    <!--前一页禁用-->
-                    <c:if test="${pb.currentPage == 1}">
+                        <!--前一页禁用-->
+                        <c:if test="${pb.currentPage <= 1}">
                         <li class="disabled">
-                            </c:if>
-                            <c:if test="${pb.currentPage != 1}">
+                            <a href="javascript:void(0);" aria-label="Previous">
+                                </c:if>
+                                <c:if test="${pb.currentPage > 1}">
                         <li>
-                            </c:if>
                             <a href="jobList?<c:if test="${param.status}!=''">${param.status}&currentPage=${pb.currentPage-1}</c:if>
                             &currentPage=${pb.currentPage-1}"
-                               aria-label="Previous">
+                               aria-label="Previous" aria-label="Previous">
+                                </c:if>
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
                         <c:forEach begin="1" end="${pb.totalPage}" var="i">
-                            <li class="<c:if test='${pb.currentPage == i}'>active</c:if>"><a href="jobList?<c:if test="${param.status}!=''">${param.status}&currentPage=${i}</c:if>
-                            &currentPage=${i}">${i}
-                            </a></li>
+                            <li class="<c:if test='${pb.currentPage == i}'>active</c:if>"><a href="jobList?<c:if test="${param.status}!=''">${param.status}&currentPage=${i}</c:if>&currentPage=${i}">${i}</a></li>
                         </c:forEach>
                         <!--后一页禁用-->
-                        <c:if test="${pb.currentPage == pb.totalPage}">
+                        <c:if test="${pb.currentPage >= pb.totalPage}">
                         <li class="disabled">
-                            </c:if>
-                            <c:if test="${pb.currentPage != pb.totalPage}">
+                            <a href="javascript:void(0);" aria-label="Next">
+                                </c:if>
+                                <c:if test="${pb.currentPage < pb.totalPage}">
                         <li>
-                            </c:if>
-                            <a href="jobList?${param.status}&currentPage=${pb.currentPage+1}</c:if>
+                            <a href="jobList?<c:if test="${param.status}!=''">${param.status}&currentPage=${pb.currentPage+1}</c:if>
                             &currentPage=${pb.currentPage+1}" aria-label="Next">
+                                </c:if>
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
                     </ul>
 
-            </ul>
+                </nav>
+
+            </c:if>
+            <h5>当前第${pb.currentPage}页，共${pb.totalPage}页!</h5>
+            <!--/分页-->
         </div>
         <table class="table table-striped table-bordered table-hover">
             <thead>
@@ -118,8 +118,10 @@
 <c:import url="admin-side.jsp"></c:import>
 <!--/侧边栏-->
 
+<link rel="stylesheet" href="/static/lib/toastr/toastr.css">
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/static/lib/toastr/toastr.min.js"></script>
 <script type="text/javascript">
     function submitForm() {
         var form = document.getElementById("getJobList"); //获取form表单对象
@@ -140,6 +142,42 @@
             }
         }
         else select.options[0].text = "不限";
+    })
+</script>
+<style>
+    .toast-center-center{
+        top:20%;
+        left:35%;
+    }
+    #deliver{
+        color:#fff;
+        cursor: pointer;
+    }
+</style>
+<script type="text/javascript">
+    toastr.options = {
+        closeButton: false,
+        debug: false,
+        progressBar: false,
+        positionClass: "toast-center-center",
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    };
+</script>
+
+<script type="text/javascript">
+    $(function(){
+        var msg = '${msg}';
+        if(msg == "1"){
+            toastr.success("操作成功");
+        }
     })
 </script>
 <script>NProgress.done()</script>

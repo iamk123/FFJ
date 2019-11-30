@@ -25,28 +25,29 @@
                 <div class="personInfo-form-title">欢迎注册！</div>
                 <div class="form-group">
                     <label for="exampleInputEmail1"><h4>昵称</h4></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="nickName" name="name">
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="nickName" name="name" value="${user.name}">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail2"><h4>学号</h4></label>
-                    <input type="text" class="form-control" id="exampleInputEmail2" placeholder="userName" name="userName">
+                    <input type="text" class="form-control" id="exampleInputEmail2" placeholder="userName" name="userName" value="${user.userName}">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail3"><h4>密码</h4></label>
-                    <input type="password" class="form-control" id="exampleInputEmail3" placeholder="password" name="password">
+                    <input type="password" class="form-control" id="exampleInputEmail3" placeholder="password" name="password" value="${user.password}">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail4"><h4>邮箱</h4></label>
-                    <input type="email" class="form-control" id="exampleInputEmail4" placeholder="email" name="email">
+                    <input type="email" class="form-control" id="exampleInputEmail4" placeholder="email" name="email" value="${user.email}">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail5"><h4>联系电话</h4></label>
-                    <input type="text" class="form-control" id="exampleInputEmail5" placeholder="phone" name="phone">
+                    <input type="text" class="form-control" id="exampleInputEmail5" placeholder="phone" name="phone" value="${user.phone}">
                 </div>
                 <div class="list-inline" >
                     <label style="margin-right: 20px;"><input name="userType" type="radio" value="0" checked/> 我是应聘者 </label>
                     <label><input name="userType" type="radio" value="1"/> 我是招聘者 </label>
                 </div>
+                <div><h5 style="color:red;">${msg}</h5></div>
                 <div style="display: flex;">
                     <button type="submit" class="btn btn-default personInfo-btn">注册</button>
                     <div style="margin-top:50px;margin-left: 10px;"><a href="/login">已注册？去登录</a></div>

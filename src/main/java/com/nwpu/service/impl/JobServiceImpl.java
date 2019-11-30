@@ -31,6 +31,9 @@ public class JobServiceImpl implements JobService {
         return jobDao.findOneTotal(id);
     }
 
+    public int countAll(){
+        return jobDao.countAll();
+    }
 
     /**
      * 分页查询
@@ -68,7 +71,7 @@ public class JobServiceImpl implements JobService {
         List<Job> list = jobDao.findByPage(map);
         pageBean.setList(list);
 
-        System.out.println(pageBean);
+        // System.out.println(pageBean);
         return pageBean;
 
     }
@@ -140,7 +143,7 @@ public class JobServiceImpl implements JobService {
         map.put("start", (currentPage - 1) * rows);
         map.put("size", pageBean.getRows());
         List<Job> jobs = jobDao.findAllByPage(map);
-        System.out.println(jobs);
+        // System.out.println(jobs);
         pageBean.setList(jobs);
         return pageBean;
     }
@@ -162,7 +165,7 @@ public class JobServiceImpl implements JobService {
         map.put("kind", kind);
         map.put("companyId", companyId);
         int totalCount = jobDao.findCountPostJobsByCompanyId(map);
-        System.err.println(totalCount);
+        // System.err.println(totalCount);
 
         double tc = totalCount;
         Double num = Math.ceil(((double) totalCount) / rows);
@@ -174,7 +177,7 @@ public class JobServiceImpl implements JobService {
         map.put("companyId", companyId);
 
         List<Job> list = jobDao.findPostJobsByPage(map);
-        System.err.println(list);
+        // System.err.println(list);
         pageBean.setList(list);
 
         return pageBean;
@@ -196,5 +199,10 @@ public class JobServiceImpl implements JobService {
         if(rd != null){
             resumeDeliverDao.deleteById(rd.getId());
         }
+    }
+
+    @Override
+    public void addJob(Job job) {
+        jobDao.addJob(job);
     }
 }

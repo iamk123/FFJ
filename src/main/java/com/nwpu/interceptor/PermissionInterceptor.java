@@ -20,8 +20,7 @@ public class PermissionInterceptor implements HandlerInterceptor {
         User user = (User) session.getAttribute("user");
         int type = user.getUserType();
         String url = request.getRequestURI();
-        System.err.println("拦截器2：" +url);
-
+        // System.err.println("拦截器2：" +url);
         if(url.contains("admin")){
             if (type == 2) {
                 return true;
@@ -31,7 +30,6 @@ public class PermissionInterceptor implements HandlerInterceptor {
             }
         }else if(url.contains("company")){
             if (type == 1) {
-                System.out.println("company  放行");
                 return true;
             }else {
                 response.setStatus(403);

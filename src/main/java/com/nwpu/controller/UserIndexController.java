@@ -1,5 +1,6 @@
 package com.nwpu.controller;
 
+import com.nwpu.Utils.EncodeHandler;
 import com.nwpu.domain.*;
 import com.nwpu.pojo.DeliverListBean;
 import com.nwpu.pojo.PageBean;
@@ -10,9 +11,12 @@ import com.nwpu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +43,7 @@ public class UserIndexController {
     public String home(Model model){
 
         List<Map<String, Integer>> maps = companyService.findBaseInfo();
-        System.out.println(maps.toString());
+        // System.out.println(maps.toString());
         model.addAttribute("companies", maps);
 
         return "user/index";
@@ -79,7 +83,7 @@ public class UserIndexController {
         if(msg != ""){
             model.addAttribute("msg", msg);
         }
-        System.out.println(msg);
+        // System.out.println(msg);
         return "user/resume";
     }
 
@@ -111,12 +115,22 @@ public class UserIndexController {
      */
     @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
     public String updatePersonInfo(HttpSession session, Model model,
-                                    @ModelAttribute("user")  User user, @ModelAttribute("resume") Resume resume){
+                                   @ModelAttribute("user")  @Valid User user, BindingResult result, @ModelAttribute("resume") Resume resume){
 
         if(user.getName() == "" || user.getEmail() == "" || user.getPhone() == "" || resume.getGrade() == "" || resume.getLocation() == ""){
 
             model.addAttribute("msg", "2");
             return "user/personInfo";
+        }
+
+        if(result.hasErrors()){
+            List<ObjectError> errorList = result.getAllErrors();
+            for (ObjectError error: errorList) {
+                System.out.println(error.getDefaultMessage());
+                model.addAttribute("msg", error.getDefaultMessage());
+                model.addAttribute("user", user);
+                return "user/personInfo";
+            }
         }
 
         int affectRows = userService.updateUser(user, resume);
@@ -267,6 +281,15 @@ public class UserIndexController {
         return "user/password-reset";
     }
 
+    /**
+     * 修改密码
+     * @param session
+     * @param model
+     * @param origin
+     * @param newPassword
+     * @param confirm
+     * @return
+     */
     @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
     public String updatePassword(HttpSession session, Model model, @ModelAttribute("origin") String origin,
                                  @ModelAttribute("newPassword") String newPassword, @ModelAttribute("confirm") String confirm){
@@ -277,7 +300,7 @@ public class UserIndexController {
 
             return "user/password-reset";
         }
-        if(!user.getPassword().equals(origin)){
+        if(!user.getPassword().equals(EncodeHandler.md5Encode(origin))){
             model.addAttribute("msg", "原密码错误！");
             return "user/password-reset";
         }
@@ -289,7 +312,7 @@ public class UserIndexController {
             model.addAttribute("msg", "密码不能与原密码相同！！");
             return "user/password-reset";
         }
-        if(userService.updatePassword(user.getId(), newPassword) == 1){
+        if(userService.updatePassword(user.getId(), EncodeHandler.md5Encode(newPassword)) == 1){
             // model.addAttribute("msg", "修改密码成功！");
             System.out.println("修改成功");
             session.removeAttribute("user");

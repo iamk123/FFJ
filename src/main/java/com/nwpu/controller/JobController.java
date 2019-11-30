@@ -12,10 +12,14 @@ import com.nwpu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -98,7 +102,7 @@ public class JobController {
         ResumeDeliver resumeDeliver = new ResumeDeliver();
         resumeDeliver.setCreateTime(new Date());
         resumeDeliver.setJobId(jobId);
-        resumeDeliver.setStatus(4);
+        resumeDeliver.setStatus(0);
         resumeDeliver.setResumeId(resume.getId());
 
         //投递成功
@@ -120,8 +124,7 @@ public class JobController {
         jobService.deleteJobById(jobId);
         //如果resumeDeliver中有该job,也要删除
         jobService.deleteResumeDeliverByJobId(jobId);
-        return "redirect:/admin/jobList?currentPage=" + currentPage;
+        return "redirect:/admin/jobList?msg=1&currentPage=" + currentPage;
     }
-
 
 }

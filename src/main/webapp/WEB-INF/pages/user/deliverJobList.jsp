@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"  language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="mytag" uri="/WEB-INF/tld/MyTag.tld" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +25,7 @@
 <!-- 头部区域 -->
 <header>
     <!--导航条-->
-    <c:import url="head.jsp"></c:import>
+    <c:import url="../head.jsp"></c:import>
     <!--/导航条-->
 </header>
 <!--/头部区域  -->
@@ -66,7 +67,7 @@
                                 <td class="text-center"><input type="checkbox"></td>
                                 <th>${list.jobName}</th>
                                 <th>${list.companyName}</th>
-                                <th>${list.createTime}</th>
+                                <th><mytag:dateFormat date="${list.createTime}"></mytag:dateFormat></th>
                                 <th>
                                     <c:if test="${list.status == 0}">未处理</c:if>
                                     <c:if test="${list.status == 1}">约请面试</c:if>

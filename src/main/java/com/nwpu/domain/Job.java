@@ -2,7 +2,13 @@ package com.nwpu.domain;
 
 
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,16 +19,27 @@ public class Job implements Serializable {
 
     private Integer id;
     private Integer companyId;  //对应公司
-    @NotNull(message = "字段不能为空")
+    @NotBlank(message = "名称不能位空")
     private String jobName;     //工作名字
+    @NotBlank(message = "人数不能位空")
+    @Min(value = 0, message = "人数是大于0的数字")
     private String needNum;      //需要人数
+    @NotBlank(message = "要求不能位空")
     private String jobRequire;  //职业要求
+    @NotBlank(message = "薪水不能位空")
     private String salary;      //薪水
+    @NotBlank(message = "地点不能位空")
     private String location;    //工作地点
+    @NotBlank(message = "职位介绍不能为空")
     private String jobInfo;     //职位介绍
+
     private Date createTime;    //创建时间
+    @NotBlank(message = "联系方式不能为空")
+    @Length(min=11, max=11, message = "手机号码为11位")
     private String contact;     //联系方式
+    @NotBlank(message = "9")
     private String kind;        //类别
+
     private Integer resumeId;
 
     private ResumeDeliver resumeDeliver;

@@ -15,6 +15,7 @@ public interface IJobDao {
      */
     public int findOneTotal(int id);
 
+    int countAll();
 
     /**
      * 分页查找
@@ -61,4 +62,6 @@ public interface IJobDao {
     void deleteJobById(int jobId);
 
     int updateJob(Job job);
+
+    void addJob(Job job);
 }

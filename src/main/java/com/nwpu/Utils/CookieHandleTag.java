@@ -20,7 +20,7 @@ public class CookieHandleTag extends SimpleTagSupport {
 
     public static String Decrypt(String str, int n) {
         //解密
-        System.out.println(str);
+        // System.out.println(str);
         str = new String(Base64.getDecoder().decode(str));
         int k=Integer.parseInt("-" + n);
         String string = "";
@@ -43,7 +43,7 @@ public class CookieHandleTag extends SimpleTagSupport {
             }
             string +=c;
         }
-        System.out.println(string);
+        // System.out.println(string);
         return string;
     }
 }

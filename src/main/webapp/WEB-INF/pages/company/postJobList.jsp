@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"  language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="mytag" uri="/WEB-INF/tld/MyTag.tld" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +25,7 @@
 <!-- 头部区域 -->
 <header>
     <!--导航条-->
-    <c:import url="head.jsp"></c:import>
-<%--    <jsp:include page="head.jsp"></jsp:include>--%>
+    <c:import url="/WEB-INF/pages/head.jsp"></c:import>
     <!--/导航条-->
 </header>
 <!--/头部区域  -->
@@ -83,9 +83,10 @@
                                 <th>${list.salary}</th>
                                 <th>${list.location}</th>
                                 <th>${list.kind}</th>
-                                <th>${list.createTime}</th>
+                                <th><mytag:dateFormat date="${list.createTime}"></mytag:dateFormat></th>
                                 <td class="text-center">
                                     <a href="/company/jobHandle?jobId=${list.id}" class="btn btn-info btn-xs">详情</a>
+                                    <a href="/company/deleteJob/${list.id}/${pb.currentPage}" class="btn btn-info btn-xs">删除</a>
                                 </td>
                             </tr>
                         </c:forEach>

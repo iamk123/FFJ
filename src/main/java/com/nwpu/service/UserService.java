@@ -14,6 +14,8 @@ public interface UserService {
      */
     List<User> findAll();
 
+    int countAll();
+
     /**
      * 查询用户
      * @param userName
@@ -50,6 +52,7 @@ public interface UserService {
     int addUser(User user);
 
     int updateUser(User user, Resume resume);
+    int update(User user);
 
     int updatePassword(Integer id, String password);
 

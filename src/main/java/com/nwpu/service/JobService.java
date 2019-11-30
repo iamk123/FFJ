@@ -14,6 +14,8 @@ public interface JobService {
      */
     public int findOneTotal(int id);
 
+    int countAll();
+
     /**
      * 分页查找
      * @param key
@@ -55,4 +57,6 @@ public interface JobService {
     int updateJob(Job job);
 
     void deleteResumeDeliverByJobId(int jobId);
+
+    void addJob(Job job);
 }

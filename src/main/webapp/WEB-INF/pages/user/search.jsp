@@ -26,7 +26,7 @@
 <!-- 头部区域 -->
 <header>
     <!--导航条-->
-    <c:import url="head.jsp"></c:import>
+    <c:import url="../head.jsp"></c:import>
     <!--/导航条-->
     <!-- 搜索栏 -->
     <section class="hearder-search container-fluid">

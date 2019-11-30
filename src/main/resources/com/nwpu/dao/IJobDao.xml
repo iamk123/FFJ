@@ -78,6 +78,10 @@
         select * from JOB
     </select>
 
+    <select id="countAll" resultType="int">
+        select count(id) from JOB
+    </select>
+
     <!--根据Name查询-->
     <select id="findByName" resultMap="jobMap" parameterType="String">
         select * from JOB where jobName = #{name}
@@ -234,4 +238,10 @@
         set jobName=#{jobName},needNum=#{needNum},jobRequire=#{jobRequire},salary=#{salary},location=#{location},jobInfo=#{jobInfo},kind=#{kind},contact=#{contact}
         where id=#{id}
     </update>
+
+    <!--插入职位-->
+    <insert id="addJob" parameterType="job" keyProperty="id" useGeneratedKeys="true">
+        insert into JOB (companyId, jobName, needNum, jobRequire, salary, location, jobInfo, createTime, contact, kind)
+        values(#{companyId}, #{jobName}, #{needNum}, #{jobRequire}, #{salary}, #{location}, #{jobInfo}, #{createTime}, #{contact}, #{kind})
+    </insert>
 </mapper>

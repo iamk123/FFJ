@@ -14,6 +14,8 @@ public interface ICompanyDao {
      */
     public List<Company> findAll();
 
+    int countAll();
+
     /**
      * 根据名称查询
      * @param name

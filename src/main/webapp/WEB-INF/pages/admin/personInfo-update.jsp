@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="/static/css/admin/admin.css">
     <link rel="stylesheet" href="/static/css/personInfo.css">
     <script src="/static/lib/nprogress/nprogress.js"></script>
-    <link rel="stylesheet" href="/static/lib/toastr/toastr.css">
 </head>
 <body>
 <script>NProgress.start()</script>
@@ -78,7 +77,7 @@
 <!--侧边栏-->
 <c:import url="admin-side.jsp"></c:import>
 <!--/侧边栏-->
-
+<link rel="stylesheet" href="/static/lib/toastr/toastr.css">
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="/static/lib/toastr/toastr.min.js"></script>

@@ -15,6 +15,8 @@ public interface CompanyService {
      */
     public List<Company> findAll();
 
+    public int countAll();
+
     /**
      * 查找指定条数
      * @param num

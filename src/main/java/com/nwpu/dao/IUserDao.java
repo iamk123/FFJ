@@ -19,6 +19,8 @@ public interface IUserDao {
      */
     List<User> findAll();
 
+    int countAll();
+
     /**
      * 根据用户名查询用户
      * @param userName

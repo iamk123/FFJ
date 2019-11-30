@@ -85,7 +85,7 @@
 <!-- 头部区域 -->
 <header>
 	<!--导航条-->
-	<c:import url="head.jsp"></c:import>
+	<c:import url="../head.jsp"></c:import>
 	<!--/导航条-->
 </header>
 <!--/头部区域  -->

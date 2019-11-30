@@ -24,6 +24,11 @@ public class CompanyServiceImpl implements CompanyService {
         return companyDao.findAll();
     }
 
+
+    public int countAll(){
+        return companyDao.countAll();
+    }
+
     @Override
     public List<Company> findHotCompany(int num) {
         return companyDao.findSome(num);
@@ -72,7 +77,7 @@ public class CompanyServiceImpl implements CompanyService {
         List<Company> list = companyDao.findByPage(map);
         pageBean.setList(list);
 
-        System.out.println(pageBean);
+        // System.out.println(pageBean);
         return pageBean;
 
     }

@@ -17,8 +17,7 @@
 <!-- 头部区域 -->
 <header>
     <!--导航条-->
-    <c:import url="head.jsp"></c:import>
-<%--    <jsp:include page="head.jsp"></jsp:include>--%>
+    <c:import url="../head.jsp"></c:import>
     <!--/导航条-->
 </header>
 <!--/头部区域  -->
@@ -73,7 +72,6 @@
 
 <!--footer-->
 <c:import url="../user/footer.jsp"></c:import>
-<%--<jsp:include page="../user/footer.jsp"></jsp:include>--%>
 <!--/footer-->
 
 <link rel="stylesheet" href="/static/lib/toastr/toastr.css">
