@@ -173,14 +173,6 @@ public class CompanyController {
     @RequestMapping(value = "/updateJob", method = RequestMethod.POST)
     public String updateJob2(@RequestParam("jobId") int jobId, Model model, @Valid Job job, BindingResult result){
 
-        // System.out.println("------------------");
-        // System.out.println(job);
-        // if(result.hasErrors()){
-        //     List<ObjectError> errorList = result.getAllErrors();
-        //     for (ObjectError error: errorList) {
-        //         System.out.println(error.getDefaultMessage());
-        //     }
-        // }
         if(result.hasErrors()){
             model.addAttribute("jobDetail", job);
             model.addAttribute("msg", "2");
@@ -204,12 +196,6 @@ public class CompanyController {
     }
     @RequestMapping(value = "/postJob", method = RequestMethod.POST)
     public String postJob(Model model, @Valid Job job, BindingResult result, HttpSession session){
-
-        // if(result.hasErrors()){
-        //     model.addAttribute("job", job);
-        //     model.addAttribute("msg", "2");
-        //     return "company/jobAdd";
-        // }
 
         if(result.hasErrors()){
             List<ObjectError> errorList = result.getAllErrors();

@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * 登录过滤器
+ */
 public class LoginInterceptor implements HandlerInterceptor {
 
     private final static Log log = LogFactory.getLog(LoginInterceptor.class);

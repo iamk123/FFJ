@@ -13,22 +13,22 @@ public interface CompanyService {
      * 查询所有
      * @return
      */
-    public List<Company> findAll();
+    List<Company> findAll();
 
-    public int countAll();
+    int countAll();
 
     /**
      * 查找指定条数
      * @param num
      * @return
      */
-    public List<Company> findHotCompany(int num);
+    List<Company> findHotCompany(int num);
 
     /**
      * 根据名称查询
      * @return
      */
-    public Company findByName(String name);
+    Company findByName(String name);
 
     // List<Company> search(String key, int i);
 
@@ -47,6 +47,11 @@ public interface CompanyService {
      */
     List<Map<String, Integer>> findBaseInfo();
 
+    /**
+     * 查找公司
+     * @param id
+     * @return
+     */
     Company findCompanyByJobId(Integer id);
 
 }

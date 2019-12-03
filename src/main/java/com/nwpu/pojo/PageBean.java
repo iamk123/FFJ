@@ -2,6 +2,10 @@ package com.nwpu.pojo;
 
 import java.util.List;
 
+/**
+ * 分页bean
+ * @param <T>
+ */
 public class PageBean<T>{
 
     private int totalCount;         //总记录数

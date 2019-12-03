@@ -43,16 +43,30 @@ public interface ICompanyDao {
      */
     List<Company> findSome(int num);
 
+    /**
+     * 查询公司
+     * @param id
+     * @return
+     */
     Company findCompanyByJobId(int id);
 
-
     /**
-     * my
+     * 查询公司
+     * @param id
+     * @return
      */
-
     Company findCompanyByJobId(Integer id);
 
+    /**
+     * 查询公司基本信息
+     * @return
+     */
     List<Map<String, Integer>> findBaseInfo();
 
+    /**
+     * 查询公司
+     * @param id
+     * @return
+     */
     List<Job> findJobsByConpanyId(Integer id);
 }

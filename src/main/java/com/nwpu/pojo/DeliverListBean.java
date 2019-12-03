@@ -3,6 +3,9 @@ package com.nwpu.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 投递列表bean
+ */
 public class DeliverListBean implements Serializable {
 
     private Integer deliverId;

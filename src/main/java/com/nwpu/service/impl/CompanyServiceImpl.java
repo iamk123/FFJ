@@ -38,16 +38,6 @@ public class CompanyServiceImpl implements CompanyService {
     public Company findByName(String name) {
         return companyDao.findByName(name);
     }
-    //
-    // @Override
-    // public List<Company> search(String key, int i) {
-    //     if(key == "" || key == null){
-    //         return companyDao.findSome(5);
-    //     }else{
-    //         return companyDao.findByCondition(key, i);
-    //     }
-    // }
-
 
     @Override
     public PageBean<Company> findByPage(String key, int currentPage, int rows) {

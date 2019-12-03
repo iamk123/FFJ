@@ -28,10 +28,6 @@ public class HomeController {
     @Autowired
     private UserService userService;
 
-
-
-
-
     /**
      * 登录表单
      * @return
@@ -104,11 +100,6 @@ public class HomeController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@Valid User user, BindingResult result, Model model, HttpSession session, HttpServletResponse response){
 
-        // if(result.hasErrors()){
-        //     model.addAttribute("msg", "请完善信息！");
-        //     model.addAttribute("user", user);
-        //     return "user/register";
-        // }
         if(result.hasErrors()){
             List<ObjectError> errorList = result.getAllErrors();
             for (ObjectError error: errorList) {

@@ -4,7 +4,6 @@ import com.nwpu.Utils.EncodeHandler;
 import com.nwpu.domain.*;
 import com.nwpu.pojo.DeliverListBean;
 import com.nwpu.pojo.PageBean;
-import com.nwpu.service.AccountService;
 import com.nwpu.service.CompanyService;
 import com.nwpu.service.JobService;
 import com.nwpu.service.UserService;
@@ -27,8 +26,6 @@ public class UserIndexController {
 
     @Autowired
     private CompanyService companyService;
-    @Autowired
-    private AccountService accountService;
     @Autowired
     private JobService jobService;
     @Autowired
@@ -83,7 +80,7 @@ public class UserIndexController {
         if(msg != ""){
             model.addAttribute("msg", msg);
         }
-        // System.out.println(msg);
+
         return "user/resume";
     }
 
@@ -212,6 +209,11 @@ public class UserIndexController {
         }
     }
 
+    /**
+     * 删除项目经历
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/deleteProject/{id}")
     public String deleteProject(@PathVariable int id){
 
@@ -238,6 +240,11 @@ public class UserIndexController {
         }
     }
 
+    /**
+     * 删除个人优势
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/deleteAdvantage/{id}")
     public String deleteAdvantage(@PathVariable int id){
 
@@ -263,6 +270,11 @@ public class UserIndexController {
         }
     }
 
+    /**
+     * 删除社会工作
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/deleteSocialWork/{id}")
     public String deleteSocialWork(@PathVariable int id){
 

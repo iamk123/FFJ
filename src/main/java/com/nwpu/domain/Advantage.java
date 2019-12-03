@@ -2,6 +2,9 @@ package com.nwpu.domain;
 
 import java.io.Serializable;
 
+/**
+ * 个人优势
+ */
 public class Advantage implements Serializable {
 
     private Integer id;

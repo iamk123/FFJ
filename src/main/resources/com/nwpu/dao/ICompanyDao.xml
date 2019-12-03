@@ -17,7 +17,6 @@
     <resultMap id="baseCompanyMap" type="java.util.Map">
         <id property="c_id" column="id"></id>
         <result property="c_name" column="name"></result>
-<!--        <result property="" column="userId"></result>-->
         <result property="job_num" column="jobNum"></result>
 
         <!--一对多级联查询-->

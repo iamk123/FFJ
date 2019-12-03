@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 拦截器
+ */
 public class PermissionInterceptor implements HandlerInterceptor {
 
     @Override
