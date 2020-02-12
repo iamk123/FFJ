@@ -2,6 +2,7 @@ package com.nwpu.controller;
 
 import com.nwpu.Utils.EncodeHandler;
 import com.nwpu.domain.User;
+import com.nwpu.service.CompanyService;
 import com.nwpu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 系统主控制类
@@ -27,12 +29,22 @@ public class HomeController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private CompanyService companyService;
+
+    @GetMapping("/")
+    public String home(Model model){
+        List<Map<String, Integer>> maps = companyService.findBaseInfo();
+        // System.out.println(maps.toString());
+        model.addAttribute("companies", maps);
+        return "user/index";
+    }
 
     /**
      * 登录表单
      * @return
      */
-    @RequestMapping(value={"/login", ""}, method = RequestMethod.GET)
+    @RequestMapping(value={"/login"}, method = RequestMethod.GET)
     public String showLoginForm(HttpSession session) {
         // System.err.println(EncodeHandler.md5Encode("admin"));
         User user = (User) session.getAttribute("user");

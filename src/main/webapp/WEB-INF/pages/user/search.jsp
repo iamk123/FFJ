@@ -149,7 +149,42 @@
 <c:import url="footer.jsp"></c:import>
 <!--/footer-->
 
+<link rel="stylesheet" href="/static/lib/toastr/toastr.css">
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/static/lib/toastr/toastr.min.js"></script>
+<style>
+    .toast-center-center{
+        top:20%;
+        left:35%;
+    }
+    #deliver{
+        color:#fff;
+        cursor: pointer;
+    }
+</style>
+<script type="text/javascript">
+    toastr.options = {
+        closeButton: false,
+        debug: false,
+        progressBar: false,
+        positionClass: "toast-center-center",
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    };
+</script>
+
+<script type="text/javascript">
+    function tip() {
+        toastr.info("请登录后再试！");
+    }
+</script>
 </body>
 </html>

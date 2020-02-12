@@ -66,4 +66,9 @@
         select * from COMPANY where id = #{id}
     </select>
 
+    <!--根据userId找对应的公司-->
+    <select id="findCompanyIdByUserId" resultType="int" parameterType="int">
+        select id from COMPANY where userId = #{id}
+    </select>
+
 </mapper>

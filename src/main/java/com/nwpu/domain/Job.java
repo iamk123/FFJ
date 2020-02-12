@@ -18,18 +18,27 @@ import java.util.Date;
 public class Job implements Serializable {
 
     private Integer id;
+
     private Integer companyId;  //对应公司
+
+    private Integer userId;
+
     @NotBlank(message = "名称不能位空")
     private String jobName;     //工作名字
+
     @NotBlank(message = "人数不能位空")
     @Min(value = 0, message = "人数是大于0的数字")
     private String needNum;      //需要人数
+
     @NotBlank(message = "要求不能位空")
     private String jobRequire;  //职业要求
+
     @NotBlank(message = "薪水不能位空")
     private String salary;      //薪水
+
     @NotBlank(message = "地点不能位空")
     private String location;    //工作地点
+
     @NotBlank(message = "职位介绍不能为空")
     private String jobInfo;     //职位介绍
 
@@ -41,6 +50,14 @@ public class Job implements Serializable {
     private String kind;        //类别
 
     private Integer resumeId;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     private ResumeDeliver resumeDeliver;
 
@@ -163,6 +180,7 @@ public class Job implements Serializable {
         return "Job{" +
                 "id=" + id +
                 ", companyId=" + companyId +
+                ", userId=" + userId +
                 ", jobName='" + jobName + '\'' +
                 ", needNum='" + needNum + '\'' +
                 ", jobRequire='" + jobRequire + '\'' +

@@ -54,4 +54,5 @@ public interface CompanyService {
      */
     Company findCompanyByJobId(Integer id);
 
+    Integer finCompanyIdByUserId(Integer id);
 }

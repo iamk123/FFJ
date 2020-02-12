@@ -11,9 +11,7 @@
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/header.css">
     <link rel="stylesheet" href="/static/css/footer.css">
-
 </head>
-
 <body>
 <!-- 头部区域 -->
 <header>
@@ -35,11 +33,11 @@
             <div class="col-md-6 col-md-offset-2 col-sm-8 col-sm-offset-2 hot-search">
                 <span>热门搜索：</span>
                 <ul>
-                    <a href=""><li>java</li></a>
-                    <a href=""><li>IOS</li></a>
-                    <a href=""><li>架构设计</li></a>
-                    <a href=""><li>C++</li></a>
-                    <a href=""><li>Python</li></a>
+                    <a href="/job/search?key=互联网"><li>互联网+</li></a>
+                    <a href="/job/search?key=数模"><li>数模</li></a>
+                    <a href="/job/search?key=美赛"><li>美赛</li></a>
+                    <a href="/job/search?key=程序设计"><li>程序设计</li></a>
+                    <a href="/job/search?key=大创"><li>大创</li></a>
                 </ul>
             </div>
         </div>
@@ -53,92 +51,30 @@
 <section class="job-classify">
     <div class="container">
         <div>
-            <!-- 分类 -->
-            <div class="col-md-4" id="sidebar">
-                <div class="sidebar-item">
-                    <div class="sidebar-item-title">技术</div>
-                    <div class="sidebar-item-list">
-                        <a href="">Java</a>
-                        <a href="">PHP</a>
-                        <a href="">C++</a>
-                        <a href="">区块链</a>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="sidebar-item-title">产品</div>
-                    <div class="sidebar-item-list">
-                        <a href="">产品总监</a>
-                        <a href="">产品经理</a>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="sidebar-item-title">设计</div>
-                    <div class="sidebar-item-list">
-                        <a href="">UI设计师</a>
-                        <a href="">交互设计</a>
-                        <a href="">网页设计师</a>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="sidebar-item-title">运营</div>
-                    <div class="sidebar-item-list">
-                        <a href="">新媒体运营</a>
-                        <a href="">编辑</a>
-                        <a href="">数据运营</a>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="sidebar-item-title">技术</div>
-                    <div class="sidebar-item-list">
-                        <a href="">Java</a>
-                        <a href="">PHP</a>
-                        <a href="">C++</a>
-                        <a href="">区块链</a>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="sidebar-item-title">产品</div>
-                    <div class="sidebar-item-list">
-                        <a href="">产品总监</a>
-                        <a href="">产品经理</a>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="sidebar-item-title">设计</div>
-                    <div class="sidebar-item-list">
-                        <a href="">UI设计师</a>
-                        <a href="">交互设计</a>
-                        <a href="">网页设计师</a>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="sidebar-item-title">运营</div>
-                    <div class="sidebar-item-list">
-                        <a href="">新媒体运营</a>
-                        <a href="">编辑</a>
-                        <a href="">数据运营</a>
-                    </div>
-                </div>
-            </div>
-            <!-- /分类 -->
             <!-- 轮播图 -->
-            <div class="col-md-8" id="home_banner">
+            <div class="col-md-12" id="home_banner">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                     </ol>
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <img src="/static/img/home_banner1.JPG" alt="...">
+                            <img src="/static/img/game1.jpg" alt="..." style="width: 100%;height:100%;">
                             <div class="carousel-caption">
                             </div>
                         </div>
                         <div class="item">
-                            <img src="/static/img/home_banner2.JPG" alt="...">
+                            <img src="/static/img/game2.jpg" alt="..." style="width: 100%;height:100%;">
+                            <div class="carousel-caption">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="/static/img/game3.jpg" alt="..." style="width: 100%;height:100%;">
                             <div class="carousel-caption">
                             </div>
                         </div>
@@ -161,11 +97,11 @@
 </section>
 <!-- /职位分类 -->
 
-<!-- 热门企业 -->
+<!-- 竞赛列表 -->
 <section id="hot-company">
     <div class="container">
         <div class="panel panel-default">
-            <div class="panel-heading">热门企业</div>
+            <div class="panel-heading">热门比赛</div>
             <div class="panel-body" >
 
                 <c:forEach var="company" items="${companies}">
@@ -201,7 +137,7 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">城市热招</h3>
+                <h3 class="panel-title">城市热点</h3>
             </div>
             <div class="panel-body">
                 <div class="col-md-2 col-sm-4 col-xs-6 city-item">
@@ -250,7 +186,42 @@
 <c:import url="footer.jsp"></c:import>
 <!--/footer-->
 
+<link rel="stylesheet" href="/static/lib/toastr/toastr.css">
 <script type="text/javascript" src="/static/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/static/lib/toastr/toastr.min.js"></script>
+<style>
+    .toast-center-center{
+        top:20%;
+        left:35%;
+    }
+    #deliver{
+        color:#fff;
+        cursor: pointer;
+    }
+</style>
+<script type="text/javascript">
+    toastr.options = {
+        closeButton: false,
+        debug: false,
+        progressBar: false,
+        positionClass: "toast-center-center",
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    };
+</script>
+
+<script type="text/javascript">
+    function tip() {
+        toastr.info("请登录后再试！");
+    }
+</script>
 </body>
 </html>

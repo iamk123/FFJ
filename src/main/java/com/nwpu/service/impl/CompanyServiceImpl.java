@@ -77,6 +77,11 @@ public class CompanyServiceImpl implements CompanyService {
         return companyDao.findCompanyByJobId(id);
     }
 
+    @Override
+    public Integer finCompanyIdByUserId(Integer id) {
+        return companyDao.findCompanyIdByUserId(id);
+    }
+
 
     @Override
     public List<Map<String, Integer>> findBaseInfo(){

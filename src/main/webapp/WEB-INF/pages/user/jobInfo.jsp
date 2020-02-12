@@ -45,32 +45,50 @@
 	</script>
 
 	<script type="text/javascript">
+		function tip() {
+			toastr.info("请登录后再试！");
+		}
 		$(function(){
-			console.log("userID" + ${sessionScope.user.id});
-			$("#deliver").click(function () {
-				$.ajax({
-					type:"POST",
-					url:"/job/deliver",
-					dataType:"json",
-					data:{userId : ${sessionScope.user.id}, jobId:${jobDetail.id}},
-					success:function (data) {
-						console.log(data);
-						if("0" == data){
-							toastr.error("已经投递！请勿重复投递!");
-						}else if("1" == data){
-							console.log("投递成功！");
-							toastr.success("投递成功！等待通知!");
-						}else{
-							console.log("请等待...");
-							toastr.info("请等待...")
+
+			var user = '${sessionScope.user.id}';
+			if(user == ""){
+				$("#deliver").click(function () {
+					toastr.info("请登录!");
+				});
+				$("#collect").click(function () {
+					toastr.info("请登录！");
+				});
+			}else{
+				$("#collect").click(function () {
+					toastr.success("收藏成功！");
+				});
+				<%--console.log(${sessionScope.user});--%>
+				console.log("2")
+				$("#deliver").click(function () {
+					$.ajax({
+						type:"POST",
+						url:"/job/deliver",
+						dataType:"json",
+						data:{userId : '${sessionScope.user.id}', jobId:'${jobDetail.id}'},
+						success:function (data) {
+							console.log(data);
+							if("0" == data){
+								toastr.error("已经投递！请勿重复投递!");
+							}else if("1" == data){
+								console.log("投递成功！");
+								toastr.success("投递成功！等待通知!");
+							}else{
+								console.log("请等待...");
+								toastr.info("请等待...");
+							}
+						},
+						error:function () {
+							toastr.warning("请稍后再试...")
 						}
-					},
-					error:function () {
-						toastr.warning("请稍后再试...")
-					}
-				})
-			});
-		})
+					})
+				});
+			}
+		});
 	</script>
 
 
@@ -108,7 +126,7 @@
 					</div>
 					<div class="position-content-r pull-right">
 						<div class="position-deal">
-							<div class="job-collection pull-left">
+							<div class="job-collection pull-left" id="collect">
 								<i class="glyphicon glyphicon-star-empty" style="margin-right: 5px;"></i>收藏
 							</div>
 							<div class="resume-deliver pull-right" id="deliver">

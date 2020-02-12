@@ -10,6 +10,7 @@
         <result property="jobId" column="jobId"></result>
         <result property="resumeId" column="resumeId"></result>
         <result property="status" column="status"></result>
+        <result property="reason" column="reason"></result>
     </resultMap>
 
     <resultMap id="deliverListMap" type="deliverListBean">
@@ -19,10 +20,12 @@
         <result property="jobName" column="jobName"></result>
         <result property="createTime" column="createTime"></result>
         <result property="status" column="status"></result>
+        <result property="reason" column="reason"></result>
     </resultMap>
 
     <resultMap id="jobReceiveResumeMap" type="java.util.Map">
         <id property="jobId" column="jobId"></id>
+        <result property="name" column="uName"></result>
         <result property="userName" column="userName"></result>
         <result property="email" column="email"></result>
         <result property="phone" column="phone"></result>
@@ -32,7 +35,7 @@
 
     <!--查询用户投递列表-->
     <select id="findDeliverListByPage" resultMap="deliverListMap" parameterType="map">
-            select r.id as deliverId, r.jobId, c.name as companyName, j.jobName, r.createTime, r.status
+            select r.id as deliverId, r.jobId, c.name as companyName, j.jobName, r.createTime, r.status, r.reason
             from RESUMEDELIVER r, JOB j, COMPANY c
             where r.jobId = j.id
             and j.companyId = c.id
@@ -72,7 +75,7 @@
 
     <!--查询某工作收到简历列表-->
     <select id="findJobReceiveResumesByPage" resultMap="jobReceiveResumeMap" parameterType="map">
-        select j.id as jobId, u.userName, u.email, u.phone, r.id as resumeId, rd.status, u.id as userId
+        select j.id as jobId, u.userName, u.email, u.phone, r.id as resumeId, rd.status, u.id as userId, u.name as uName
         from JOB j, RESUMEDELIVER rd, RESUME r, USER u
         where j.id = rd.jobId
         and rd.resumeId = r.id

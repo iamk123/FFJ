@@ -158,9 +158,9 @@ public class UserIndexController {
         Integer userId = user.getId();
         Resume resume = userService.findResumeById(user.getId());
         PageBean<DeliverListBean> deliverList = userService.findDeliverListByPage(resume.getId(), currentPage, rows, status);
-
         model.addAttribute("pb", deliverList);
         model.addAttribute("status", status);
+        System.out.println(deliverList);
         return "user/deliverJobList";
     }
 

@@ -197,7 +197,7 @@ public class UserServiceImpl implements UserService {
 
         Map<String, Object> map = new HashMap<>();
         int totalCount = resumeDeliverDao.findAllByDeliverByStatus(resumeId, status);
-        // System.err.println(totalCount);
+        System.err.println(totalCount);
 
         double tc = totalCount;
         Double num = Math.ceil(((double) totalCount) / rows);
@@ -209,7 +209,7 @@ public class UserServiceImpl implements UserService {
         map.put("resumeId", resumeId);
 
         List<DeliverListBean> list = resumeDeliverDao.findDeliverListByPage(map);
-        // System.err.println(list);
+        System.err.println(list);
         pageBean.setList(list);
 
         return pageBean;
@@ -244,7 +244,7 @@ public class UserServiceImpl implements UserService {
         map.put("jobId", jobId);
 
         List<Object> list = resumeDeliverDao.findJobReceiveResumesByPage(map);
-        // System.err.println("---------"+list);
+        System.err.println("---------"+list);
         pageBean.setList(list);
 
         return pageBean;

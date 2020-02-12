@@ -58,6 +58,7 @@
                             <th>公司</th>
                             <th>投递时间</th>
                             <th>状态</th>
+                            <th>简讯</th>
                             <th class="text-center" width="100">操作</th>
                         </tr>
                         </thead>
@@ -73,6 +74,7 @@
                                     <c:if test="${list.status == 1}">约请面试</c:if>
                                     <c:if test="${list.status == 2}">抱歉</c:if>
                                 </th>
+                                <th>${list.reason}</th>
                                 <td class="text-center">
                                     <a href="/job/jobDetail/${list.jobId}" class="btn btn-info btn-xs">详情</a>
                                 </td>

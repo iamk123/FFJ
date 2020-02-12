@@ -22,17 +22,22 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException, IOException {
 
-        //获取session
-        HttpSession session = request.getSession();
-        User user = (User)session.getAttribute("user");
-        if(user != null && user.getUserType()!=null){
+        if(request.getRequestURI().equals("/") || request.getRequestURI().contains("job")){
             return true;
+        }else{
+
+            //获取session
+            HttpSession session = request.getSession();
+            User user = (User)session.getAttribute("user");
+            if(user != null && user.getUserType()!=null){
+                return true;
+            }
+            log.debug("拦截1");
+            //没有登录且不是登录页面，转发到登录界面，并给出提示错误信息
+            request.setAttribute("msg","还没登录，请先登录!");
+            response.sendRedirect(request.getContextPath()+"/login");
+            return false;
         }
-        log.debug("拦截1");
-        //没有登录且不是登录页面，转发到登录界面，并给出提示错误信息
-        request.setAttribute("msg","还没登录，请先登录!");
-        response.sendRedirect(request.getContextPath()+"/login");
-        return false;
 
     }
 }

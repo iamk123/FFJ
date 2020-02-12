@@ -10,6 +10,7 @@
         <id property="id" column="id"></id>
         <!--非主键-->
         <result property="companyId" column="companyId"></result>
+        <result property="userId" column="userId"></result>
         <result property="jobName" column="jobName"></result>
         <result property="needNum" column="needNum"></result>
         <result property="jobRequire" column="jobRequire"></result>
@@ -26,6 +27,7 @@
         <id property="id" column="id"></id>
         <!--非主键-->
         <result property="companyId" column="companyId"></result>
+        <result property="userId" column="userId"></result>
         <result property="jobName" column="jobName"></result>
         <result property="needNum" column="needNum"></result>
         <result property="jobRequire" column="jobRequire"></result>
@@ -52,6 +54,7 @@
         <id property="id" column="id"></id>
         <!--非主键-->
         <result property="companyId" column="companyId"></result>
+        <result property="userId" column="userId"></result>
         <result property="jobName" column="jobName"></result>
         <result property="needNum" column="needNum"></result>
         <result property="jobRequire" column="jobRequire"></result>
@@ -227,6 +230,24 @@
         limit #{start},#{size}
     </select>
 
+    <select id="findPostJobsByPage2" resultMap="jobMap" parameterType="map">
+        select *
+        from JOB
+        <where>
+
+            <if test="location != '' and location != null">
+                <bind name="locations" value="'%'+location+'%'"></bind>
+                and location  like #{locations}
+            </if>
+            <if test="kind != '' and kind != null">
+                <bind name="kinds" value="'%'+kind+'%'"></bind>
+                and kind like #{kinds}
+            </if>
+        </where>
+        order by createTime desc
+        limit #{start},#{size}
+    </select>
+
     <!--删除职位-->
     <delete id="deleteJobById" parameterType="int">
         delete from JOB where id = #{jobId}
@@ -241,7 +262,7 @@
 
     <!--插入职位-->
     <insert id="addJob" parameterType="job" keyProperty="id" useGeneratedKeys="true">
-        insert into JOB (companyId, jobName, needNum, jobRequire, salary, location, jobInfo, createTime, contact, kind)
-        values(#{companyId}, #{jobName}, #{needNum}, #{jobRequire}, #{salary}, #{location}, #{jobInfo}, #{createTime}, #{contact}, #{kind})
+        insert into JOB (companyId,userId, jobName, needNum, jobRequire, salary, location, jobInfo, createTime, contact, kind)
+        values(#{companyId},#{userId}, #{jobName}, #{needNum}, #{jobRequire}, #{salary}, #{location}, #{jobInfo}, #{createTime}, #{contact}, #{kind})
     </insert>
 </mapper>

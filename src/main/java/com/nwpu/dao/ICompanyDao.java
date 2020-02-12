@@ -69,4 +69,6 @@ public interface ICompanyDao {
      * @return
      */
     List<Job> findJobsByConpanyId(Integer id);
+
+    Integer findCompanyIdByUserId(Integer id);
 }

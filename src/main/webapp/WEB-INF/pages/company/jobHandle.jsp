@@ -191,14 +191,14 @@
             <c:forEach items="${pb.list}" var="user" varStatus="i">
                 <tr class="warning">
                     <td class="text-center"><input type="checkbox"></td>
-                    <th>${user.get("userName")}</th>
-                    <th>${user.get("email")}</th>
-                    <th>${user.get("phone")}</th>
+                    <th>${user.name}</th>
+                    <th>${user.email}</th>
+                    <th>${user.phone}</th>
                     <th>
                         <c:choose>
-                            <c:when test="${user.get('status') == 0}">未处理</c:when>
-                            <c:when test="${user.get('status') == 1}">约请面试</c:when>
-                            <c:when test="${user.get('status') == 2}">抱歉</c:when>
+                            <c:when test="${user.status == 0}">未处理</c:when>
+                            <c:when test="${user.status == 1}">约请面试</c:when>
+                            <c:when test="${user.status == 2}">抱歉</c:when>
                         </c:choose>
                     </th>
                     <td class="text-center">

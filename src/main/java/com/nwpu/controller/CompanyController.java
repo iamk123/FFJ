@@ -90,11 +90,14 @@ public class CompanyController {
                             @RequestParam(value = "rows", defaultValue = "5") int rows){
 
         Job jobDetail = jobService.findJobCompanyById(jobId);
-        User user = userService.findUserById(jobDetail.getCompany().getUserId());
+
+        //查找公司介绍中公司所属人联系方式
+        User user = userService.findUserById( ((User) session.getAttribute("user")).getId());
         model.addAttribute("companyUser",user);
         model.addAttribute("jobDetail", jobDetail);
 
         PageBean<Object> deliverList = userService.findJobReceiveResumesByPage(jobId, currentPage, rows, status);
+        System.out.println(deliverList);
         model.addAttribute("pb", deliverList);
         model.addAttribute("status", status);
         model.addAttribute("jobId", jobId);
@@ -208,7 +211,8 @@ public class CompanyController {
         }
 
         User company = (User) session.getAttribute("user");
-        job.setCompanyId(company.getId());
+        job.setCompanyId(companyService.finCompanyIdByUserId(company.getId()));
+        job.setUserId(company.getId());
         job.setCreateTime(new Date());
         System.out.println(job);
         jobService.addJob(job);

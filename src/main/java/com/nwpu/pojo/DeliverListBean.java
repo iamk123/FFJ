@@ -14,6 +14,15 @@ public class DeliverListBean implements Serializable {
     private String companyName;      //公司名称
     private Date createTime;         //投递时间
     private int status;           //状态
+    private String reason;         //状态处理结果
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
 
     public Integer getDeliverId() {
         return deliverId;
@@ -72,6 +81,7 @@ public class DeliverListBean implements Serializable {
                 ", companyName='" + companyName + '\'' +
                 ", createTime=" + createTime +
                 ", status=" + status +
+                ", reason='" + reason + '\'' +
                 '}';
     }
 }

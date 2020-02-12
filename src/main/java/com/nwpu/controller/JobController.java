@@ -1,6 +1,7 @@
 package com.nwpu.controller;
 
 import com.alibaba.fastjson.support.hsf.HSFJSONUtils;
+import com.nwpu.dao.IJobDao;
 import com.nwpu.domain.Job;
 import com.nwpu.domain.Resume;
 import com.nwpu.domain.ResumeDeliver;
@@ -16,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.HashMap;
@@ -32,6 +34,8 @@ public class JobController {
     private UserService userService;
     @Autowired
     private CompanyService companyService;
+    @Autowired
+    private IJobDao jobDao;
 
     /**
      * 分页标签查询
@@ -125,6 +129,51 @@ public class JobController {
         //如果resumeDeliver中有该job,也要删除
         jobService.deleteResumeDeliverByJobId(jobId);
         return "redirect:/admin/jobList?msg=1&currentPage=" + currentPage;
+    }
+
+    /**
+     * 发布职位申请
+     * @return
+     */
+    @RequestMapping("/postJob")
+    public String postJob(){
+        return "user/jobAdd";
+    }
+
+    /**
+     * 发布职位
+     * @param model
+     * @param job
+     * @param session
+     * @param result
+     * @return
+     */
+    @RequestMapping(value = "/postJob", method = RequestMethod.POST)
+    public String postJob(Model model, @Valid Job job, BindingResult result, HttpSession session){
+
+        System.out.println(job);
+        if(result.hasErrors()){
+            List<ObjectError> errorList = result.getAllErrors();
+            for (ObjectError error: errorList) {
+                System.out.println(error.getDefaultMessage());
+                model.addAttribute("msg", error.getDefaultMessage());
+                model.addAttribute("job", job);
+                return "user/jobAdd";
+            }
+        }
+
+        job.setCompanyId(0);
+        job.setUserId(((User) session.getAttribute("user")).getId());
+        job.setCreateTime(new Date());
+        System.out.println(job);
+        jobService.addJob(job);
+        return "user/index";
+    }
+
+    @RequestMapping("/postList")
+    public String postList(){
+        // jobService.findPostJobsByPage();
+        return null;
     }
 
 }
